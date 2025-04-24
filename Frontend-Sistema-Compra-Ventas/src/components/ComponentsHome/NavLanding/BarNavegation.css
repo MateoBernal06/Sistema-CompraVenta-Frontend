@@ -1,0 +1,29 @@
+
+.bar-navegation{
+    background-color: #0C0D0D;
+}
+
+.logo-project{
+    background-color: white;
+    width: 50px;
+    height: 50px;
+}
+
+.bar-navegation{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 10px 100px 10px 100px;
+}
+
+.place-buttons{
+    display: flex;
+    justify-content:flex-end;
+    gap: 50px;
+    align-items: center;
+}
+
+.button-landingPage{
+    width: 160px;
+    height: 40px;
+    color: black;
+}
