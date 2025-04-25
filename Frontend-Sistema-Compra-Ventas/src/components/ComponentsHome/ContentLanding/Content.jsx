@@ -1,7 +1,7 @@
 
 import './styleContent.css'
-import estudianteUno from '../../../assets/Imagenes Laningpage/estudianteTres.webp'
-import estudianteDos from '../../../assets/Imagenes Laningpage/estudianteDos.png'
+import estudianteUno from '../../../assets/images/estudiante-uno.png'
+import estudianteDos from '../../../assets/images/estudiante-dos.png'
 import Button from 'react-bootstrap/Button'
 
 export const ContentLandingPage = () => {
@@ -10,8 +10,8 @@ export const ContentLandingPage = () => {
             <p className='title-landing'>Vende lo que ya no usas en pocos pasos 🐲</p>
             
             <div className="infoLanding">
-                <div className='item-info'>
-                    <img className='imagen' src={estudianteUno} alt="Estudiante" />
+                <div className='item-image'>
+                    <img className='imagen' src={estudianteUno} alt="Estudiante" loading="lazy"/>
                 </div>
                 <div className='item-info'>
                     <p className='text-title'>Sistema de compra-venta pensado para estudiantes de la ESFOT</p>
@@ -35,8 +35,8 @@ export const ContentLandingPage = () => {
                     </p>
                     <Button variant="primary" className='button'>Registro</Button>
                 </div>
-                <div className='item-info'>
-                    <img className='imagen' src={estudianteDos} alt="Estudiante" />
+                <div className='item-image'>
+                    <img className='imagen' src={estudianteDos} alt="Estudiante" loading="lazy"/>
                 </div>
             </div>
         </>
