@@ -1,4 +1,4 @@
-import './register.css'
+import './userStyle.css'
 import { Button } from 'rsuite';
 
 import DragonDesfile from '../../assets/images/DragonDesfile.webp'
@@ -25,7 +25,7 @@ export const PageRegister = () => {
                     </div>
 
                     <div className='input-form'>
-                        <label htmlFor="lastName">Direccion</label>
+                        <label htmlFor="direccion">Direccion</label>
                         <input 
                             type="text" 
                             id="direccion" 
@@ -59,7 +59,7 @@ export const PageRegister = () => {
                     </div>
                     
                     <div className='input-form'>
-                        <label htmlFor="contrasena">Contraseña</label>
+                        <label htmlFor="password">Contraseña</label>
                         <input 
                             type="password" 
                             id="password" 

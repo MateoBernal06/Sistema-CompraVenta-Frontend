@@ -1,5 +1,5 @@
 import { Button } from 'rsuite';
-import './register.css'
+import './userStyle.css'
 
 import imagenLogin from '../../assets/images/imagen-login.webp'
 
@@ -21,7 +21,7 @@ export const PageLogin = () => {
                     </div>
                     
                     <div className='input-form'>
-                        <label htmlFor="contrasena">Contraseña</label>
+                        <label htmlFor="password">Contraseña</label>
                         <input 
                             type="password" 
                             id="password" 
