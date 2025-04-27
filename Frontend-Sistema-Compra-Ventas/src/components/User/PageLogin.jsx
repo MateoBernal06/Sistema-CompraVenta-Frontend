@@ -9,6 +9,7 @@ export const PageLogin = () => {
             <div className='place-form'>
                 <p className="text-title">Inicia Sesion 🐲</p>
                 <form className='form-registrar' onSubmit={(e) => { e.preventDefault()}}>
+                    
                     <div className='input-form'>
                         <label htmlFor="email">Email</label>
                         <input 
