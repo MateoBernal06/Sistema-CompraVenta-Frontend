@@ -1,7 +1,7 @@
 import './register.css'
 import { Button } from 'rsuite';
 
-import DragonDesfile from '../../assets/images/DragonDesfile.jpg'
+import DragonDesfile from '../../assets/images/DragonDesfile.webp'
 
 export const PageRegister = () => {
     return (
@@ -11,7 +11,7 @@ export const PageRegister = () => {
             </div>
 
             <div className='place-form'>
-                <p className="text-title">Crea una cuenta 🐲</p>
+                <p className="text-title">Crea tu cuenta 🐲</p>
                 <form className='form-registrar' onSubmit={(e) => { e.preventDefault()}}>
                     <div className='input-form'>
                         <label htmlFor="name">Nombres</label>
