@@ -1,8 +1,8 @@
 
-import { BarNavegation } from "../components/ComponentsHome/NavLanding/BarNavegation"
-import { CarouselLanding } from "../components/ComponentsHome/Carousel/CarouselLanding"
-import { ContentLandingPage } from "../components/ComponentsHome/ContentLanding/Content"
-import { FooterLanding } from "../components/ComponentsHome/Footer/FooterLanding"
+import { BarNavegation } from "../components/Landing/NavLanding/BarNavegation"
+import { CarouselLanding } from "../components/Landing/Carousel/CarouselLanding"
+import { ContentLandingPage } from "../components/Landing/ContentLanding/Content"
+import { FooterLanding } from "../components/Landing/Footer/FooterLanding"
 
 const LandingPage = () => {
     return(
