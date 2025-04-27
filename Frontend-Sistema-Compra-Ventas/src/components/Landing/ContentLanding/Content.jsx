@@ -3,6 +3,7 @@ import './styleContent.css'
 import estudianteUno from '../../../assets/images/estudiante-uno.png'
 import estudianteDos from '../../../assets/images/estudiante-dos.png'
 import { Button } from 'rsuite';
+import { Link } from 'react-router-dom'
 
 export const ContentLandingPage = () => {
     return (
@@ -33,7 +34,7 @@ export const ContentLandingPage = () => {
                         sistema es ideal para estudiantes que buscan generar ingresos extra y liberar espacio. 
                         Todo dentro de la ESFOT.
                     </p>
-                    <Button  color="blue" appearance="primary" className='button'>Registro</Button>
+                    <Link to="/register"><Button color="blue" appearance="primary" className='button'>Registro</Button></Link>
                 </div>
                 <div className='item-image'>
                     <img className='imagen' src={estudianteDos} alt="Estudiante" loading="lazy"/>

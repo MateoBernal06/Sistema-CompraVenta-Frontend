@@ -1,17 +1,21 @@
 import './userStyle.css'
 import { Button } from 'rsuite';
-
 import DragonDesfile from '../../assets/images/DragonDesfile.webp'
-
+import { Link } from 'react-router-dom';
 export const PageRegister = () => {
     return (
         <div className="register-container">
             <div className='place-imagen'>
-                <img src={DragonDesfile} alt="Desfile" className='image-class'/>
+                <img 
+                    src={DragonDesfile} 
+                    alt="Grupo-amigos" 
+                    className='image-class' 
+                    loading="lazy" 
+                />
             </div>
 
             <div className='place-form'>
-                <p className="text-title">Crea tu cuenta 🐲</p>
+                <p className="text-title-restore">Crea tu cuenta 🐲</p>
                 <form className='form-registrar' onSubmit={(e) => { e.preventDefault()}}>
                     <div className='input-form'>
                         <label htmlFor="name">Nombres</label>
@@ -72,7 +76,7 @@ export const PageRegister = () => {
                 </form>
                 <div className='go-login'>
                     <p>Ya tienes una cuenta?</p>
-                    <Button color="green" appearance="primary" className='button-landingPage'>Login</Button>
+                    <Link to='/login'><Button color="green" appearance="primary" className='button-landingPage'>Login</Button></Link>
                 </div>
             </div>
         </div>

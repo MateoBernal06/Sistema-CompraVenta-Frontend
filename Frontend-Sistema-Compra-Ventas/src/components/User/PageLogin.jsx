@@ -1,13 +1,13 @@
 import { Button } from 'rsuite';
+import { Link } from 'react-router-dom';
 import './userStyle.css'
-
 import imagenLogin from '../../assets/images/imagen-login.webp'
 
 export const PageLogin = () => {
     return (
         <div className="register-container">
             <div className='place-form'>
-                <p className="text-title">Inicia Sesion 🐲</p>
+                <p className="text-title-restore">Inicia Sesion 🐲</p>
                 <form className='form-registrar' onSubmit={(e) => { e.preventDefault()}}>
                     
                     <div className='input-form'>
@@ -35,12 +35,17 @@ export const PageLogin = () => {
                 </form>
                 <div className='go-login'>
                     <p>Todavia no tienes una cuenta?</p>
-                    <Button color="green" appearance="primary" className='button-landingPage'>Registrar</Button>
+                    <Link to='/register'><Button color="green" appearance="primary" className='button-landingPage'>Registrar</Button></Link>
                 </div>
                 <a href="/forgot-password">Olvidaste tu contraseña?</a>
             </div>
             <div className='place-imagen'>
-                <img src={imagenLogin} alt="Desfile" className='image-class'/>
+                <img 
+                    src={imagenLogin} 
+                    alt="Grupo-amigos" 
+                    loading="lazy" 
+                    className='image-class' 
+                />
             </div>
         </div>
     );

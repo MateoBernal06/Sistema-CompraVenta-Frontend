@@ -1,6 +1,7 @@
 import './BarNavegation.css'
 import Logo from '../../../assets/logos/logo-project.png'
 import { Button } from 'rsuite';
+import { Link } from 'react-router-dom'
 
 export const BarNavegation = () => {
     return(
@@ -10,8 +11,8 @@ export const BarNavegation = () => {
                     <img src={Logo} alt="Logo" className='logo'/>
                 </div>
                 <div className='place-buttons'>
-                    <Button color="blue" appearance="primary" className='button-landingPage'>Login</Button>
-                    <Button color="green" appearance="primary" className='button-landingPage'>Registro</Button>
+                    <Link to='/login'> <Button color="blue" appearance="primary" className='button-landingPage'>Login</Button></Link>
+                    <Link to='/register'><Button color="green" appearance="primary" className='button-landingPage'>Registro</Button></Link> 
                 </div>
             </nav>
         </>
