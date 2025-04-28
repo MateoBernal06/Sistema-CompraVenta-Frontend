@@ -37,7 +37,7 @@ export const PageLogin = () => {
                     <p>Todavia no tienes una cuenta?</p>
                     <Link to='/register'><Button color="green" appearance="primary" className='button-landingPage'>Registrar</Button></Link>
                 </div>
-                <a href="/forgot-password">Olvidaste tu contraseña?</a>
+                <Link to="/forgot-password">Olvidaste tu contraseña?</Link>
             </div>
             <div className='place-imagen'>
                 <img 

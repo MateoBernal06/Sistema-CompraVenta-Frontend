@@ -1,0 +1,28 @@
+
+.nav-class{
+    width: 250px;
+    height: 100vh;
+    background-color: #000000;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.logo-project{
+    padding: 20px;
+    width: 100%;
+    height: auto;
+    display: grid;
+    margin: 0 auto;
+}
+
+.options-nav{
+    background-color: #000000;
+    width: 100%;
+    padding: 15px;
+}
+
+.nav-section{
+    margin: 20px;
+    font-size: 16px;
+}

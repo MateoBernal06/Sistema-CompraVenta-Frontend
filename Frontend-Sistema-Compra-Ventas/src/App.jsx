@@ -9,6 +9,8 @@ import Register from './pages/MainPages/Register.jsx';
 import Login from './pages/MainPages/Login.jsx'
 import Forgot from './pages/MainPages/Forgot.jsx';
 import RestorePassword from './pages/MainPages/RestorePassword.jsx';
+import NotFound from './pages/MainPages/NotFound.jsx';
+import DashboardAdmin from './pages/DashboardAdmin.jsx';
 
 function App() {
   return (
@@ -19,7 +21,9 @@ function App() {
           <Route path="/restore-password" element={<RestorePassword />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/forgot" element={<Forgot />} />
+          <Route path="/forgot-password" element={<Forgot />} />
+          <Route path="/dashboard" element={<DashboardAdmin />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </>
