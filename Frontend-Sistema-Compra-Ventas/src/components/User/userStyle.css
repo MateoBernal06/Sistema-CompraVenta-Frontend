@@ -57,6 +57,13 @@
     padding: 10px;
 }
 
+.text-title-form{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
 .go-login{
     padding: 20px;
     text-align: center;

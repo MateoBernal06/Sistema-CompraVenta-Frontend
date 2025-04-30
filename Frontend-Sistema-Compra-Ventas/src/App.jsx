@@ -11,11 +11,11 @@ import Login from './pages/mainPages/Login.jsx'
 import Forgot from './pages/mainPages/Forgot.jsx';
 import RestorePassword from './pages/mainPages/RestorePassword.jsx';
 import NotFound from './pages/mainPages/NotFound.jsx';
-import DashboardAdmin from './pages/DashboardAdmin.jsx';
+import DashboardAdmin from './layouts/dashboards/DashboardAdmin.jsx';
 import Auth from './layouts/Auth.jsx';
 
 // Dashboard Admin
-import { GestionPerfil } from './pages/admin/GestionPerfil.jsx'
+import { GestionPerfil } from './pages/admin/gestion perfil/GestionPerfil.jsx'
 import { GestionUsuarios } from './pages/admin/GestionUsuarios.jsx'
 import { GestionProductos } from './pages/admin/GestionProductos.jsx'
 

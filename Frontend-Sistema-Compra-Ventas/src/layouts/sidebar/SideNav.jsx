@@ -16,7 +16,10 @@ const CustomNav = ({ active, onSelect, ...props }) => {
     return (
         <div className='nav-class'>
             <img src={Logo} alt="Logo" className='logo-project'/>
-            <Nav {...props} vertical activeKey={active} 
+            <Nav 
+                {...props} 
+                vertical 
+                activeKey={active} 
                 onSelect={(eventKey) => {
                     onSelect(eventKey);
                     navigate(`/${eventKey}`);
