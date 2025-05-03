@@ -3,6 +3,7 @@
     grid-template-columns: repeat(2, 1fr);
     height: 100vh;
 }
+
 .place-imagen {
     text-align: center;
     background-color: antiquewhite;
@@ -15,7 +16,15 @@
     justify-content: center;
 }
 
+.place-form-page-admin{
+    display: grid;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
 .input-form{
+    text-align: left;
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;

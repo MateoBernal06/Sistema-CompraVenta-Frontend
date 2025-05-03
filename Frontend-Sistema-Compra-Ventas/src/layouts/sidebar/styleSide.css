@@ -2,23 +2,16 @@
 .nav-class{
     width: 250px;
     height: 100vh;
-    background-color: #000000;
+    background-color: #1D1E21;
     position: fixed;
     top: 0;
     left: 0;
     overflow-y: auto;
-}
-
-.logo-project{
-    padding: 20px;
-    width: 100%;
-    height: auto;
-    display: grid;
-    margin: 0 auto;
+    align-content: center;
 }
 
 .options-nav{
-    background-color: #000000;
+    background-color: #1D1E21;
     width: 100%;
     padding: 15px;
 }
@@ -27,4 +20,15 @@
     margin: 20px;
     font-size: 16px;
     color: white;
+    height: 50px;
+}
+
+#logout{
+    background-color: red;
+    color: white;
+}
+
+#logout:hover{
+    background-color: #ffffff;
+    color: #1D1E21;
 }

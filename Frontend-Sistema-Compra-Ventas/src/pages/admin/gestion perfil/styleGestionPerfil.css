@@ -1,8 +1,14 @@
 
-.container-gestion-perfil{
-    padding-top: 30px;
+
+.place-component-admin{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    padding: 20px;
     justify-items: center;
-    gap: 20px;
+}
+
+.subtitulo{
+    background-color: antiquewhite;
+    text-align: right;
+    margin: 10px 0px 0px 0px;
 }

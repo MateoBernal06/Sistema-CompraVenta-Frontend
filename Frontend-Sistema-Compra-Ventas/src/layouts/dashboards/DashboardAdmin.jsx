@@ -1,12 +1,12 @@
-import { SideNav } from "../sidebar/SideNav";
 import { Outlet } from "react-router-dom";
+import { SiderNav } from "../sidebar/SiderNav";
 import './styleDashboard.css'
 
 const DashboardAdmin = () => {
     return (
         <>
             <div className="dashboard-container">
-                <SideNav />
+                <SiderNav />
                 <div className="dashboard-content">
                     <Outlet />
                 </div>

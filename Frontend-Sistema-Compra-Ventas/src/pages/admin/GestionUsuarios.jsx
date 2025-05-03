@@ -1,4 +1,8 @@
 
 export const GestionUsuarios = () => {
-    return <div>Gestion de Usuarios</div>;
+    return(
+        <>
+            <h1>Gestión de Usuarios</h1>
+        </>
+    )
 }

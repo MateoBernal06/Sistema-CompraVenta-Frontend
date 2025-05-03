@@ -11,11 +11,14 @@ export const CardSistem = () => {
                 style={{ objectFit: 'cover' }}
             />
             <VStack spacing={2}>
-                <Card.Header as="h5">Datos del administrador</Card.Header>
+                <Card.Header as="h5">Administrador</Card.Header>
                 <Card.Body>
                     <ul className='data-user'>
                         <li>
-                            <b>Nombre:</b> Jose Mateo Bernal
+                            <b>Nombre:</b> Jose Mateo
+                        </li>
+                        <li>
+                            <b>Apellido:</b> Bernal
                         </li>
                         <li>
                             <b>Celular:</b> 0995389340
@@ -28,7 +31,6 @@ export const CardSistem = () => {
                 <Card.Footer>
                     <TagGroup>
                         <Tag size="sm">🐲 ESFOT</Tag>
-                        <Tag size="sm">🧑🏾‍🔧 Desarrollo de software</Tag>
                     </TagGroup>
                 </Card.Footer>
             </VStack>

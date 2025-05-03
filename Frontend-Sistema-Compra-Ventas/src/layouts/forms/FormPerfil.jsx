@@ -3,7 +3,7 @@ import { Button } from 'rsuite';
 
 export const FormPerfil = () => {
     return (
-        <div className='place-form'>
+        <div className='place-form-page-admin'>
             <p className="text-title-form">Actualizar datos del administrador</p>
             <form className='form-registrar' action="">
                 <div className='input-form'>
@@ -12,6 +12,17 @@ export const FormPerfil = () => {
                         type="text" 
                         id="name" 
                         name="name"
+                        className='input' 
+                        required 
+                    />
+                </div>
+
+                <div className='input-form'>
+                    <label htmlFor="apellido">Apellido</label>
+                    <input 
+                        type="text" 
+                        id="apellido" 
+                        name="apellido"
                         className='input' 
                         required 
                     />
@@ -39,7 +50,7 @@ export const FormPerfil = () => {
                         required 
                     />
                 </div>
-                <Button color="red" appearance="primary" className='boton-register'>Actualizar</Button>
+                <Button color="blue" appearance="primary" className='boton-register'>Actualizar</Button>
             </form>
         </div>
     );
