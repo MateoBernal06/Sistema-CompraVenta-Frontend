@@ -1,19 +1,40 @@
 import './styleUserManagement.css'
 import { CardCountUsers } from '../../../layouts/cards count/CardCountUsers'
+import { CardCountSuspended } from '../../../layouts/cards count/CardCountSuspended';
 import { TableUsers } from '../../../layouts/tables/Tableusers'
+import { TableSuspended } from '../../../layouts/tables/TableSuspended';
 import Button from 'rsuite/Button'
+import { useState } from 'react';
 
 export const UserManagement = () => {
+    
+    const [activeTable, setActiveTable]=useState('activos')
+    
     return(
         <>
             <h1>Gestión de Usuarios</h1>
             <div className='user-management'>
                 <div className='user-view'>
                     <div className='place-buttons'>
-                        <Button color="blue" appearance="primary" className='boton-page-users'>Mostrar usuarios</Button>
-                        <Button color="green" appearance="primary" className='boton-page-users'>Ver usuarios suspendidos</Button>
+                        <Button
+                            color={activeTable === 'activos' ? 'green' : 'gray'}
+                            appearance="primary"
+                            onClick={() => setActiveTable('activos')}
+                            className="boton-page-users"
+                        >
+                            Usuarios Activos
+                        </Button>
+                        <Button
+                            color={activeTable === 'suspendidos' ? 'green' : 'gray'}
+                            appearance="primary"
+                            onClick={() => setActiveTable('suspendidos')}
+                            className="boton-page-users"
+                        >
+                            Usuarios Suspendidos
+                        </Button>
                     </div>
-                    <CardCountUsers />
+                    {activeTable === 'suspendidos' && <CardCountSuspended />}
+                    {activeTable=== 'activos' && <CardCountUsers />}
                 </div>
                 <div className='user-actions'>
                     <input 
@@ -26,7 +47,8 @@ export const UserManagement = () => {
                     <button className='search-button'>Buscar</button>
                 </div>
                 <div className='place-table'>
-                    <TableUsers/>
+                    {activeTable === 'activos' && <TableUsers />}
+                    {activeTable === 'suspendidos' && <TableSuspended />}
                 </div>
             </div>
         </>

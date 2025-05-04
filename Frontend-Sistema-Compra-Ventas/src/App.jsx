@@ -19,7 +19,7 @@ import Auth from './layouts/Auth.jsx';
 import { ProfileManagement } from './pages/admin/profile management/profileManagement.jsx'
 import { UserManagement } from './pages/admin/user management/UserManagement.jsx'
 import { GestionProductos } from './pages/admin/GestionProductos.jsx'
-import { SuspendedUsers } from './pages/admin/user management/SuspendedUsers.jsx'
+
 
 function App() {
   return (
@@ -39,7 +39,6 @@ function App() {
           <Route path="dashboard/*" element={<DashboardAdmin />}>
             <Route path="perfil" element={<ProfileManagement />} />
             <Route path="usuarios" element={<UserManagement />} />
-            <Route path="usuarios/suspendidos" element={<SuspendedUsers />} />
             <Route path="gestion-productos" element={<GestionProductos />} />
           </Route>
 

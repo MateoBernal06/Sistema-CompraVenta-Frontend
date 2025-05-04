@@ -12,7 +12,7 @@ export const TableSuspended = () => {
                     <th>Email</th>
                     <th>Estado</th>
                     <th>Celular</th>
-                    <th>Accion</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,11 +21,14 @@ export const TableSuspended = () => {
                     <td>Mark</td>
                     <td>Otto</td>
                     <td>mark.otto@epn.edu.ec</td>
-                    <td>Suspendido</td>
+                    <td>
+                        <p className='status'>Suspendido</p>
+                    </td>
                     <td>0987456123</td>
                     <td>
                         <div className='accions-table'>
-                            <button className='button-suspended'>Quitar suspensión</button>
+                            <button className='button-removed-suspended'>Quitar suspensión</button>
+                            <button className='button-suspended'>Eliminar usuario</button>
                         </div>
                     </td>
                 </tr>
@@ -34,11 +37,30 @@ export const TableSuspended = () => {
                     <td>Jacob</td>
                     <td>Thornton</td>
                     <td>jacob.thornton@epn.edu.ec</td>
-                    <td>Suspendido</td>
+                    <td>
+                    <p className='status'>Suspendido</p>
+                    </td>
                     <td>0987456123</td>
                     <td>
                         <div className='accions-table'>
-                            <button className='button-suspended'>Quitar suspensión</button>
+                            <button className='button-removed-suspended'>Quitar suspensión</button>
+                            <button className='button-suspended'>Eliminar usuario</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Jane</td>
+                    <td>Doe</td>
+                    <td>jane.doe@epn.edu.ec</td>
+                    <td>
+                    <p className='status'>Suspendido</p>
+                    </td>
+                    <td>0987456123</td>
+                    <td>
+                        <div className='accions-table'>
+                            <button className='button-removed-suspended'>Quitar suspensión</button>
+                            <button className='button-suspended'>Eliminar usuario</button>
                         </div>
                     </td>
                 </tr>

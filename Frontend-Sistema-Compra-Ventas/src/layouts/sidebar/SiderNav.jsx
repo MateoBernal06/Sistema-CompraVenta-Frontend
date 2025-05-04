@@ -29,11 +29,9 @@ const CustomNav = ({ active, onSelect, ...props }) => {
                 <Nav.Item eventKey="dashboard/perfil" className='nav-section'>
                     Gestion del perfil
                 </Nav.Item>
-                <Nav.Menu title="Gestion de usuarios" className='nav-section-sub'> 
-                    <Nav.Item eventKey="dashboard/usuarios" className='nav-section-options'>Ver usuarios</Nav.Item>
-                    <Nav.Item eventKey="dashboard/usuarios/suspendidos" className='nav-section-options'>Usuarios suspendidos</Nav.Item>
-                </Nav.Menu>
-                
+                <Nav.Item eventKey="dashboard/usuarios" className='nav-section'>
+                    Gestion de usuarios
+                </Nav.Item>
                 <Nav.Item eventKey="dashboard/gestion-productos" className='nav-section'>
                     Gestion de productos
                 </Nav.Item>

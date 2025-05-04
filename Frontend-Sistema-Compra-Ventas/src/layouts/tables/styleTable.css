@@ -41,3 +41,23 @@ td {
     background-color: rgb(130, 130, 255);
     color: white;
 }
+
+.button-removed-suspended{
+    background-color: rgb(87, 231, 174);
+    padding: 0px 15px 0px 15px;
+    border-radius: 8px;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+}
+
+.button-removed-suspended:hover {
+    background-color: rgb(13, 72, 37);
+    color: white;
+}
+
+.status{
+    color: red;
+    border: solid 1px red;
+    font: bold;
+    padding: 5px;
+}
