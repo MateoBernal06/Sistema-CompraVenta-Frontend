@@ -1,0 +1,43 @@
+
+.table-users{
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+}
+
+
+td {
+    align-content: center;
+    height: 50px;
+}
+
+.accions-table{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.button-suspended{
+    background-color: rgb(242, 119, 119);
+    padding: 0px 15px 0px 15px;
+    border-radius: 8px;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+}
+
+.button-suspended:hover {
+    background-color: rgb(200, 0, 0);
+    color: white;
+}
+
+.button-view-post{
+    background-color: rgb(167, 167, 224);
+    padding: 0px 15px 0px 15px;
+    border-radius: 8px;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+}
+
+.button-view-post:hover{
+    background-color: rgb(130, 130, 255);
+    color: white;
+}

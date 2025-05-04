@@ -4,9 +4,9 @@ import { CardSistem } from "../../../layouts/card/CardSistem";
 import { CalendarPage } from "../../../layouts/calendar/Calendar";
 import { FormPerfil } from "../../../layouts/forms/formPerfil";
 import { UpdatePassword } from "../../../layouts/forms/UpdatePassword";
-import './styleGestionPerfil.css'
+import './styleProfileManagement.css'
 
-export const GestionPerfil = () => {
+export const ProfileManagement = () => {
     return (
         <>
             <h1>Gestión del Perfil</h1>

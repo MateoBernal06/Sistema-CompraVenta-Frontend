@@ -2,6 +2,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'rsuite/dist/rsuite.min.css';
 
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // Usuario
@@ -15,9 +16,10 @@ import DashboardAdmin from './layouts/dashboards/DashboardAdmin.jsx';
 import Auth from './layouts/Auth.jsx';
 
 // Dashboard Admin
-import { GestionPerfil } from './pages/admin/gestion perfil/GestionPerfil.jsx'
-import { GestionUsuarios } from './pages/admin/GestionUsuarios.jsx'
+import { ProfileManagement } from './pages/admin/profile management/profileManagement.jsx'
+import { UserManagement } from './pages/admin/user management/UserManagement.jsx'
 import { GestionProductos } from './pages/admin/GestionProductos.jsx'
+import { SuspendedUsers } from './pages/admin/user management/SuspendedUsers.jsx'
 
 function App() {
   return (
@@ -35,8 +37,9 @@ function App() {
           </Route>
 
           <Route path="dashboard/*" element={<DashboardAdmin />}>
-            <Route path="gestion-perfil" element={<GestionPerfil />} />
-            <Route path="gestion-usuarios" element={<GestionUsuarios />} />
+            <Route path="perfil" element={<ProfileManagement />} />
+            <Route path="usuarios" element={<UserManagement />} />
+            <Route path="usuarios/suspendidos" element={<SuspendedUsers />} />
             <Route path="gestion-productos" element={<GestionProductos />} />
           </Route>
 

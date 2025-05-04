@@ -10,6 +10,7 @@
     align-content: center;
 }
 
+
 .options-nav{
     background-color: #1D1E21;
     width: 100%;
@@ -32,3 +33,18 @@
     background-color: #ffffff;
     color: #1D1E21;
 }
+
+.nav-section-sub{
+    height: auto;
+    font-size: 16px;
+    padding: 15px;
+    width: auto;
+}
+
+
+.nav-section-options{
+    color: #000000;
+    font-size: 14px;
+    justify-content: center;
+}
+
