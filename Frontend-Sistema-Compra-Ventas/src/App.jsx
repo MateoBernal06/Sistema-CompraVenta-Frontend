@@ -18,7 +18,7 @@ import Auth from './layouts/Auth.jsx';
 // Dashboard Admin
 import { ProfileManagement } from './pages/admin/profile management/profileManagement.jsx'
 import { UserManagement } from './pages/admin/user management/UserManagement.jsx'
-import { GestionProductos } from './pages/admin/GestionProductos.jsx'
+import { ProductsManagement } from './pages/admin/products management/ProductsManagement.jsx'
 
 
 function App() {
@@ -39,7 +39,7 @@ function App() {
           <Route path="dashboard/*" element={<DashboardAdmin />}>
             <Route path="perfil" element={<ProfileManagement />} />
             <Route path="usuarios" element={<UserManagement />} />
-            <Route path="gestion-productos" element={<GestionProductos />} />
+            <Route path="servicios" element={<ProductsManagement />} />
           </Route>
 
         </Routes>

@@ -1,4 +1,7 @@
-import { Card, VStack, TagGroup, Tag } from 'rsuite';
+import Card from 'rsuite/Card';
+import VStack from 'rsuite/VStack';
+import TagGroup from 'rsuite/TagGroup';
+import Tag from 'rsuite/Tag';
 import './styleCard.css'
 
 export const CardSistem = () => {

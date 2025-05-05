@@ -1,5 +1,6 @@
-
-import { Calendar, HStack, Divider } from 'rsuite';
+import Calendar from 'rsuite/Calendar';
+import HStack from 'rsuite/HStack';
+import Divider from 'rsuite/Divider'
 
 export const CalendarPage = () => {
     return (

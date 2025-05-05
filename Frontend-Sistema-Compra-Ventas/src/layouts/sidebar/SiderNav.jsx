@@ -32,8 +32,8 @@ const CustomNav = ({ active, onSelect, ...props }) => {
                 <Nav.Item eventKey="dashboard/usuarios" className='nav-section'>
                     Gestion de usuarios
                 </Nav.Item>
-                <Nav.Item eventKey="dashboard/gestion-productos" className='nav-section'>
-                    Gestion de productos
+                <Nav.Item eventKey="dashboard/servicios" className='nav-section'>
+                    Gestion de servicios
                 </Nav.Item>
                 <Nav.Item onClick={handleLogout} id="logout" className='nav-section'>
                     Salir del sistema
