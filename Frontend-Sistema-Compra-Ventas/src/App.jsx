@@ -16,9 +16,9 @@ import DashboardAdmin from './layouts/dashboards/DashboardAdmin.jsx';
 import Auth from './layouts/Auth.jsx';
 
 // Dashboard Admin
-import { ProfileManagement } from './pages/admin/profile management/profileManagement.jsx'
-import { UserManagement } from './pages/admin/user management/UserManagement.jsx'
-import { ProductsManagement } from './pages/admin/products management/ProductsManagement.jsx'
+import { ProfileManagement } from './pages/Admin/profile/profileManagement.jsx'
+import { UserManagement } from './pages/Admin/user/UserManagement.jsx'
+import { ProductsManagement } from './pages/Admin/products/ProductsManagement.jsx'
 
 
 function App() {

@@ -1,28 +1,26 @@
-import './styleUserManagement.css'
-import { CardCountUsers } from '../../../layouts/cards count/CardCountUsers'
-import { CardCountSuspended } from '../../../layouts/cards count/CardCountSuspended';
-import { TableUsers } from '../../../layouts/tables/Tableusers'
-import { TableSuspended } from '../../../layouts/tables/TableSuspended';
 import Button from 'rsuite/Button'
 import { useState } from 'react';
+import '../user/styleUserManagement.css'
+import { TableProducts } from '../../../layouts/tables/TableProducts';
+import { TableProductsSuspended } from '../../../layouts/tables/TableProductsSuspended';
 
-export const UserManagement = () => {
+export const ProductsManagement = () => {
     
-    const [activeTable, setActiveTable]=useState('activos')
+    const [activeTable, setActiveTable]=useState('publicaciones')
     
     return(
         <>
-            <h1>Gestión de Usuarios</h1>
-            <div className='user-management'>
+            <h1>Gestión de Servicios</h1>
+            <div className='user-management'> 
                 <div className='user-view'>
                     <div className='place-buttons'>
                         <Button
-                            color={activeTable === 'activos' ? 'green' : 'gray'}
+                            color={activeTable === 'publicaciones' ? 'green' : 'gray'}
                             appearance="primary"
-                            onClick={() => setActiveTable('activos')}
+                            onClick={() => setActiveTable('publicaciones')}
                             className="boton-page-users"
                         >
-                            Usuarios Activos
+                            Articulos/Servicios
                         </Button>
                         <Button
                             color={activeTable === 'suspendidos' ? 'green' : 'gray'}
@@ -30,11 +28,9 @@ export const UserManagement = () => {
                             onClick={() => setActiveTable('suspendidos')}
                             className="boton-page-users"
                         >
-                            Usuarios Suspendidos
+                            suspendidos
                         </Button>
                     </div>
-                    {activeTable === 'suspendidos' && <CardCountSuspended />}
-                    {activeTable=== 'activos' && <CardCountUsers />}
                 </div>
                 <div className='user-actions'>
                     <input 
@@ -46,11 +42,11 @@ export const UserManagement = () => {
                     />
                     <button className='search-button'>Buscar</button>
                 </div>
-                <div className='place-table'>
-                    {activeTable === 'activos' && <TableUsers />}
-                    {activeTable === 'suspendidos' && <TableSuspended />}
+                <div className='place-table-services'>
+                    {activeTable === 'publicaciones' ? <TableProducts/> : null}
+                    {activeTable === 'suspendidos' ? <TableProductsSuspended/> : null}
                 </div>
             </div>
         </>
-    )
+    );
 }
