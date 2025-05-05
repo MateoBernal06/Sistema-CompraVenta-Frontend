@@ -4,7 +4,7 @@ import { CarouselLanding } from "../../components/Landing/Carousel/CarouselLandi
 import { ContentLandingPage } from "../../components/Landing/ContentLanding/Content"
 import { FooterLanding } from "../../components/Landing/Footer/FooterLanding"
 
-const LandingPage = () => {
+export const LandingPage = () => {
     return(
         <>
             <BarNavegation />
@@ -15,4 +15,3 @@ const LandingPage = () => {
     )
 }
 
-export default LandingPage

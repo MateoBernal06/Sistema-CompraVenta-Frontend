@@ -6,7 +6,7 @@ import 'rsuite/dist/rsuite.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // Usuario
-import LandingPage from './pages/mainPages/LandingPage.jsx'
+import { LandingPage } from './pages/mainPages/LandingPage.jsx';
 import Register from './pages/mainPages/Register.jsx';
 import Login from './pages/mainPages/Login.jsx'
 import Forgot from './pages/mainPages/Forgot.jsx';
