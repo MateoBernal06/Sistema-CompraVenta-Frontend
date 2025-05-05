@@ -1,10 +1,9 @@
 
-
 import { CardSistem } from "../../../layouts/card/CardSistem";
-import { CalendarPage } from "../../../layouts/calendar/Calendar";
 import { FormPerfil } from "../../../layouts/forms/formPerfil";
 import { UpdatePassword } from "../../../layouts/forms/UpdatePassword";
 import './styleProfileManagement.css'
+import { CalendarPage } from "../../../layouts/calendar/calendarPage";
 
 export const ProfileManagement = () => {
     return (
