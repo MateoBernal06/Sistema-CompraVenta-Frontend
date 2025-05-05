@@ -31,7 +31,7 @@ export const PageLogin = () => {
                             required 
                         />
                     </div>
-                    <Button color="blue" appearance="primary" className='boton-register'>Login</Button>
+                    <Link to='/dashboard'><Button color="blue" appearance="primary" className='boton-register'>Login</Button></Link>
                 </form>
                 <div className='go-login'>
                     <p>Todavia no tienes una cuenta?</p>
