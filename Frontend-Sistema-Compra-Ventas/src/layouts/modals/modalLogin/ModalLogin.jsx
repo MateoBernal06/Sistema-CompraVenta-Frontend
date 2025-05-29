@@ -3,8 +3,49 @@ import Modal from 'react-bootstrap/Modal';
 import imagenLogin from '../../../assets/images/imagen-login.webp';
 import Button from 'rsuite/Button';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { loginAdministrador } from '../../../api/login';
 
 export const ModalLogin = ({ show, onHide }) => {
+
+    const [mensajeEnviado, setMensajeEnviado] = useState('');
+
+    const [form, setFormData] = useState({
+        email:'',
+        password:'',
+    });
+
+    useEffect(() => {
+        if (!show) {
+            setFormData({
+                email: '',
+                password: ''
+            });
+            setMensajeEnviado('');
+        }
+    }, [show])
+
+    const handleChange = (e) => {
+        setFormData({
+            ...form,
+            [e.target.name]: e.target.value
+        });
+    };
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const resultado = await loginAdministrador(form);
+        console.log('Respuesta del servidor:', resultado);
+        setMensajeEnviado(resultado.mensaje);
+
+        if (resultado.exito) {
+            setFormData(
+                { email: '', password: '' }
+            );
+        }
+    };
+
 
     return (
         <>
@@ -20,7 +61,7 @@ export const ModalLogin = ({ show, onHide }) => {
                     </div>
                     <div className='body-modal-form'>
                         <p className='title-modal'>Iniciar Sesión 🐲</p>
-                        <form onSubmit={(e) => { e.preventDefault()}} className='form-login'>
+                        <form onSubmit={handleSubmit} className='form-login'>
                             <div className='form-group'>
                                 <label htmlFor="email">Correo Electrónico</label>
                                 <input 
@@ -29,6 +70,8 @@ export const ModalLogin = ({ show, onHide }) => {
                                     name="email"
                                     className='form-control'
                                     required 
+                                    value={form.email}
+                                    onChange={handleChange}
                                 />
                             </div>
                             <div className='form-group'>
@@ -38,10 +81,17 @@ export const ModalLogin = ({ show, onHide }) => {
                                     id="password" 
                                     name="password"
                                     className='form-control'
+                                    value={form.password}
+                                    onChange={handleChange}
                                     required 
                                 />
                             </div>
-                            <Link to='/dashboard'><Button className='button-login' color="blue" appearance="primary">Login</Button></Link>
+                            <Button
+                                className='button-login'
+                                type="submit" 
+                                color="blue" 
+                                appearance="primary">Login
+                            </Button>
                         </form>
                         <Link to="/forgot-password">Olvidaste tu contraseña?</Link>
                     </div>

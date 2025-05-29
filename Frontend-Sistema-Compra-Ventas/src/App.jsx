@@ -12,6 +12,9 @@ import RestorePassword from './pages/MainPages/RestorePassword.jsx';
 import NotFound from './pages/MainPages/NotFound.jsx';
 import DashboardAdmin from './layouts/dashboards/DashboardAdmin.jsx';
 import Auth from './layouts/Auth.jsx';
+import { Confirmar } from './components/User/PageConfirmar.jsx';
+import { Cambiar } from './components/User/PageCambio.jsx';
+
 
 // Dashboard Admin
 import { ProfileManagement } from './pages/Admin/profile/profileManagement.jsx'
@@ -27,16 +30,18 @@ function App() {
 
           <Route path="/" element={<Auth />}>
             <Route index element={<LandingPage />} />
+            <Route path="/confirmar/:token" element={<Confirmar />} />
             <Route path="/forgot-password" element={<Forgot />} />
-            <Route path="/restore-password" element={<RestorePassword />} />
+            <Route path="/comprobar-token/:token" element={<Cambiar />} />
+            <Route path="/nuevo-password/:token" element={<RestorePassword />} />
             <Route path="*" element={<NotFound />} />
           </Route>
 
-          <Route path="dashboard/*" element={<DashboardAdmin />}>
+          {/*<Route path="dashboard/*" element={<DashboardAdmin />}>
             <Route path="perfil" element={<ProfileManagement />} />
             <Route path="usuarios" element={<UserManagement />} />
             <Route path="servicios" element={<ProductsManagement />} />
-          </Route>
+          </Route>*/}
 
         </Routes>
       </BrowserRouter>

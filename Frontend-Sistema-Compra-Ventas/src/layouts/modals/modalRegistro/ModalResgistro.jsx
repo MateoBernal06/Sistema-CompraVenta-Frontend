@@ -1,10 +1,58 @@
 
 import Modal from 'react-bootstrap/Modal';
+import { useState, useEffect } from 'react';
 import imagenRegistro from '../../../assets/photos/imagen-dos.webp';
 import Button from 'rsuite/Button';
+import { registroEstudiante } from '../../../api/registro';
 import '../ModalLogin.css';
 
 export const ModalRegistro = ({ show, onHide }) => {
+
+    const [mensajeEnviado, setMensajeEnviado] = useState('');
+
+    const [form, setFormData] = useState({
+        nombre:'',
+        apellido:'',
+        email:'',
+        direccion:'',
+        password:'',
+        celular:''
+    });
+
+    useEffect(() => {
+        if (!show) {
+            setFormData({
+                nombre: '',
+                apellido: '',
+                email: '',
+                direccion: '',
+                password: '',
+                celular: ''
+            });
+            setMensajeEnviado('');
+        }
+    }, [show])
+
+    const handleChange = (e) => {
+        setFormData({
+            ...form,
+            [e.target.name]: e.target.value
+        });
+    };
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const resultado = await registroEstudiante(form);
+        console.log('Respuesta del servidor:', resultado);
+        setMensajeEnviado(resultado.mensaje);
+
+        if (resultado.exito) {
+            setFormData(
+                { nombre: '', apellido: '', email: '', direccion: '', password: '', celular: '' }
+            );
+        }
+    };
 
     return (
         <>
@@ -15,25 +63,32 @@ export const ModalRegistro = ({ show, onHide }) => {
                 centered
             >
                 <Modal.Body className='body-modal'>
+                    <div>
+                        <img className='imagen-login' src={imagenRegistro} alt="Grupo de estudiantes" />
+                    </div>
                     <div className='body-modal-form'>
                         <p className='title-modal'>Crea tu cuenta 🐲</p>
-                        <form onSubmit={(e) => { e.preventDefault() }} className='form-login'>
+                        <form onSubmit={handleSubmit} className='form-login'>
                             <div className='form-group'>
-                                <label htmlFor="name">Nombre</label>
+                                <label htmlFor="nombre">Nombre</label>
                                 <input
                                     type="text"
-                                    id="name" 
-                                    name="name"
+                                    id="nombre" 
+                                    name="nombre"
+                                    value={form.nombre}
+                                    onChange={handleChange}
                                     className='form-control'
                                     required 
                                 />
                             </div>
                             <div className='form-group'>
-                                <label htmlFor="lastname">Apellido</label>
+                                <label htmlFor="apellido">Apellido</label>
                                 <input 
                                     type="text" 
-                                    id="lastname" 
-                                    name="lastname"
+                                    id="apellido" 
+                                    name="apellido"
+                                    value={form.apellido}
+                                    onChange={handleChange}
                                     className='form-control'
                                     required 
                                 />
@@ -44,26 +99,33 @@ export const ModalRegistro = ({ show, onHide }) => {
                                     type="email" 
                                     id="email" 
                                     name="email"
+                                    value={form.email}
+                                    onChange={handleChange}
                                     className='form-control'
                                     required 
                                 />
                             </div>
                             <div className='form-group'>
-                                <label htmlFor="phone">Celular</label>
+                                <label htmlFor="celular">Celular</label>
                                 <input 
                                     type="text" 
-                                    id="phone" 
-                                    name="phone"
+                                    id="celular" 
+                                    name="celular"
+                                    value={form.celular}
+                                    onChange={handleChange}
                                     className='form-control'
+                                    onInput={(e) => e.target.value = e.target.value.replace(/\D/g, '')}
                                     required 
                                 />
                             </div>
                             <div className='form-group'>
-                                <label htmlFor="address">Dirección</label>
+                                <label htmlFor="direccion">Dirección</label>
                                 <input 
                                     type="text" 
-                                    id="address" 
-                                    name="address"
+                                    id="direccion" 
+                                    name="direccion"
+                                    value={form.direccion}
+                                    onChange={handleChange}
                                     className='form-control'
                                     required 
                                 />
@@ -74,15 +136,19 @@ export const ModalRegistro = ({ show, onHide }) => {
                                     type="password" 
                                     id="password" 
                                     name="password"
+                                    value={form.password}
+                                    onChange={handleChange}
                                     className='form-control'
                                     required 
                                 />
                             </div>
-                            <Button color="red" appearance="primary" className='button-login'>Registrar</Button>
+                            <Button 
+                                type='submit' 
+                                color="red" 
+                                appearance="primary" 
+                                className='button-login'>Registrar
+                            </Button>
                         </form>
-                    </div>
-                    <div>
-                        <img className='imagen-login' src={imagenRegistro} alt="Grupo de estudiantes" />
                     </div>
                 </Modal.Body>
             </Modal>
