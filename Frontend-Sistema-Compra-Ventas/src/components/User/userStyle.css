@@ -96,3 +96,20 @@
     height: 100vh;
 }
 
+.confirmar-container{
+    margin: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.confirmar-link, .image-class-confirmacion{
+    padding: 20px;
+}
+
+.image-class-confirmacion{
+    object-fit: cover;
+    width: 250px;
+    height: 250px;
+}

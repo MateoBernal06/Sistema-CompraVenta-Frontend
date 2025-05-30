@@ -2,6 +2,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import './userStyle.css';
+import Visto from './../../assets/logos/visto.webp'
+import { BarVerification } from '../Landing/NavLanding/BarVerification';
+
 
 export const Cambiar = () => {
     const { token } = useParams();
@@ -38,15 +42,17 @@ export const Cambiar = () => {
 
     return (
         <>
-            <div>
+            <BarVerification />
+            <div className='confirmar-container'>
                 <h1>Confirmación de cambio de contraseña</h1>
+                <img src={Visto} className='image-class-confirmacion' alt="Imagen de confirmación" />
                 <p>{mensaje}</p>
+                <div className='confirmar-link'>
+                    <Link to={`/nuevo-password/${token}`}>
+                        <button disabled={!tokenValido}>Cambiar contraseña</button>
+                    </Link>
+                </div>
             </div>
-            <Link to={`/nuevo-password/${token}`}>
-                <button disabled={!tokenValido}>
-                    Cambiar contraseña
-                </button>
-            </Link>
         </>
     );
 };
