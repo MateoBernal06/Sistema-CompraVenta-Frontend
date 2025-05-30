@@ -5,10 +5,9 @@ import imagenRegistro from '../../../assets/photos/imagen-dos.webp';
 import Button from 'rsuite/Button';
 import { registroEstudiante } from '../../../api/registro';
 import '../ModalLogin.css';
+import { ToastContainer,toast } from 'react-toastify';
 
 export const ModalRegistro = ({ show, onHide }) => {
-
-    const [mensajeEnviado, setMensajeEnviado] = useState('');
 
     const [form, setFormData] = useState({
         nombre:'',
@@ -29,7 +28,6 @@ export const ModalRegistro = ({ show, onHide }) => {
                 password: '',
                 celular: ''
             });
-            setMensajeEnviado('');
         }
     }, [show])
 
@@ -44,13 +42,16 @@ export const ModalRegistro = ({ show, onHide }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const resultado = await registroEstudiante(form);
-        console.log('Respuesta del servidor:', resultado);
-        setMensajeEnviado(resultado.mensaje);
 
         if (resultado.exito) {
+            toast.success(resultado.mensaje || "Registro exitoso");
             setFormData(
                 { nombre: '', apellido: '', email: '', direccion: '', password: '', celular: '' }
             );
+            
+        }
+        else {
+            toast.error(resultado.mensaje || "Error en el registro");
         }
     };
 
@@ -152,6 +153,7 @@ export const ModalRegistro = ({ show, onHide }) => {
                     </div>
                 </Modal.Body>
             </Modal>
+            <ToastContainer position="top-right" autoClose={3000} />
         </>
     );
 }

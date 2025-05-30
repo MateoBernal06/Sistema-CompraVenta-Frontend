@@ -6,10 +6,9 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { loginAdministrador } from '../../../api/login';
 import { loginEstudiante } from '../../../api/registro';
+import { ToastContainer,toast } from 'react-toastify';
 
 export const ModalLogin = ({ show, onHide }) => {
-
-    const [mensajeEnviado, setMensajeEnviado] = useState('');
 
     const [form, setFormData] = useState({
         email:'',
@@ -22,7 +21,6 @@ export const ModalLogin = ({ show, onHide }) => {
                 email: '',
                 password: ''
             });
-            setMensajeEnviado('');
         }
     }, [show])
 
@@ -38,14 +36,10 @@ export const ModalLogin = ({ show, onHide }) => {
     e.preventDefault();
     try {
         let resultado = await loginAdministrador(form);
-        console.log('Login Admin:', resultado);
 
         if (!resultado.exito) {
             resultado = await loginEstudiante(form);
-            console.log('Login Estudiante:', resultado);
         }
-
-        setMensajeEnviado(resultado.mensaje || resultado.msg || '');
 
         if (resultado.exito) {
             localStorage.setItem('token', resultado.token);
@@ -53,14 +47,14 @@ export const ModalLogin = ({ show, onHide }) => {
             localStorage.setItem('nombre', resultado.nombre);
             console.log(`Usuario logueado con rol: ${resultado.rol}`);
             setFormData({ email: '', password: '' });
-            onHide();  // Si quieres cerrar modal
+            onHide(); 
         } else {
-            setMensajeEnviado(resultado.mensaje || resultado.msg || 'Error en el login');
+            toast.error(resultado.mensaje || resultado.msg || 'Error en el login');
         }
 
     } catch (error) {
         console.error(error);
-        setMensajeEnviado('Ocurrió un error en el servidor. Intenta más tarde.');
+        toast.error('Ocurrió un error en el servidor. Intenta más tarde.');
     }
         };
 
@@ -116,6 +110,7 @@ export const ModalLogin = ({ show, onHide }) => {
                     </div>
                 </Modal.Body>
             </Modal>
+            <ToastContainer position="top-right" autoClose={3000} />
         </>
     );
 }

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import './userStyle.css';
 import Visto from './../../assets/logos/visto.webp'
 import { BarVerification } from '../Landing/NavLanding/BarVerification';
-
+import { ToastContainer,toast } from 'react-toastify';
 
 export const Cambiar = () => {
     const { token } = useParams();
@@ -15,6 +15,9 @@ export const Cambiar = () => {
     useEffect(() => {
         if (!token) {
             setMensaje('Token no válido');
+            setTokenValido(false);
+            toast.dismiss();
+            toast.error('Token no válido');
             return;
         }
 
@@ -26,14 +29,15 @@ export const Cambiar = () => {
                 if (res.ok) {
                     setMensaje(data.msg || 'Token confirmado con éxito');
                     setTokenValido(true);
+                    toast.success(data.msg || 'Cuenta verificada con éxito');
                 } else {
-                    setMensaje(data.msg || 'Error al confirmar token');
                     setTokenValido(false);
+                    setMensaje(data.msg || 'Error al confirmar token');
                 }
             } catch (error) {
                 console.error('Error de red:', error);
                 setMensaje('Error de red al confirmar token');
-                setTokenValido(false);
+                toast.error('Error de red al verificar cuenta');
             }
         };
 
@@ -53,6 +57,7 @@ export const Cambiar = () => {
                     </Link>
                 </div>
             </div>
+            <ToastContainer position="top-right" autoClose={3000} />
         </>
     );
 };

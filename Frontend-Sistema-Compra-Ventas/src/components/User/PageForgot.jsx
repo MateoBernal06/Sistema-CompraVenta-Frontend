@@ -4,18 +4,16 @@ import imagenForgot from '../../assets/images/imagen-forgot.webp'
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import {recuperarEstudiante} from '../../api/registro';
+import { ToastContainer,toast } from 'react-toastify';
 
 export const PageForgot = () =>{
-    const [mensajeEnviado, setMensajeEnviado] = useState('');
-
+    
     const [form, setFormData] = useState({
         email:'',
-
     });
 
     useEffect(() => {
         setFormData({ email: '' });
-        setMensajeEnviado('');
     }, [])
 
     const handleChange = (e) => {
@@ -29,13 +27,15 @@ export const PageForgot = () =>{
     const handleSubmit = async (e) => {
         e.preventDefault();
         const resultado = await recuperarEstudiante(form);
-        console.log('Respuesta del servidor:', resultado);
-        setMensajeEnviado(resultado.mensaje);
 
         if (resultado.exito) {
+            toast.success(resultado.mensaje || "Correo enviado exitosamente");
             setFormData(
                 { email: '' }
             );
+        }
+        else {
+            toast.error(resultado.mensaje || "Error al enviar el correo");
         }
     };
 
@@ -76,6 +76,7 @@ export const PageForgot = () =>{
                     <Link to="/">Volver al inicio</Link>
                 </div>
             </div>
+            <ToastContainer position="top-right" autoClose={3000} />
         </div>
     )
 }
