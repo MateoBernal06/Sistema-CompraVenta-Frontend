@@ -5,6 +5,7 @@ import Button from 'rsuite/Button';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { loginAdministrador } from '../../../api/login';
+import { loginEstudiante } from '../../../api/registro';
 
 export const ModalLogin = ({ show, onHide }) => {
 
@@ -34,17 +35,35 @@ export const ModalLogin = ({ show, onHide }) => {
 
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        const resultado = await loginAdministrador(form);
-        console.log('Respuesta del servidor:', resultado);
-        setMensajeEnviado(resultado.mensaje);
+    e.preventDefault();
+    try {
+        let resultado = await loginAdministrador(form);
+        console.log('Login Admin:', resultado);
+
+        if (!resultado.exito) {
+            resultado = await loginEstudiante(form);
+            console.log('Login Estudiante:', resultado);
+        }
+
+        setMensajeEnviado(resultado.mensaje || resultado.msg || '');
 
         if (resultado.exito) {
-            setFormData(
-                { email: '', password: '' }
-            );
+            localStorage.setItem('token', resultado.token);
+            localStorage.setItem('rol', resultado.rol);
+            localStorage.setItem('nombre', resultado.nombre);
+            console.log(`Usuario logueado con rol: ${resultado.rol}`);
+            setFormData({ email: '', password: '' });
+            onHide();  // Si quieres cerrar modal
+        } else {
+            setMensajeEnviado(resultado.mensaje || resultado.msg || 'Error en el login');
         }
-    };
+
+    } catch (error) {
+        console.error(error);
+        setMensajeEnviado('Ocurrió un error en el servidor. Intenta más tarde.');
+    }
+        };
+
 
 
     return (

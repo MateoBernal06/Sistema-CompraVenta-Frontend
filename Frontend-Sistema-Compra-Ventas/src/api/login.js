@@ -12,8 +12,8 @@ const loginAdministrador = async (datos) => {
         if (!respuesta.ok) {
             return { exito: false, mensaje: resultado.msg || 'Error del servidor' };
         }
-
-        return { exito: true, mensaje: resultado.msg || 'Formulario enviado con éxito' };
+        return { exito: true, ...resultado };
+        
     } catch (error) {
         return { exito: false, mensaje: 'Error de red: ' + error.message };
     }

@@ -36,13 +36,7 @@ function App() {
             <Route path="/nuevo-password/:token" element={<RestorePassword />} />
             <Route path="*" element={<NotFound />} />
           </Route>
-
-          {/*<Route path="dashboard/*" element={<DashboardAdmin />}>
-            <Route path="perfil" element={<ProfileManagement />} />
-            <Route path="usuarios" element={<UserManagement />} />
-            <Route path="servicios" element={<ProductsManagement />} />
-          </Route>*/}
-
+          
         </Routes>
       </BrowserRouter>
     </>
