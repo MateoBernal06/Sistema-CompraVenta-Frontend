@@ -6,6 +6,9 @@ const DashboardAdmin = () => {
     return (
         <>
             <div className="dashboard-container">
+                <div>
+                    <h2>Panel de Administración</h2>
+                </div>
                 <SiderNav />
                 <div className="dashboard-content">
                     <Outlet />

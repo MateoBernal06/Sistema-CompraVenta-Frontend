@@ -17,6 +17,7 @@ import { Cambiar } from './components/User/PageCambio.jsx';
 
 // Dashboard Admin
 import DashboardAdmin from './layouts/dashboards/DashboardAdmin.jsx';
+import { Dashboard } from './layouts/dashboards/Dashboard.jsx';
 import { ProfileManagement } from './pages/Admin/profile/profileManagement.jsx'
 import { UserManagement } from './pages/Admin/user/UserManagement.jsx'
 import { ProductsManagement } from './pages/Admin/products/ProductsManagement.jsx'
@@ -37,6 +38,12 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Route>
           
+          <Route path="/dashboard" element={<Dashboard />}>
+            <Route path="perfil" element={<ProfileManagement />} />
+            <Route path="usuarios" element={<UserManagement />} />
+            <Route path="servicios" element={<ProductsManagement />} />
+          </Route>
+
         </Routes>
       </BrowserRouter>
     </>

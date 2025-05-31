@@ -48,3 +48,25 @@
     justify-content: center;
 }
 
+.style-sidebar{
+    background-color: #222;
+    padding: 24px;
+    color: white;
+}
+
+.style-sidebar-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 24px;
+    background: #222;
+    color: white;
+}
+
+.style-sidebar-content > div {
+    flex: 1;  
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    border-bottom: 1px solid #333;
+}

@@ -7,9 +7,11 @@ import { useState, useEffect } from 'react';
 import { loginAdministrador } from '../../../api/login';
 import { loginEstudiante } from '../../../api/registro';
 import { ToastContainer,toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 export const ModalLogin = ({ show, onHide }) => {
 
+    const navigate = useNavigate();
     const [form, setFormData] = useState({
         email:'',
         password:'',
@@ -46,6 +48,15 @@ export const ModalLogin = ({ show, onHide }) => {
             localStorage.setItem('rol', resultado.rol);
             localStorage.setItem('nombre', resultado.nombre);
             console.log(`Usuario logueado con rol: ${resultado.rol}`);
+
+            if (resultado.rol === 'administrador') {
+                navigate('/dashboard');
+            } else if (resultado.rol === 'estudiante') {
+                navigate('/student-dashboard');
+            } else {
+                navigate('/');
+            }
+
             setFormData({ email: '', password: '' });
             onHide(); 
         } else {

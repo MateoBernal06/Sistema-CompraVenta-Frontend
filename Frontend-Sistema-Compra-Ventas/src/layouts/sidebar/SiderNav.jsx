@@ -10,7 +10,8 @@ const CustomNav = ({ active, onSelect, ...props }) => {
     const handleLogout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('rol');
-        navigate('/login');
+        localStorage.removeItem('nombre');
+        navigate('/');
     };
 
     return (
