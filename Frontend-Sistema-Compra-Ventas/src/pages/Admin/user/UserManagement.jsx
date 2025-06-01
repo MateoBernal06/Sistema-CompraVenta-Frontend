@@ -1,6 +1,4 @@
 import './styleUserManagement.css'
-import { CardCountUsers } from '../../../layouts/cards_count/CardCountUsers'
-import { CardCountSuspended } from '../../../layouts/cards_count/CardCountSuspended';
 import { TableUsers } from '../../../layouts/tables/Tableusers'
 import { TableSuspended } from '../../../layouts/tables/TableSuspended';
 import Button from 'rsuite/Button'
@@ -33,8 +31,6 @@ export const UserManagement = () => {
                             Usuarios Suspendidos
                         </Button>
                     </div>
-                    {activeTable === 'suspendidos' && <CardCountSuspended />}
-                    {activeTable=== 'activos' && <CardCountUsers />}
                 </div>
                 <div className='user-actions'>
                     <input 

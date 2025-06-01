@@ -5,7 +5,7 @@ import 'rsuite/dist/rsuite.min.css';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-// Usuario
+// Main Pages
 import { LandingPage } from './pages/MainPages/LandingPage.jsx';
 import Forgot from './pages/MainPages/Forgot.jsx';
 import RestorePassword from './pages/MainPages/RestorePassword.jsx';
@@ -16,12 +16,11 @@ import { Cambiar } from './components/User/PageCambio.jsx';
 
 
 // Dashboard Admin
-import DashboardAdmin from './layouts/dashboards/DashboardAdmin.jsx';
 import { Dashboard } from './layouts/dashboards/Dashboard.jsx';
 import { ProfileManagement } from './pages/Admin/profile/profileManagement.jsx'
 import { UserManagement } from './pages/Admin/user/UserManagement.jsx'
 import { ProductsManagement } from './pages/Admin/products/ProductsManagement.jsx'
-
+import { CategorysManagement } from './pages/Admin/Categorys.jsx';
 
 function App() {
   return (
@@ -40,8 +39,9 @@ function App() {
           
           <Route path="/dashboard" element={<Dashboard />}>
             <Route path="perfil" element={<ProfileManagement />} />
-            <Route path="usuarios" element={<UserManagement />} />
-            <Route path="servicios" element={<ProductsManagement />} />
+            <Route path="gestion-usuarios" element={<UserManagement />} />
+            <Route path="gestion-publicaciones" element={<ProductsManagement />} />
+            <Route path="gestion-categorias" element={<CategorysManagement />} />
           </Route>
 
         </Routes>

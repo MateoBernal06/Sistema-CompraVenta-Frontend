@@ -1,13 +1,6 @@
 
-.dashboard-container{
-    display: flex;
-    height: 100vh;
-}
-
 .dashboard-content {
-    flex: 1; 
-    padding: 50px; 
-    overflow-y: auto; 
+    padding: 25px;
 }
 
 .data-user{
@@ -65,22 +58,26 @@
 }
 
 .sidebar-config-section{
+    justify-content: center;
+    align-items: center;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
 .sidebar-config-list{
-    border: solid 1px #fff;
-    padding: 10px;
-    border-radius: 8px;
+    padding: 0px;
     list-style: none;
     margin: 0;
-    text-align: center;
+    gap: 15px;
+    display: grid;
     color: white;
     align-items: center;
 }
 
-.sidebar-config-list li {
-    margin: 10px 0px 10px 0px;
+.sidebar-config-title{
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
 }
