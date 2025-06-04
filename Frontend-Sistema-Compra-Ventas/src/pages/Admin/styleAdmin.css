@@ -1,4 +1,13 @@
 
 .category-title{
-    background-color: antiquewhite;
+    font-size: 24px;
+    padding: 5px 0px 0px 20px;
 }
+
+.category-description {
+    font-size: 18px;
+    color: #000000;
+    margin-top: 5px;
+}
+
+

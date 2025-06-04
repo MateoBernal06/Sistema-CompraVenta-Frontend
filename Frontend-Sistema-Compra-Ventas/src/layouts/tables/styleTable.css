@@ -1,10 +1,66 @@
 
+.button-create-category{
+    background-color: rgb(64, 64, 185);
+    color: white;
+    cursor: pointer;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.user-actions{
+    justify-content: space-between;
+    display: flex;
+    margin: 20px;
+}
+
+.search-users{
+    width: 300px;
+    height: 40px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.search-button{
+    background-color: rgb(64, 64, 185);
+    color: white;
+    cursor: pointer;
+    height: 40px;
+}
+
+.icon{
+    margin: 8px;
+}
+
+.table-container{
+    width: 1200px;
+    display: flex;
+    margin: 0 auto;
+    padding-top: 20px;
+    overflow-x: auto;
+}
+
 .table-users{
     width: 100%;
     text-align: center;
     font-size: 16px;
 }
 
+.table-header th {
+    background-color: rgb(42, 42, 50);
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 20px 0px 20px 0px;
+}
+
+
+.description {
+    text-align: left;
+    padding: 5px;
+}
 
 td {
     align-content: center;
@@ -13,61 +69,31 @@ td {
 
 .accions-table{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.button-suspended{
-    background-color: rgb(242, 119, 119);
-    padding: 0px 15px 0px 15px;
-    border-radius: 8px;
-    color: rgb(0, 0, 0);
-    font-size: 16px;
+.icon-acions{
+    padding: 8px;
 }
 
-.button-suspended:hover {
-    background-color: rgb(200, 0, 0);
-    color: white;
-}
-
-.button-view-post{
-    background-color: rgb(167, 167, 224);
-    padding: 0px 15px 0px 15px;
-    border-radius: 8px;
-    color: rgb(0, 0, 0);
-    font-size: 16px;
-}
-
-.button-view-post:hover{
-    background-color: rgb(130, 130, 255);
-    color: white;
-}
-
-.button-removed-suspended{
-    background-color: rgb(87, 231, 174);
-    padding: 0px 15px 0px 15px;
-    border-radius: 8px;
-    color: rgb(0, 0, 0);
-    font-size: 16px;
-}
-
-.button-removed-suspended:hover {
-    background-color: rgb(13, 72, 37);
-    color: white;
-}
-
-.status{
-    color: red;
-    border: solid 1px red;
-    font: bold;
-    padding: 0px 5px 0px 5px;
-}
-
-.subtitle-table{
-    padding: 30px 0px 20px 0px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
+.button-accion-edit{
+    background-color: rgb(235, 249, 155);
+    cursor: pointer;
     text-align: center;
+    border-radius: 5px;
+    padding: 0px 15px 0px 15px;
+    height: 40px;
+}
+
+
+.button-accion-inactive{
+    background-color: rgb(244, 101, 101);
+    cursor: pointer;
+    text-align: center;
+    border-radius: 5px;
+    padding: 0px 15px 0px 15px;
+    height: 40px;
 }
 
 .table-users td p {
@@ -79,20 +105,4 @@ td {
     line-height: 1.5em;
 }
 
-.button-view{
-    background-color: rgb(102, 102, 242);
-    padding: 0px 15px 0px 15px;
-    border-radius: 8px;
-    color: rgb(0, 0, 0);
-    font-size: 16px;
-}
 
-.button-view:hover{
-    background-color: rgb(44, 44, 142);
-    color: white;
-}
-
-.description{
-    text-align: left;
-    padding: 5px;
-}

@@ -11,29 +11,6 @@
     align-items: center;
 }
 
-.user-actions{
-    justify-content: center;
-    display: flex;
-    padding: 20px 0px 0px 0px;
-    gap: 5px;
-}
-
-.search-users{
-    width: 300px;
-    height: 40px;
-    border: 1px solid #000000;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-.search-button{
-    background-color: rgb(64, 64, 185);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-}
 
 .place-table{
     justify-content: center;

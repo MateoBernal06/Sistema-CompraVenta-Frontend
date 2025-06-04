@@ -8,10 +8,17 @@ import { useState } from 'react';
 import { Outlet } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { ImExit } from "react-icons/im";
+import { useEffect } from 'react';
 
 export const Dashboard = () => {
     const [sidebarVisible, setSidebarVisible] = useState(false);
     const navigate = useNavigate();
+    const [nombre, setNombre] = useState('');
+
+    useEffect(() => {
+        const nombreUsuario = localStorage.getItem('nombre');
+        if (nombreUsuario) setNombre(nombreUsuario);
+    }, []);
 
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -32,7 +39,7 @@ export const Dashboard = () => {
                 <div className='dashboard-options-exit'>
                     <div className='dashboard-icon'>
                         <Avatar color="red" bordered circle src="https://i.pravatar.cc/150?u=1" />
-                        <p className='dashboard-welcome-message'>Bienvenido Mateo Bernal</p>
+                        <p className='dashboard-welcome-message'>Bienvenido {nombre}</p>
                     </div>
                     <Button 
                         onClick={handleLogout} 
