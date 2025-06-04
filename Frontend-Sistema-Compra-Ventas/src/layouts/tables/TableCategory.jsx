@@ -5,18 +5,24 @@ import { FaSearch } from "react-icons/fa";
 import { PiNotePencilFill } from "react-icons/pi";
 import Button from 'rsuite/Button';
 import { AiOutlineStop } from "react-icons/ai";
-
+import { ModalAgregar } from '../modals/modalsCategorias/ModalAgregar';
+import { useState } from 'react';
 
 export const TableCategory = () => {
+    
+    const [showModal, setShowModal] = useState(false);
+
     return (
         <>
             <div className='user-actions'>
                 <div>
                     <Button 
                         appearance="primary" 
-                        className='button-create-category'>
-                            <IoMdAddCircleOutline size={24} color="#fff" className='icon'/>
-                            Crear nueva categoría
+                        className='button-create-category'
+                        onClick={() => setShowModal(true)}
+                    >
+                        <IoMdAddCircleOutline size={24} color="#fff" className='icon'/>
+                        Crear nueva categoría
                     </Button>
                 </div>
                 <div>
@@ -116,6 +122,10 @@ export const TableCategory = () => {
                 </Table>
 
             </div>
+            <ModalAgregar
+                show={showModal}
+                onHide={() => setShowModal(false)}
+            />
         </>
     );
 }
