@@ -7,10 +7,13 @@ import Button from 'rsuite/Button';
 import { AiOutlineStop } from "react-icons/ai";
 import { ModalAgregar } from '../modals/modalsCategorias/ModalAgregar';
 import { useState } from 'react';
+import { ModalEditar } from '../modals/modalsCategorias/ModalEditar';
 
 export const TableCategory = () => {
     
     const [showModal, setShowModal] = useState(false);
+    const [showModalEditar, setShowModalEditar] = useState(false);
+    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
 
     return (
         <>
@@ -71,7 +74,14 @@ export const TableCategory = () => {
                             <td>15</td>
                             <td>
                                 <div className='accions-table'>
-                                    <button className='button-accion-edit' title="Editar categoría">
+                                    <button 
+                                        className='button-accion-edit' 
+                                        title="Editar categoría"
+                                        onClick={() => {
+                                            setCategoriaSeleccionada({ id: 1, nombre: 'Libro Basico 1', descripcion: 'Lorem ipsum...' });
+                                            setShowModalEditar(true);
+                                        }}
+                                    >
                                         <PiNotePencilFill size={24} />
                                     </button>
                                     <button className='button-accion-inactive' title="Inactivar categoría">
@@ -125,6 +135,11 @@ export const TableCategory = () => {
             <ModalAgregar
                 show={showModal}
                 onHide={() => setShowModal(false)}
+            />
+            <ModalEditar
+                show={showModalEditar}
+                onHide={() => setShowModalEditar(false)}
+                categoria={categoriaSeleccionada}
             />
         </>
     );
