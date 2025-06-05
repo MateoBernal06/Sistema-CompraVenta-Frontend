@@ -1,44 +1,34 @@
-import './styleTable.css'
+import './styleTable.css';
 import Table from 'react-bootstrap/Table';
-import { IoMdAddCircleOutline } from "react-icons/io";
-import { FaSearch } from "react-icons/fa";
 import { PiNotePencilFill } from "react-icons/pi";
-import Button from 'rsuite/Button';
-import { AiOutlineStop } from "react-icons/ai";
-import { ModalAgregar } from '../modals/modalsCategorias/ModalAgregar';
 import { useState } from 'react';
 import { ModalEditar } from '../modals/modalsCategorias/ModalEditar';
+import { inactivarCategorias } from '../../api/categorias';
+import { toast, ToastContainer } from 'react-toastify';
+import CheckIcon from '@rsuite/icons/Check';
+import CloseIcon from '@rsuite/icons/Close';
+import Toggle from 'rsuite/Toggle'
 
-export const TableCategory = () => {
-    
-    const [showModal, setShowModal] = useState(false);
+export const TableCategory = ({ categorias, recargarCategorias }) => {
     const [showModalEditar, setShowModalEditar] = useState(false);
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
 
+    const formatoFecha = (fecha) => {
+        const opciones = { year: 'numeric', month: '2-digit', day: '2-digit' };
+        return new Date(fecha).toLocaleDateString('es-ES', opciones);
+    };
+
+    const manejarInactivar = async (id) => {
+        const resultado = await inactivarCategorias(id);
+        if (resultado.exito) {
+            await recargarCategorias();
+        } else {
+            console.log(resultado.msg);
+        }
+    };
+
     return (
         <>
-            <div className='user-actions'>
-                <div>
-                    <Button 
-                        appearance="primary" 
-                        className='button-create-category'
-                        onClick={() => setShowModal(true)}
-                    >
-                        <IoMdAddCircleOutline size={24} color="#fff" className='icon'/>
-                        Crear nueva categoría
-                    </Button>
-                </div>
-                <div>
-                    <input 
-                        type='text' 
-                        name="buscar" 
-                        id="buscar" 
-                        placeholder="Ingresa el nombre de la categoría" 
-                        className='search-users'
-                    />
-                    <Button appearance="primary" className='search-button'><FaSearch size={16}/></Button>
-                </div>
-            </div>
             <div className='table-container'>
                 <Table className="table-users">
                     <colgroup>
@@ -46,102 +36,69 @@ export const TableCategory = () => {
                         <col style={{ width: '20%' }} />
                         <col style={{ width: '30%' }} /> 
                         <col style={{ width: '15%' }} />
-                        <col style={{ width: '20%' }} />
-                        <col style={{ width: '10%' }} />
+                        <col style={{ width: '15%' }} />
+                        <col style={{ width: '15%' }} />
                     </colgroup>
                     <thead className="table-header">
                         <tr>
                             <th>N</th>
                             <th>Nombre</th>
-                            <th>Descripcion</th>
-                            <th>Fecha de creacion</th>
-                            <th>Creador</th>
+                            <th>Descripción</th>
+                            <th>Fecha de creación</th>
+                            <th>Estado</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Libro Basico 1</td>
-                            <td className='desciption-place'>
-                                <p className='description'>
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque 
-                                    ex molestias illo animi vel quasi aliquid, quia veritatis non inventore 
-                                    aliquam iure distinctio sequi fugit alias fugiat at libero hic!
-                                </p>
-                            </td>
-                            <td>2023-01-01</td>
-                            <td>15</td>
-                            <td>
-                                <div className='accions-table'>
-                                    <button 
-                                        className='button-accion-edit' 
-                                        title="Editar categoría"
-                                        onClick={() => {
-                                            setCategoriaSeleccionada({ id: 1, nombre: 'Libro Basico 1', descripcion: 'Lorem ipsum...' });
-                                            setShowModalEditar(true);
-                                        }}
-                                    >
-                                        <PiNotePencilFill size={24} />
-                                    </button>
-                                    <button className='button-accion-inactive' title="Inactivar categoría">
-                                        <AiOutlineStop size={24} />
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Clases de fisica</td>
-                            <td>
-                                <p className='description'>
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque 
-                                    ex molestias illo animi vel quasi aliquid, quia veritatis non inventore 
-                                    aliquam iure distinctio sequi fugit alias fugiat at libero hic!
-                                </p>
-                            </td>
-                            <td>2023-01-02</td>
-                            <td>10</td>
-                            <td>
-                                <div className='accions-table'>
-                                    <button className='button-view' title="Editar categoría">Ver</button>
-                                    <button className='button-suspended' title="Inactivar categoría">Inactivar</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Algebra de calvache</td>
-                            <td>
-                                <p className='description'>
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque 
-                                    ex molestias illo animi vel quasi aliquid, quia veritatis non inventore 
-                                    aliquam iure distinctio sequi fugit alias fugiat at libero hic!
-                                </p>
-                            </td>
-                            <td>2025-12-04</td>
-                            <td>8</td>
-                            <td>
-                                <div className='accions-table'>
-                                    <button className='button-view'>Ver</button>
-                                    <button className='button-suspended'>Suspender</button>
-                                </div>
-                            </td>
-                        </tr>
+                        {categorias.map((cat, idx) => (
+                            <tr key={cat._id}>
+                                <td>{idx + 1}</td>
+                                <td>{cat.nombre}</td>
+                                <td className='description'>{cat.descripcion}</td>
+                                <td>{formatoFecha(cat.createdAt)}</td>
+                                <td>{cat.estado ? 'Activo' : 'Inactivo'}</td>
+                                <td>
+                                    <div className='accions-table'>
+                                        <PiNotePencilFill 
+                                            title="Editar categoría"
+                                            className='button-accion-edit'
+                                            size={28}
+                                            onClick={() => {
+                                                setCategoriaSeleccionada({
+                                                    id: cat._id,
+                                                    nombre: cat.nombre,
+                                                    descripcion: cat.descripcion
+                                                });
+                                                setShowModalEditar(true);
+                                            }} 
+                                        />
+                                        <Toggle
+                                            size="lg"
+                                            color="green"
+                                            checked={cat.estado}
+                                            checkedChildren={<CheckIcon />}
+                                            unCheckedChildren={<CloseIcon />}
+                                            onChange={() => manejarInactivar(cat._id)}
+                                            title={cat.estado ? 'Inactivar' : 'Activar'}
+                                        />
+                                    </div>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </Table>
-
             </div>
-            <ModalAgregar
-                show={showModal}
-                onHide={() => setShowModal(false)}
-            />
+
             <ModalEditar
                 show={showModalEditar}
-                onHide={() => setShowModalEditar(false)}
+                onHide={() => {
+                    setShowModalEditar(false);
+                    recargarCategorias();
+                }}
                 categoria={categoriaSeleccionada}
             />
+
+            <ToastContainer position="top-right" autoClose={3000} />
         </>
     );
-}
-
+};

@@ -59,7 +59,6 @@
 
 .description {
     text-align: left;
-    padding: 5px;
 }
 
 td {
@@ -78,12 +77,9 @@ td {
 }
 
 .button-accion-edit{
-    background-color: rgb(235, 249, 155);
     cursor: pointer;
     text-align: center;
-    border-radius: 5px;
-    padding: 0px 15px 0px 15px;
-    height: 40px;
+    color: #000000;
 }
 
 

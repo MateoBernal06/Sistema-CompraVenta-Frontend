@@ -11,7 +11,6 @@ export const ModalAgregar = ({ show, onHide }) => {
     const [form, setFormData] = useState({
         nombre:'',
         descripcion:'',
-        id:''
     });
 
     useEffect(() => {
@@ -19,7 +18,6 @@ export const ModalAgregar = ({ show, onHide }) => {
             setFormData({
                 nombre:'',
                 descripcion:'',
-                id:''
             });
         }
     }, [show]);
@@ -36,7 +34,6 @@ export const ModalAgregar = ({ show, onHide }) => {
         const resultado = await agregarCategoria(form);
         if (resultado.exito) {
             toast.success(resultado.mensaje || 'Categoría creada correctamente');
-            onHide();
         } else {
             toast.error(resultado.mensaje || 'Error al crear la categoría');
         }
@@ -76,18 +73,6 @@ export const ModalAgregar = ({ show, onHide }) => {
                                         required
                                     />
                                 </div>
-                                <div className='form-group-modal'>
-                                    <label htmlFor="id">User ID</label>
-                                    <input 
-                                        type="text" 
-                                        id="id" 
-                                        name="id"
-                                        className='form-input-modal'
-                                        value={form.id}
-                                        onChange={handleChange}
-                                        disabled 
-                                    />
-                                </div>
                                 <div className='form-group-modal-button'>
                                     <Button
                                         type='submit' 
@@ -97,7 +82,7 @@ export const ModalAgregar = ({ show, onHide }) => {
                                     <Button
                                         appearance="primary" 
                                         color="red"
-                                        onClick={onHide}>Cancelar
+                                        onClick={onHide}>Salir
                                     </Button>
                                 </div>
                             </form>
