@@ -6,6 +6,7 @@ import { agregarCategoria } from '../../../context/api/categorias';
 import { ToastContainer,toast } from 'react-toastify';
 import { useEffect } from 'react';
 
+
 export const ModalAgregar = ({ show, onHide }) => {
 
     const [form, setFormData] = useState({
@@ -34,6 +35,7 @@ export const ModalAgregar = ({ show, onHide }) => {
         const resultado = await agregarCategoria(form);
         if (resultado.exito) {
             toast.success(resultado.mensaje || 'Categoría creada correctamente');
+            if (onCategoriaCreada) onCategoriaCreada();
         } else {
             toast.error(resultado.mensaje || 'Error al crear la categoría');
         }

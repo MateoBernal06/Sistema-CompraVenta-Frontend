@@ -2,7 +2,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'rsuite/dist/rsuite.min.css';
 
-
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // Main Pages
@@ -18,10 +17,9 @@ import { Cambiar } from './components/User/PageCambio.jsx';
 // Dashboard Admin
 import { Dashboard } from './layouts/dashboards/Dashboard.jsx';
 import { ProfileManagement } from './pages/Admin/profile/profileManagement.jsx'
-import { UserManagement } from './pages/Admin/user/UserManagement.jsx'
 import { ProductsManagement } from './pages/Admin/products/ProductsManagement.jsx'
 import { CategorysManagement } from './pages/Admin/Categorys.jsx';
-
+import { UsersManagement } from './pages/Admin/Users.jsx';
 function App() {
   return (
     <>
@@ -39,7 +37,7 @@ function App() {
           
           <Route path="/dashboard" element={<Dashboard />}>
             <Route path="perfil" element={<ProfileManagement />} />
-            <Route path="gestion-usuarios" element={<UserManagement />} />
+            <Route path="gestion-usuarios" element={<UsersManagement />} />
             <Route path="gestion-publicaciones" element={<ProductsManagement />} />
             <Route path="gestion-categorias" element={<CategorysManagement />} />
           </Route>

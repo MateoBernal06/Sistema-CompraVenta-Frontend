@@ -12,46 +12,70 @@ export const TableUsers = () => {
 
     return (
         <>
-            <Table striped className="table-users">
-                <thead>
-                    <tr>
-                        <th>N</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Email</th>
-                        <th>Celular</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>mark.otto@epn.edu.ec</td>
-                        <td>0987456123</td>
-                        <td>
-                            <div className='accions-table'>
-                                <button className='button-suspended'>Suspender</button>
-                                <button onClick={handleOpenDrawer} className='button-view-post'>Ver publicaciones</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>jacob.thornton@epn.edu.ec</td>
-                        <td>0987456123</td>
-                        <td>
-                            <div className='accions-table'>
-                                <button className='button-suspended'>Suspender</button>
-                                <button onClick={handleOpenDrawer} className='button-view-post'>Ver publicaciones</button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </Table>
+            <div className='table-container'>
+                <Table className="table-users">
+                    <colgroup>
+                        <col style={{ width: '5%' }} />
+                        <col style={{ width: '10%' }} />
+                        <col style={{ width: '10%' }} />
+                        <col style={{ width: '25%' }} />
+                        <col style={{ width: '10%' }} />
+                        <col style={{ width: '15%' }} />
+                        <col style={{ width: '10%' }} />
+                        <col style={{ width: '15%' }} />
+                    </colgroup>
+                    <thead className="table-header">
+                        <tr>
+                            <th>N</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Correo Electrónico</th>
+                            <th>Celular</th>
+                            <th>Fecha de registro</th>
+                            <th>Estado</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/*categorias.length === 0 ? (
+                            <tr>
+                                <td colSpan={6} style={{ textAlign: 'center', color: '#888' }}>
+                                    No existen categorías registradas.
+                                </td>
+                            </tr>
+                        ) : (
+                            categoriasState.map((cat, idx) => (
+                                <tr key={cat._id}>
+                                    <td>{idx + 1}</td>
+                                    <td>{cat.nombre}</td>
+                                    <td className='description'>{cat.descripcion}</td>
+                                    <td>{new Date(cat.createdAt).toLocaleDateString()}</td>
+                                    <td>{cat.estado ? 'Activo' : 'Inactivo'}</td>
+                                    <td>
+                                        <div className='accions-table'>
+                                            <PiNotePencilFill
+                                                title="Editar categoría"
+                                                className='button-accion-edit'
+                                                size={28}
+                                                onClick={() => abrirModalEditar(cat)}
+                                            />
+                                            <Toggle
+                                                size="lg"
+                                                checked={cat.estado}
+                                                color='green'
+                                                checkedChildren={<CheckIcon />}
+                                                unCheckedChildren={<CloseIcon />}
+                                                onChange={() => manejarInactivar(cat._id)}
+                                                title={cat.estado ? 'Inactivar' : 'Activar'}
+                                            />
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))
+                        )*/}
+                    </tbody>
+                </Table>
+            </div>
             <DrawerAdmin open={drawerOpen} onClose={handleCloseDrawer} />
         </>
     );

@@ -9,6 +9,7 @@ import CheckIcon from '@rsuite/icons/Check';
 import CloseIcon from '@rsuite/icons/Close';
 import Toggle from 'rsuite/Toggle';
 
+
 export const TableCategory = ({ categorias }) => {
     const [categoriasState, setCategoriasState] = useState(categorias);
     const [modalData, setModalData] = useState(null);
@@ -70,34 +71,44 @@ export const TableCategory = ({ categorias }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {categoriasState.map((cat, idx) => (
-                            <tr key={cat._id}>
-                                <td>{idx + 1}</td>
-                                <td>{cat.nombre}</td>
-                                <td className='description'>{cat.descripcion}</td>
-                                <td>{new Date(cat.createdAt).toLocaleDateString()}</td>
-                                <td>{cat.estado ? 'Activo' : 'Inactivo'}</td>
-                                <td>
-                                    <div className='accions-table'>
-                                        <PiNotePencilFill
-                                            title="Editar categoría"
-                                            className='button-accion-edit'
-                                            size={28}
-                                            onClick={() => abrirModalEditar(cat)}
-                                        />
-                                        <Toggle
-                                            size="lg"
-                                            checked={cat.estado}
-                                            color='green'
-                                            checkedChildren={<CheckIcon />}
-                                            unCheckedChildren={<CloseIcon />}
-                                            onChange={() => manejarInactivar(cat._id)}
-                                            title={cat.estado ? 'Inactivar' : 'Activar'}
-                                        />
-                                    </div>
+                        {categorias.length === 0 ? (
+                            <tr>
+                                <td colSpan={6} style={{ textAlign: 'center', color: '#888' }}>
+                                    No existen categorías registradas.
                                 </td>
                             </tr>
-                        ))}
+                        ) : (
+                            categoriasState.map((cat, idx) => (
+                                <tr key={cat._id}>
+                                    <td>{idx + 1}</td>
+                                    <td>{cat.nombre}</td>
+                                    <td className='description'>{cat.descripcion}</td>
+                                    <td>{new Date(cat.createdAt).toLocaleDateString()}</td>
+                                    <td className='estado-column'>
+                                        <p className={cat.estado ? 'estado-activo' : 'estado-inactivo'}>{cat.estado ? 'Activo' : 'Inactivo'}</p>
+                                    </td>
+                                    <td>
+                                        <div className='accions-table'>
+                                            <PiNotePencilFill
+                                                title="Editar categoría"
+                                                className='button-accion-edit'
+                                                size={28}
+                                                onClick={() => abrirModalEditar(cat)}
+                                            />
+                                            <Toggle
+                                                size="lg"
+                                                checked={cat.estado}
+                                                color='green'
+                                                checkedChildren={<CheckIcon />}
+                                                unCheckedChildren={<CloseIcon />}
+                                                onChange={() => manejarInactivar(cat._id)}
+                                                title={cat.estado ? 'Inactivar' : 'Activar'}
+                                            />
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))
+                        )}
                     </tbody>
                 </Table>
             </div>

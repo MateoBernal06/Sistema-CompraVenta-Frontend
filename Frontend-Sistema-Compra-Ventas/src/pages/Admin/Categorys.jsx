@@ -8,6 +8,7 @@ import { ModalAgregar } from '../../layouts/modals/modalsCategorias/ModalAgregar
 import { useState, useEffect } from 'react';
 import { obtenerCategorias, buscarCategoria } from '../../context/api/categorias';
 import Loader from 'rsuite/Loader';
+import { toast } from 'react-toastify';
 
 export const CategorysManagement = () => {
     
@@ -32,7 +33,7 @@ export const CategorysManagement = () => {
         setLoading(true);
         try {
             if (busqueda.trim() === '') {
-                await cargarCategorias();
+                toast.info("Nombre de categoria invalida")
                 return;
             }
 
