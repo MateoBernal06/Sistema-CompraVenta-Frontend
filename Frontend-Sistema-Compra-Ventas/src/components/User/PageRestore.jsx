@@ -1,7 +1,7 @@
 import { Button } from 'rsuite';
 import './userStyle.css'
 import { useState } from 'react';
-import { nuevaContrasenaEstudiante } from '../../api/registro';
+import { nuevaContrasenaEstudiante } from '../../context/api/registro';
 import { useParams } from 'react-router-dom';
 import { ToastContainer,toast } from 'react-toastify';
 

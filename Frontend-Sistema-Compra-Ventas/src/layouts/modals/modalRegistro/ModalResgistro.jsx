@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useState, useEffect } from 'react';
 import imagenRegistro from '../../../assets/photos/imagen-dos.webp';
 import Button from 'rsuite/Button';
-import { registroEstudiante } from '../../../api/registro';
+import { registroEstudiante } from '../../../context/api/registro';
 import '../ModalLogin.css';
 import { ToastContainer,toast } from 'react-toastify';
 

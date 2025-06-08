@@ -3,28 +3,48 @@ import Table from 'react-bootstrap/Table';
 import { PiNotePencilFill } from "react-icons/pi";
 import { useState } from 'react';
 import { ModalEditar } from '../modals/modalsCategorias/ModalEditar';
-import { inactivarCategorias } from '../../api/categorias';
+import { inactivarCategorias } from '../../context/api/categorias';
 import { toast, ToastContainer } from 'react-toastify';
 import CheckIcon from '@rsuite/icons/Check';
 import CloseIcon from '@rsuite/icons/Close';
-import Toggle from 'rsuite/Toggle'
+import Toggle from 'rsuite/Toggle';
 
-export const TableCategory = ({ categorias, recargarCategorias }) => {
-    const [showModalEditar, setShowModalEditar] = useState(false);
-    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
+export const TableCategory = ({ categorias }) => {
+    const [categoriasState, setCategoriasState] = useState(categorias);
+    const [modalData, setModalData] = useState(null);
+    const [showModal, setShowModal] = useState(false);
 
-    const formatoFecha = (fecha) => {
-        const opciones = { year: 'numeric', month: '2-digit', day: '2-digit' };
-        return new Date(fecha).toLocaleDateString('es-ES', opciones);
+    const abrirModalEditar = (categoria) => {
+        setModalData(categoria);
+        setShowModal(true);
+    };
+
+    const cerrarModalEditar = () => {
+        setShowModal(false);
+        setModalData(null);
     };
 
     const manejarInactivar = async (id) => {
-        const resultado = await inactivarCategorias(id);
-        if (resultado.exito) {
-            await recargarCategorias();
-        } else {
-            console.log(resultado.msg);
+        try {
+            await inactivarCategorias(id);
+            const updated = categoriasState.map(cat =>
+                cat._id === id ? { ...cat, estado: !cat.estado } : cat
+            );
+            setCategoriasState(updated);
+            toast.success("Estado actualizado correctamente");
+        } catch (error) {
+            toast.error("Error al actualizar el estado");
         }
+    };
+
+    const handleUpdateCategoria = (categoriaActualizada) => {
+        setCategoriasState(prev =>
+            prev.map(cat =>
+                cat._id === categoriaActualizada._id ? categoriaActualizada : cat
+            )
+        );
+        cerrarModalEditar();
+        toast.success("Categoría actualizada");
     };
 
     return (
@@ -34,7 +54,7 @@ export const TableCategory = ({ categorias, recargarCategorias }) => {
                     <colgroup>
                         <col style={{ width: '5%' }} />
                         <col style={{ width: '20%' }} />
-                        <col style={{ width: '30%' }} /> 
+                        <col style={{ width: '30%' }} />
                         <col style={{ width: '15%' }} />
                         <col style={{ width: '15%' }} />
                         <col style={{ width: '15%' }} />
@@ -46,36 +66,29 @@ export const TableCategory = ({ categorias, recargarCategorias }) => {
                             <th>Descripción</th>
                             <th>Fecha de creación</th>
                             <th>Estado</th>
-                            <th></th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {categorias.map((cat, idx) => (
+                        {categoriasState.map((cat, idx) => (
                             <tr key={cat._id}>
                                 <td>{idx + 1}</td>
                                 <td>{cat.nombre}</td>
                                 <td className='description'>{cat.descripcion}</td>
-                                <td>{formatoFecha(cat.createdAt)}</td>
+                                <td>{new Date(cat.createdAt).toLocaleDateString()}</td>
                                 <td>{cat.estado ? 'Activo' : 'Inactivo'}</td>
                                 <td>
                                     <div className='accions-table'>
-                                        <PiNotePencilFill 
+                                        <PiNotePencilFill
                                             title="Editar categoría"
                                             className='button-accion-edit'
                                             size={28}
-                                            onClick={() => {
-                                                setCategoriaSeleccionada({
-                                                    id: cat._id,
-                                                    nombre: cat.nombre,
-                                                    descripcion: cat.descripcion
-                                                });
-                                                setShowModalEditar(true);
-                                            }} 
+                                            onClick={() => abrirModalEditar(cat)}
                                         />
                                         <Toggle
                                             size="lg"
-                                            color="green"
                                             checked={cat.estado}
+                                            color='green'
                                             checkedChildren={<CheckIcon />}
                                             unCheckedChildren={<CloseIcon />}
                                             onChange={() => manejarInactivar(cat._id)}
@@ -89,14 +102,14 @@ export const TableCategory = ({ categorias, recargarCategorias }) => {
                 </Table>
             </div>
 
-            <ModalEditar
-                show={showModalEditar}
-                onHide={() => {
-                    setShowModalEditar(false);
-                    recargarCategorias();
-                }}
-                categoria={categoriaSeleccionada}
-            />
+            {modalData && (
+                <ModalEditar
+                    show={showModal}
+                    onHide={cerrarModalEditar}
+                    categoria={modalData}
+                    onSave={handleUpdateCategoria}
+                />
+            )}
 
             <ToastContainer position="top-right" autoClose={3000} />
         </>

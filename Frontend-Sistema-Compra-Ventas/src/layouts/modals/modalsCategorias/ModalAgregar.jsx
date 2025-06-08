@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'rsuite/Button'
 import './styleCategorias.css';
-import { agregarCategoria } from '../../../api/categorias';
+import { agregarCategoria } from '../../../context/api/categorias';
 import { ToastContainer,toast } from 'react-toastify';
 import { useEffect } from 'react';
 

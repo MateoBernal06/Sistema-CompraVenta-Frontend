@@ -6,8 +6,8 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import { FaSearch } from "react-icons/fa";
 import { ModalAgregar } from '../../layouts/modals/modalsCategorias/ModalAgregar';
 import { useState, useEffect } from 'react';
-import { obtenerCategorias, buscarCategoria } from '../../api/categorias';
-import Loader from 'rsuite/Loader'
+import { obtenerCategorias, buscarCategoria } from '../../context/api/categorias';
+import Loader from 'rsuite/Loader';
 
 export const CategorysManagement = () => {
     
@@ -29,13 +29,29 @@ export const CategorysManagement = () => {
     };
 
     const handleBuscar = async () => {
-        if (busqueda.trim() === '') {
-            cargarCategorias();
-        } else {
-            const data = await buscarCategoria(busqueda.trim());
-            setCategorias(Array.isArray(data) ? data : [data]);
+        setLoading(true);
+        try {
+            if (busqueda.trim() === '') {
+                await cargarCategorias();
+                return;
+            }
+
+            const resultado = await buscarCategoria(busqueda.trim());
+
+            if (Array.isArray(resultado)) {
+                setCategorias(resultado);
+            } else if (resultado) {
+                setCategorias([resultado]);
+            } else {
+                setCategorias([]);
+            }
+        } catch (error) {
+            console.error('Error al buscar categoría:', error);
+            setCategorias([]);
+            
+        } finally {
+            setLoading(false);
         }
-        setBusqueda('');
     };
 
     useEffect(() => {

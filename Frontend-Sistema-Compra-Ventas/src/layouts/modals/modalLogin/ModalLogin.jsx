@@ -4,8 +4,8 @@ import imagenLogin from '../../../assets/images/imagen-login.webp';
 import Button from 'rsuite/Button';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { loginAdministrador } from '../../../api/login';
-import { loginEstudiante } from '../../../api/registro';
+import { loginAdministrador } from '../../../context/api/login';
+import { loginEstudiante } from '../../../context/api/registro';
 import { ToastContainer,toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 

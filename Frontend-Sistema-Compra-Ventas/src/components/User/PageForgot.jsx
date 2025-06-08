@@ -3,7 +3,7 @@ import { Button } from 'rsuite';
 import imagenForgot from '../../assets/images/imagen-forgot.webp'
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import {recuperarEstudiante} from '../../api/registro';
+import {recuperarEstudiante} from '../../context/api/registro';
 import { ToastContainer,toast } from 'react-toastify';
 
 export const PageForgot = () =>{
