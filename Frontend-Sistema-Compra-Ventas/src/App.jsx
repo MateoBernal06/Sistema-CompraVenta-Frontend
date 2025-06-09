@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'rsuite/dist/rsuite.min.css';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { PrivateRoute } from './routes/PrivateRoute.jsx';
 
 // Main Pages
 import { LandingPage } from './pages/MainPages/LandingPage.jsx';
@@ -13,13 +14,14 @@ import Auth from './layouts/Auth.jsx';
 import { Confirmar } from './components/User/PageConfirmar.jsx';
 import { Cambiar } from './components/User/PageCambio.jsx';
 
-
 // Dashboard Admin
 import { Dashboard } from './layouts/dashboards/Dashboard.jsx';
-import { ProfileManagement } from './pages/Admin/profile/profileManagement.jsx'
-import { ProductsManagement } from './pages/Admin/products/ProductsManagement.jsx'
 import { CategorysManagement } from './pages/Admin/Categorys.jsx';
 import { UsersManagement } from './pages/Admin/Users.jsx';
+
+// Dashboard Estudiante
+import { DashboardEstudiante } from './layouts/dashboards/DashoardEstudiante.jsx'; 
+
 function App() {
   return (
     <>
@@ -34,12 +36,23 @@ function App() {
             <Route path="/nuevo-password/:token" element={<RestorePassword />} />
             <Route path="*" element={<NotFound />} />
           </Route>
-          
-          <Route path="/dashboard" element={<Dashboard />}>
-            <Route path="perfil" element={<ProfileManagement />} />
+
+          <Route path="/dashboard" element={
+            <PrivateRoute rol="administrador">
+              <Dashboard />
+            </PrivateRoute>
+          }>
+            <Route path="perfil" element={<h1>jj</h1>} />
             <Route path="gestion-usuarios" element={<UsersManagement />} />
-            <Route path="gestion-publicaciones" element={<ProductsManagement />} />
+            <Route path="gestion-publicaciones" element={<h1>jj</h1>} />
             <Route path="gestion-categorias" element={<CategorysManagement />} />
+          </Route>
+
+          <Route path="/estudiante" element={
+            <PrivateRoute rol="estudiante">
+              <DashboardEstudiante />
+            </PrivateRoute>
+          }>
           </Route>
 
         </Routes>

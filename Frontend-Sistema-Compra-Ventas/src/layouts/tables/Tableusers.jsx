@@ -3,17 +3,44 @@ import './styleTable.css'
 import Table from 'react-bootstrap/Table';
 import { DrawerAdmin } from '../drawer/DrawerAdmin';
 import { useState } from 'react';
+import { inactivarEstudiante } from '../../context/api/estudiantes';
+import Toggle from 'rsuite/Toggle';
+import CheckIcon from '@rsuite/icons/Check';
+import CloseIcon from '@rsuite/icons/Close';
+import { toast, ToastContainer } from 'react-toastify';
+import { BsFileEarmarkPost } from "react-icons/bs";
 
-export const TableUsers = () => {
+export const TableUsers = ({ estudiantes }) => {
 
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const handleOpenDrawer = () => setDrawerOpen(true);
     const handleCloseDrawer = () => setDrawerOpen(false);
+    const [estudiantesState, setEstudiantesState] = useState(estudiantes);
+    const [estudianteSeleccionado, setEstudianteSeleccionado] = useState(null);
+
+
+    const manejarInactivar = async (id) => {
+        try {
+            await inactivarEstudiante(id);
+            const updated = estudiantesState.map(estu =>
+                estu._id === id ? { ...estu, estado: !estu.estado } : estu
+            );
+            setEstudiantesState(updated);
+            toast.success("Estado actualizado correctamente");
+        } catch (error) {
+            toast.error("Error al actualizar el estado");
+        }
+    };
+
+    const handleOpenDrawer = (estu) => {
+        setEstudianteSeleccionado(estu);
+        setDrawerOpen(true);
+    };
+
 
     return (
         <>
             <div className='table-container'>
-                <Table className="table-users">
+                <Table className="table-users" bordered  >
                     <colgroup>
                         <col style={{ width: '5%' }} />
                         <col style={{ width: '10%' }} />
@@ -33,50 +60,57 @@ export const TableUsers = () => {
                             <th>Celular</th>
                             <th>Fecha de registro</th>
                             <th>Estado</th>
-                            <th></th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {/*categorias.length === 0 ? (
+                        {estudiantes.length === 0 ? (
                             <tr>
-                                <td colSpan={6} style={{ textAlign: 'center', color: '#888' }}>
-                                    No existen categorías registradas.
+                                <td colSpan={8} style={{ textAlign: 'center', color: '#888' }}>
+                                    No existen estudiantes registrados en el sistema.
                                 </td>
                             </tr>
                         ) : (
-                            categoriasState.map((cat, idx) => (
-                                <tr key={cat._id}>
+                            estudiantesState.map((estu, idx) => (
+                                <tr key={estu._id}>
                                     <td>{idx + 1}</td>
-                                    <td>{cat.nombre}</td>
-                                    <td className='description'>{cat.descripcion}</td>
-                                    <td>{new Date(cat.createdAt).toLocaleDateString()}</td>
-                                    <td>{cat.estado ? 'Activo' : 'Inactivo'}</td>
+                                    <td>{estu.nombre}</td>
+                                    <td>{estu.apellido}</td>
+                                    <td>{estu.email}</td>
+                                    <td>{estu.celular}</td>
+                                    <td>{new Date(estu.createdAt).toLocaleDateString()}</td>
+                                    <td className='estado-column'>
+                                        <span className={estu.estado ? 'estado-activo' : 'estado-inactivo'}>
+                                            {estu.estado ? 'Activo' : 'Inactivo'}
+                                        </span>
+                                    </td>
                                     <td>
                                         <div className='accions-table'>
-                                            <PiNotePencilFill
-                                                title="Editar categoría"
+                                            <BsFileEarmarkPost
+                                                title="Ver publicaciones"
                                                 className='button-accion-edit'
                                                 size={28}
-                                                onClick={() => abrirModalEditar(cat)}
+                                                onClick={() => handleOpenDrawer(estu)}
                                             />
                                             <Toggle
                                                 size="lg"
-                                                checked={cat.estado}
+                                                checked={estu.estado}
                                                 color='green'
                                                 checkedChildren={<CheckIcon />}
                                                 unCheckedChildren={<CloseIcon />}
-                                                onChange={() => manejarInactivar(cat._id)}
-                                                title={cat.estado ? 'Inactivar' : 'Activar'}
+                                                onChange={() => manejarInactivar(estu._id)}
+                                                title={estu.estado ? 'Inactivar' : 'Activar'}
                                             />
                                         </div>
                                     </td>
                                 </tr>
                             ))
-                        )*/}
+                        )}
                     </tbody>
                 </Table>
             </div>
-            <DrawerAdmin open={drawerOpen} onClose={handleCloseDrawer} />
+            <DrawerAdmin open={drawerOpen} onClose={handleCloseDrawer} estudiante={estudianteSeleccionado}/>
+            <ToastContainer position="top-right" autoClose={3000} />
         </>
     );
 };

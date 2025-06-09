@@ -1,10 +1,12 @@
 import './styleAdmin.css';
 import { FaUserAlt } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from 'rsuite/Button';
 import Loader from 'rsuite/Loader';
 import { TableUsers } from '../../layouts/tables/Tableusers';
+import { obtenerEstudiantes, buscarEstudiante } from '../../context/api/estudiantes';
+import { toast } from 'react-toastify';
 
 export const UsersManagement = () => {
 
@@ -12,6 +14,49 @@ export const UsersManagement = () => {
     const [loading, setLoading] = useState(false);
     const [usuarios, setUsuarios] = useState([]);
 
+    const cargarUsuarios = async () => {
+        setLoading(true);
+        try {
+            const data = await obtenerEstudiantes();
+            setUsuarios(data);
+        } catch (error) {
+            console.error('Error al cargar usuarios:', error);
+        }finally{
+            setLoading(false)
+        }
+    }
+
+
+    const handleBuscar = async () => {
+        setLoading(true);
+        try {
+            if (busqueda.trim() === '') {
+                toast.info("Email de usuario inválido");
+                return;
+            }
+
+            const resultado = await buscarEstudiante(busqueda.trim());
+
+            if (Array.isArray(resultado)) {
+                setUsuarios(resultado);
+            } else if (resultado) {
+                setUsuarios([resultado]);
+            } else {
+                setUsuarios([]);
+            }
+        } catch (error) {
+            console.error('Error al buscar estudiante:', error);
+            setUsuarios([]);
+
+        } finally {
+            setLoading(false);
+        }
+    };
+
+
+    useEffect(() => {
+        cargarUsuarios();
+    }, []);
 
     return(
         <>
@@ -41,7 +86,7 @@ export const UsersManagement = () => {
                     <Button 
                         appearance="primary" 
                         className='search-button'
-                        //onClick={handleBuscar}
+                        onClick={handleBuscar}
                     ><FaSearch size={16}/></Button>
                 </div>
             </div>
@@ -51,8 +96,8 @@ export const UsersManagement = () => {
                 </div>
             ) : (
                 <TableUsers
-                    usuarios={usuarios}
-                    ///recargarUsuarios={cargarUsuarios}
+                    estudiantes={usuarios}
+                    recargarUsuarios={cargarUsuarios}
                 />
             )}
         </>

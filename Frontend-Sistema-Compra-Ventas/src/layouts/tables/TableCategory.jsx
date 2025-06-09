@@ -51,7 +51,7 @@ export const TableCategory = ({ categorias }) => {
     return (
         <>
             <div className='table-container'>
-                <Table className="table-users">
+                <Table className="table-users" bordered>
                     <colgroup>
                         <col style={{ width: '5%' }} />
                         <col style={{ width: '20%' }} />
@@ -85,7 +85,9 @@ export const TableCategory = ({ categorias }) => {
                                     <td className='description'>{cat.descripcion}</td>
                                     <td>{new Date(cat.createdAt).toLocaleDateString()}</td>
                                     <td className='estado-column'>
-                                        <p className={cat.estado ? 'estado-activo' : 'estado-inactivo'}>{cat.estado ? 'Activo' : 'Inactivo'}</p>
+                                        <span className={cat.estado ? 'estado-activo' : 'estado-inactivo'}>
+                                            {cat.estado ? 'Activo' : 'Inactivo'}
+                                        </span>
                                     </td>
                                     <td>
                                         <div className='accions-table'>

@@ -38,7 +38,7 @@ export const Dashboard = () => {
                 </div>
                 <div className='dashboard-options-exit'>
                     <div className='dashboard-icon'>
-                        <Avatar color="red" bordered circle src="https://i.pravatar.cc/150?u=1" />
+                        <Avatar color="red" bordered circle src="https://i.pravatar.cc/150?u=2" />
                         <p className='dashboard-welcome-message'>Bienvenido {nombre}</p>
                     </div>
                     <Button 

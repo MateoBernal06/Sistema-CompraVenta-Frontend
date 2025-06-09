@@ -52,7 +52,7 @@ export const ModalLogin = ({ show, onHide }) => {
             if (resultado.rol === 'administrador') {
                 navigate('/dashboard');
             } else if (resultado.rol === 'estudiante') {
-                navigate('/student-dashboard');
+                navigate('/estudiante');
             } else {
                 navigate('/');
             }
