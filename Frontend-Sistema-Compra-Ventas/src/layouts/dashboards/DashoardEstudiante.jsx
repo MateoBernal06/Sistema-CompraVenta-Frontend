@@ -2,22 +2,61 @@ import './styleDashboard.css';
 import { TiThMenu } from "react-icons/ti";
 import Logo from '../../assets/logos/logo-project.png'
 import Button from 'rsuite/Button';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Outlet } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import { ImExit } from "react-icons/im";
+import Avatar from 'rsuite/Avatar';
+import { SideBar } from '../sidebar/SideBar';
+
 
 
 export const DashboardEstudiante = () => {
+    
+    const [sidebarVisible, setSidebarVisible] = useState(false);
+    const navigate = useNavigate();
+    const [nombre, setNombre] = useState('');
+
+    useEffect(() => {
+        const nombreUsuario = localStorage.getItem('nombre');
+        if (nombreUsuario) setNombre(nombreUsuario);
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('rol');
+        localStorage.removeItem('nombre');
+        navigate('/');
+    };
+
     return (
         <>
-            <div className="sidebar">
-                <img src={Logo} alt="Logo" className="logo" />
-                <Button appearance="primary" className="menu-button">
-                    <TiThMenu />
-                </Button>
+            <div className="dashboard">
+                <div className='dashboard-icon-menu' onClick={() => setSidebarVisible(true)}>
+                    <TiThMenu color="white" size={32}/>
+                </div>
+                <div>
+                    <img className='dashboard-logo' src={Logo} alt="Logo" />
+                </div>
+                <div className='dashboard-options-exit'>
+                    <div className='dashboard-icon'>
+                        <Avatar color="red" bordered circle src="https://i.pravatar.cc/150?u=5" />
+                        <p className='dashboard-welcome-message'>
+                            ¡Bienvenido(a), <strong>{nombre}</strong>!
+                        </p>
+                    </div>
+                    <Button 
+                        onClick={handleLogout} 
+                        className='dashboard-button-exit' 
+                        color='red' 
+                        appearance="primary">
+                            <ImExit size={24} color="#fff"/>
+                    </Button>
+                </div>
             </div>
-            <div className="dashboard-estudiante">
-                <h1>Dashboard Estudiante</h1>
-                <p>Contenido específico para el dashboard del estudiante.</p>
+            <SideBar visible={sidebarVisible} setVisible={setSidebarVisible} />
+            <div className="dashboard-content">
+                <Outlet />
             </div>
         </>
     );

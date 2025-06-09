@@ -3,7 +3,7 @@ import Button from 'rsuite/Button';
 import Avatar from 'rsuite/Avatar';
 import Logo from '../../assets/logos/logo-project.png'
 import { TiThMenu } from "react-icons/ti";
-import { SidebarComponent } from '../sidebar/SiderbarComponent';
+import { SidebarComponent } from '../sidebar/SideBarComponent';
 import { useState } from 'react';
 import { Outlet } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
@@ -39,7 +39,9 @@ export const Dashboard = () => {
                 <div className='dashboard-options-exit'>
                     <div className='dashboard-icon'>
                         <Avatar color="red" bordered circle src="https://i.pravatar.cc/150?u=2" />
-                        <p className='dashboard-welcome-message'>Bienvenido {nombre}</p>
+                        <p className='dashboard-welcome-message'>
+                            ¡Bienvenido(a), <strong>{nombre}</strong>!
+                        </p>
                     </div>
                     <Button 
                         onClick={handleLogout} 

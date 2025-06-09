@@ -44,7 +44,6 @@
 
 .dashboard-welcome-message{
     font-size: 16px;
-    font-weight: bold;
     color: white;
 }
 
@@ -79,6 +78,7 @@
     display: grid;
     color: white;
     align-items: center;
+    width: 100%;
 }
 
 .sidebar-config-title{
