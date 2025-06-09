@@ -54,7 +54,7 @@ export const Dashboard = () => {
             </div>
             <SidebarComponent visible={sidebarVisible} setVisible={setSidebarVisible} />
             <div className="dashboard-content">
-                    <Outlet />
+                <Outlet />
             </div>
         </>
     );

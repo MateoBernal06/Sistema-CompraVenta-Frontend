@@ -2,8 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import './styleSide.css';
 import { Sidebar } from 'primereact/sidebar';
 import Button from 'rsuite/Button';
-import { FaCircleUser } from 'react-icons/fa6';
-import { BiSolidCategory } from "react-icons/bi";
 import { BsFilePost } from "react-icons/bs";
 import { FaUserGear } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
@@ -24,7 +22,7 @@ export const SideBar = ({ visible, setVisible }) => {
                                 <Button 
                                     className='sidebar-button' 
                                     appearance="ghost"
-                                    onClick={() => navigate('/dashboard/crear-publicacion')}
+                                    onClick={() => navigate('/estudiante/crear-publicacion')}
                                 >
                                     Crear Publicación
                                 </Button>
@@ -33,7 +31,7 @@ export const SideBar = ({ visible, setVisible }) => {
                                 <Button 
                                     className='sidebar-button' 
                                     appearance="ghost"
-                                    onClick={() => navigate('/dashboard/gestion-publicaciones')}
+                                    onClick={() => navigate('/estudiante/gestion-publicaciones')}
                                 >
                                     Mis Publicaciones
                                 </Button>
@@ -47,7 +45,7 @@ export const SideBar = ({ visible, setVisible }) => {
                         <Button 
                             className='sidebar-button' 
                             appearance="ghost"
-                            onClick={() => navigate('/dashboard/gestion-productos')}
+                            onClick={() => navigate('/estudiante/publicaciones')}
                         >
                             Ver publicaciones
                         </Button>
