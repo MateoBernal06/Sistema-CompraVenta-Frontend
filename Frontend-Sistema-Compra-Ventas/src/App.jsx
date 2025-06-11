@@ -23,7 +23,7 @@ import { UsersManagement } from './pages/Admin/Users.jsx';
 import { DashboardEstudiante } from './layouts/dashboards/DashoardEstudiante.jsx'; 
 import { ViewPost } from './pages/Estudiantes/ViewPost.jsx';
 import { MyPost } from './pages/Estudiantes/MyPost.jsx';
-import { CreatePost } from './pages/Estudiantes/CreatePost.jsx';
+
 
 function App() {
   return (
@@ -58,7 +58,6 @@ function App() {
           }>
             <Route path="perfil" element={<h1>Perfil Estudiante</h1>} />
             <Route path="publicaciones" element={<ViewPost />} />
-            <Route path="crear-publicacion" element={<CreatePost />} />
             <Route path="gestion-publicaciones" element={<MyPost />} />
           </Route>
 

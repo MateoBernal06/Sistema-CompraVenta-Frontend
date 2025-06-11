@@ -4,17 +4,16 @@ import TagGroup from 'rsuite/TagGroup';
 import Tag from 'rsuite/Tag';
 import './styleCard.css'
 
-export const CardSistem = () => {
+export const CardSistem = ({titulo, imagen, createdAt}) => {
     return(
-        <Card className='card-sistem'>
+        <Card width={400} shaded direction="row">
             <img
-                src="https://images.unsplash.com/photo-1576606539605-b2a44fa58467?q=80&w=1974"
-                alt="Shadow"
-                width={200}
-                style={{ objectFit: 'cover' }}
+                className='imagen-post'
+                src={imagen}
+                alt={titulo}
             />
             <VStack spacing={2}>
-                <Card.Header as="h5">Administrador</Card.Header>
+                <Card.Header as="h5">{titulo}</Card.Header>
                 <Card.Body>
                     <ul className='data-user'>
                         <li>
@@ -33,7 +32,14 @@ export const CardSistem = () => {
                 </Card.Body>
                 <Card.Footer>
                     <TagGroup>
-                        <Tag size="sm">🐲 ESFOT</Tag>
+                        <Tag className="tag" size="sm">Publicado: <b>
+                            {createdAt
+                                ? new Date(createdAt).toLocaleDateString() +
+                                    " " +
+                                    new Date(createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                                : ""}
+                            </b>
+                        </Tag>
                     </TagGroup>
                 </Card.Footer>
             </VStack>

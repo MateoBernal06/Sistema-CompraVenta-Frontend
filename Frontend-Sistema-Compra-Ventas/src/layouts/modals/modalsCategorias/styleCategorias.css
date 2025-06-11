@@ -16,6 +16,13 @@
     padding: 10px 30px 10px 30px;
 }
 
+.form-group-modal-file{
+    display: grid;
+    text-align: center;
+    padding: 10px 30px 10px 30px;
+    justify-content: center;
+}
+
 .form-group-modal-button{
     display: grid;
     text-align: center;
@@ -25,6 +32,12 @@
     gap: 10px;
 }
 
+.form-input-modal-select{
+    height: auto;
+    border: solid 1px #181717;
+    border-radius: 5px;
+    padding: 10px;
+}
 
 .form-input-modal{
     height: 30px;

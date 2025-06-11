@@ -1,13 +1,35 @@
 
-.card-sistem{
-    width: 500px;
+.price-body{
     display: flex;
-    flex-direction: row;
-    justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    height: 200px;
-    margin: 20px;
+    justify-content: space-between;
 }
 
+.btn-card{
+    padding: 10px 20px 10px 20px;
+}
+
+.price-text{
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+
+.footer-card{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.card-sistem-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    gap: 20px;
+}
+
+.imagen-post{
+    height: 200px;
+    object-fit: cover;
+}

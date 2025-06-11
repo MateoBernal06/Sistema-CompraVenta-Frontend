@@ -22,15 +22,6 @@ export const SideBar = ({ visible, setVisible }) => {
                                 <Button 
                                     className='sidebar-button' 
                                     appearance="ghost"
-                                    onClick={() => navigate('/estudiante/crear-publicacion')}
-                                >
-                                    Crear Publicación
-                                </Button>
-                            </li>
-                            <li className='sidebar-config-item'>
-                                <Button 
-                                    className='sidebar-button' 
-                                    appearance="ghost"
                                     onClick={() => navigate('/estudiante/gestion-publicaciones')}
                                 >
                                     Mis Publicaciones

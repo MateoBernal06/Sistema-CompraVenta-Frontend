@@ -1,0 +1,47 @@
+
+.place-create {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+}
+
+.create-post{
+    text-align: left;
+    border: solid 1px #000000;
+    border-radius: 8px;
+    background-color: #fde0a7;
+    padding: 20px;
+    width: 650px;
+}
+
+.list-create {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 15px;
+    display: grid;
+    gap: 10px;
+}
+
+.normas-titulo{
+    text-align: center;
+    color: #333;
+    padding: 15px;
+}
+
+.publicaciones-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 20px;
+    justify-items: center;
+}
+
+.message-info{
+    font-size: 15px;
+    width: 900px;
+}
+
+.message-container{
+    display: flex;
+    justify-content: center;
+}
