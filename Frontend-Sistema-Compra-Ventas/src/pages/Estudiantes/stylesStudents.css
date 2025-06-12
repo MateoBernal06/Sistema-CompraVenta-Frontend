@@ -46,3 +46,30 @@
     display: flex;
     justify-content: center;
 }
+
+.confirm-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.botones-eleccion{
+    display: flex;
+    justify-content: center;
+}
+
+.boton-confirmacion{
+    width: 60px;
+}
+
+.mensaje-disponibles{
+    background-color: #fde0a7;
+    grid-column: 1/4;
+    padding: 20px;
+    align-items: center;
+    font-size: 20px;
+}

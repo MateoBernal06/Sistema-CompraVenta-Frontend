@@ -3,14 +3,16 @@ import { obtenerPublicaciones } from "../../context/api/publicaciones";
 import { useState, useEffect } from 'react';
 import Loader from 'rsuite/Loader';
 import Message from "rsuite/Message";
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'
+import { DrawerDetalles } from "../../layouts/drawer/DrawerDetalles";;
 import './stylesStudents.css'
 
 export const ViewPost = () => {
 
     const [loading, setLoading] = useState(false);
     const [publicaciones, setPublicaciones] = useState([]);
-    
+    const [openDrawer, setOpenDrawer] = useState(false);
+    const [publicacionSeleccionada, setPublicacionSeleccionada] = useState(null);
 
     const cargarPublicaciones = async () => {
         setLoading(true);
@@ -47,11 +49,22 @@ export const ViewPost = () => {
                     <p>No hay publicaciones disponibles.</p>
                 ) : (
                     publicaciones.map((publicacion) => (
-                        <CardPublication key={publicacion.id} {...publicacion} />
+                        <CardPublication 
+                            key={publicacion._id || publicacion.id} 
+                            {...publicacion}
+                            onVerDetalles={() => {
+                                setPublicacionSeleccionada(publicacion);
+                                setOpenDrawer(true);
+                            }} 
+                        />
                     ))
                 )}
             </div>
-            
+            <DrawerDetalles
+                open={openDrawer}
+                onClose={() => setOpenDrawer(false)}
+                publicacion={publicacionSeleccionada}
+            />
         </>
     );
 };

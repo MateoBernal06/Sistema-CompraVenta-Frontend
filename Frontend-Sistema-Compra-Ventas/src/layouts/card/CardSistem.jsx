@@ -4,8 +4,13 @@ import TagGroup from 'rsuite/TagGroup';
 import Tag from 'rsuite/Tag';
 import './styleCard.css'
 import Button from 'rsuite/Button';
+import { FaPencilAlt } from "react-icons/fa";
+import { FaCheckCircle } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import { FaEye } from "react-icons/fa";
 
-export const CardSistem = ({titulo, imagen, createdAt, onEditar, onVerDetalles}) => {
+
+export const CardSistem = ({titulo, imagen, createdAt, onEditar, onVerDetalles, onEliminar}) => {
     return(
         <Card width={450} shaded direction="row">
             <img
@@ -21,26 +26,27 @@ export const CardSistem = ({titulo, imagen, createdAt, onEditar, onVerDetalles})
                         color='yellow' 
                         appearance="primary"
                         onClick={onEditar}>
-                            Editar
+                            <FaPencilAlt size={20}/>  Editar
                     </Button>
                     <Button 
                         className='button-card' 
                         color='green' 
                         appearance="primary">
-                            Vendido
+                            <FaCheckCircle size={20}/> Vendido
                     </Button>
                     <Button 
                         className='button-card' 
                         color='red' 
-                        appearance="primary">
-                            Eliminar
+                        appearance="primary"
+                        onClick={onEliminar}>
+                            <MdDelete size={20}/> Eliminar
                     </Button>
                     <Button 
                         className='button-card' 
                         color='blue' 
                         appearance="primary"
                         onClick={onVerDetalles}>
-                            Ver detalles
+                            <FaEye size={20}/> Detalles
                     </Button>
                 </Card.Body>
                 <Card.Footer>

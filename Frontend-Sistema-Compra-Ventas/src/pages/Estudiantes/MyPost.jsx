@@ -7,9 +7,11 @@ import { FaBasketShopping } from "react-icons/fa6";
 import { ModalCreate } from "../../layouts/modals/modalProductos/ModalCreate";
 import { ModalUpdate } from "../../layouts/modals/modalProductos/ModalUpdate";
 import { useState, useEffect } from 'react';
-import { misPublicaciones } from "../../context/api/publicaciones";
+import { misPublicaciones, eliminarPublicacion } from "../../context/api/publicaciones";
 import Loader from 'rsuite/Loader';
 import { DrawerProductos } from "../../layouts/drawer/DrawerProductos";
+import { Message, ButtonToolbar } from 'rsuite';
+import { toast } from 'react-toastify';
 
 export const MyPost = () => {
 
@@ -20,6 +22,8 @@ export const MyPost = () => {
     const [busqueda, setBusqueda] = useState('');
     const [loading, setLoading] = useState(false);
     const [publicaciones, setPublicaciones] = useState([]);
+    const [showConfirm, setShowConfirm] = useState(false);
+    const [publicacionAEliminar, setPublicacionAEliminar] = useState(null);
     
     const cargarPublicaciones = async () => {
         setLoading(true);
@@ -90,11 +94,11 @@ export const MyPost = () => {
                 {loading ? (
                     <Loader center content="Cargando publicaciones..." />
                 ) : publicaciones.length === 0 ? (
-                    <p>No hay publicaciones disponibles.</p>
+                    <p className="mensaje-disponibles">No hay publicaciones disponibles.</p>
                 ) : (
                     publicaciones.map((publicacion) => (
                         <CardSistem 
-                            key={publicacion.id}
+                            key={publicacion._id || publicacion.id}
                             {...publicacion}
                             onEditar={() => {
                                 setPublicacionSeleccionada(publicacion);
@@ -103,6 +107,10 @@ export const MyPost = () => {
                             onVerDetalles={() => {
                                 setPublicacionSeleccionada(publicacion);
                                 setOpenDrawer(true);
+                            }}
+                            onEliminar={() => {
+                                setPublicacionAEliminar(publicacion);
+                                setShowConfirm(true);
                             }}
                         />
                     ))
@@ -123,6 +131,47 @@ export const MyPost = () => {
                 onClose={() => setOpenDrawer(false)}
                 publicacion={publicacionSeleccionada}
             />
+            {showConfirm && (
+                <div className="confirm-overlay">
+                    <Message 
+                        showIcon type="info" 
+                        header="¿Estás seguro de que deseas eliminar esta publicación?"
+                    >
+                        <ButtonToolbar className="botones-eleccion">
+                            <Button
+                                className="boton-confirmacion"
+                                size="sm"
+                                color="red"
+                                appearance="primary"
+                                onClick={async () => {
+                                    const res = await eliminarPublicacion(publicacionAEliminar._id || publicacionAEliminar.id);
+                                    if (res.exito) {
+                                        toast.success("Publicación eliminada");
+                                        cargarPublicaciones();
+                                    } else {
+                                        toast.error(res.mensaje || "Error al eliminar");
+                                    }
+                                    setShowConfirm(false);
+                                    setPublicacionAEliminar(null);
+                                }}
+                            >
+                                Si
+                            </Button>
+                            <Button
+                                className="boton-confirmacion"
+                                size="sm"
+                                appearance="subtle"
+                                onClick={() => {
+                                    setShowConfirm(false);
+                                    setPublicacionAEliminar(null);
+                                }}
+                            >
+                                No
+                            </Button>
+                        </ButtonToolbar>
+                    </Message>
+                </div>
+            )}
         </>
     );
 };

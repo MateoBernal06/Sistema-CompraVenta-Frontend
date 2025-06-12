@@ -52,6 +52,7 @@
 .button-card{
     width: 100%;
     height: auto;
+    gap: 5px;
 }
 
 .body-card{

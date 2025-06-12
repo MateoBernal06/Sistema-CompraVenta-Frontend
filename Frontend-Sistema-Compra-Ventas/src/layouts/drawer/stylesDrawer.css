@@ -1,0 +1,46 @@
+
+.drawer-container{
+    width: 500px !important;
+}
+
+.body-drawer{
+    background-color: antiquewhite;
+    text-align: center;
+}
+
+.imagen-detalle{
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 16px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.titulo-detalle{
+    font: bold;
+    font-size: 20px;
+    padding: 15px;
+}
+
+.detalles{
+    font-size: 18px;
+    text-align: justify;
+    gap: 20px;
+    display: grid;
+}
+
+.detalle{
+    border: solid 1px black;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.chat{
+    display: flex;
+    justify-content: center;
+}
+
+.chat-boton{
+    gap: 5px;
+    padding: 10px;
+}

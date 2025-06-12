@@ -1,7 +1,7 @@
 import { Card, Text, Button, TagGroup, Tag } from 'rsuite';
 import './styleCard.css';
 
-export const CardPublication = ({titulo, precio, imagen, createdAt}) => {
+export const CardPublication = ({titulo, precio, imagen, createdAt, onVerDetalles}) => {
     
     
 
@@ -17,7 +17,10 @@ export const CardPublication = ({titulo, precio, imagen, createdAt}) => {
                 <Text className="price-text">
                     ${precio}
                 </Text>
-                <Button appearance="primary" className='btn-card'>
+                <Button 
+                    appearance="primary" 
+                    className='btn-card'
+                    onClick={onVerDetalles}>
                     Ver detalles
                 </Button>
             </Card.Body>

@@ -59,6 +59,7 @@ const misPublicaciones = async () => {
     }
 }
 
+
 const editarPublicacion =  async (datos) => {
     try {
         const token = localStorage.getItem('token'); 
@@ -83,8 +84,42 @@ const editarPublicacion =  async (datos) => {
 }
 
 
-const detallePublicacion = async (datos) => {
-    
+const detallePublicacion = async (id) => {
+    try {
+        const token = localStorage.getItem('token');
+        const respuesta = await fetch(`${import.meta.env.VITE_BACKEND_URL}/publicacion/detalle/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const resultado = await respuesta.json();
+        if (!respuesta.ok) {
+            return [];
+        }
+        return resultado.categorias || resultado;
+    } catch (error) {
+        return [];
+    }
+}
+
+const eliminarPublicacion = async (id) => {
+    try {
+        const token = localStorage.getItem('token');
+        const respuesta = await fetch(`${import.meta.env.VITE_BACKEND_URL}/publicacion/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const resultado = await respuesta.json();
+        if (!respuesta.ok) {
+            return { exito: false, mensaje: resultado.msg || 'Error del servidor' };
+        }
+        return { exito: true, ...resultado };
+    } catch (error) {
+        return { exito: false, mensaje: 'Error de red: ' + error.message };
+    }
 }
 
 export {
@@ -92,5 +127,6 @@ export {
     agregarPublicacion,
     misPublicaciones,
     editarPublicacion,
-    detallePublicacion
+    detallePublicacion,
+    eliminarPublicacion
 }

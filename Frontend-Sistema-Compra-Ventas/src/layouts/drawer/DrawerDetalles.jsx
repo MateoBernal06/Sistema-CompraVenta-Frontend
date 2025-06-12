@@ -1,10 +1,12 @@
 import Drawer from 'rsuite/Drawer';
 import Button from 'rsuite/Button';
+import { FaWhatsapp } from "react-icons/fa";
 import './stylesDrawer.css'
+export const DrawerDetalles = ({open, onClose, publicacion}) =>{
 
-export const DrawerProductos = ({open, onClose, publicacion}) => {
     if (!publicacion) return null;
-    return (
+
+    return(
         <>
             <Drawer open={open} onClose={onClose} className='drawer-container'>
                 <Drawer.Header>
@@ -23,6 +25,14 @@ export const DrawerProductos = ({open, onClose, publicacion}) => {
                         />
                     </div>
                     <div className='detalles'>
+                        <div className='chat'>
+                            <Button 
+                                color='green' 
+                                appearance="primary"
+                                className='chat-boton'> 
+                                <FaWhatsapp size={20}/> Hablar con el vendedor
+                            </Button>
+                        </div>
                         <div>
                             <b>Descripción</b> 
                             <p>{publicacion.descripcion}</p>
@@ -43,6 +53,5 @@ export const DrawerProductos = ({open, onClose, publicacion}) => {
                 </Drawer.Body>
             </Drawer>
         </>
-    );
+    )
 }
-
