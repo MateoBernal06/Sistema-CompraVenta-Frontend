@@ -59,8 +59,38 @@ const misPublicaciones = async () => {
     }
 }
 
+const editarPublicacion =  async (datos) => {
+    try {
+        const token = localStorage.getItem('token'); 
+        const respuesta = await fetch(`${import.meta.env.VITE_BACKEND_URL}/publicacion/${datos.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(datos)
+        });
+
+        const resultado = await respuesta.json();
+        if (!respuesta.ok) {
+            return { exito: false, mensaje: resultado.msg || 'Error del servidor' };
+        }
+        return { exito: true, ...resultado };
+        
+    } catch (error) {
+        return { exito: false, mensaje: 'Error de red: ' + error.message };
+    }
+}
+
+
+const detallePublicacion = async (datos) => {
+    
+}
+
 export {
     obtenerPublicaciones,
     agregarPublicacion,
-    misPublicaciones
+    misPublicaciones,
+    editarPublicacion,
+    detallePublicacion
 }

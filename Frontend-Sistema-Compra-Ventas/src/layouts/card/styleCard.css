@@ -33,3 +33,29 @@
     height: 200px;
     object-fit: cover;
 }
+
+
+.imagen-post-card{
+    height: 100%;
+    width: 200px;
+    align-items: center;
+    object-fit: cover;
+}
+
+.buttons-card{
+    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+}
+
+.button-card{
+    width: 100%;
+    height: auto;
+}
+
+.body-card{
+    background-color: rgb(181, 181, 181);
+    width: 100%;
+}
+

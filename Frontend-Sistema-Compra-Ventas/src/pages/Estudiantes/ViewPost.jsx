@@ -10,6 +10,7 @@ export const ViewPost = () => {
 
     const [loading, setLoading] = useState(false);
     const [publicaciones, setPublicaciones] = useState([]);
+    
 
     const cargarPublicaciones = async () => {
         setLoading(true);

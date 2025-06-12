@@ -5,13 +5,18 @@ import { FaSearch } from "react-icons/fa";
 import { CardSistem } from "../../layouts/card/CardSistem";
 import { FaBasketShopping } from "react-icons/fa6";
 import { ModalCreate } from "../../layouts/modals/modalProductos/ModalCreate";
+import { ModalUpdate } from "../../layouts/modals/modalProductos/ModalUpdate";
 import { useState, useEffect } from 'react';
 import { misPublicaciones } from "../../context/api/publicaciones";
 import Loader from 'rsuite/Loader';
+import { DrawerProductos } from "../../layouts/drawer/DrawerProductos";
 
 export const MyPost = () => {
 
+    const [openDrawer, setOpenDrawer] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [showModalUpdate, setShowModalUpdate] = useState(false);
+    const [publicacionSeleccionada, setPublicacionSeleccionada] = useState(null);
     const [busqueda, setBusqueda] = useState('');
     const [loading, setLoading] = useState(false);
     const [publicaciones, setPublicaciones] = useState([]);
@@ -88,13 +93,35 @@ export const MyPost = () => {
                     <p>No hay publicaciones disponibles.</p>
                 ) : (
                     publicaciones.map((publicacion) => (
-                        <CardSistem key={publicacion.id} {...publicacion} />
+                        <CardSistem 
+                            key={publicacion.id}
+                            {...publicacion}
+                            onEditar={() => {
+                                setPublicacionSeleccionada(publicacion);
+                                setShowModalUpdate(true);
+                            }}
+                            onVerDetalles={() => {
+                                setPublicacionSeleccionada(publicacion);
+                                setOpenDrawer(true);
+                            }}
+                        />
                     ))
                 )}
             </div>
             <ModalCreate 
                 show={showModal} 
                 onHide={() => setShowModal(false)} 
+            />
+            <ModalUpdate
+                show={showModalUpdate}
+                onHide={() => setShowModalUpdate(false)}
+                publicacion={publicacionSeleccionada}
+                onSave={cargarPublicaciones}
+            />
+            <DrawerProductos
+                open={openDrawer}
+                onClose={() => setOpenDrawer(false)}
+                publicacion={publicacionSeleccionada}
             />
         </>
     );
