@@ -75,14 +75,14 @@ export const ModalUpdate = ({ show, onHide, publicacion, onSave })=>{
     return(
         <>
             <Modal
-                    className='modal-create-producto'
+                    size="sm"
                     show={show}
                     onHide={onHide}
                     centered
                 >
-                    <Modal.Body className='modal-body-tables'>
-                        <div>
-                            <p className='title-modal-categoria'>Crear Publicacion</p>
+                    <Modal.Body className='modal-body-update'>
+                        <div className='body-modal-form'>
+                            <p className='title-modal'>Actualizar Publicacion</p>
                             <form onSubmit={handleSubmit}>
                                 <div className='form-group-modal'>
                                     <label htmlFor="titulo">Titulo</label>
@@ -90,7 +90,7 @@ export const ModalUpdate = ({ show, onHide, publicacion, onSave })=>{
                                         type="text"
                                         id="titulo" 
                                         name="titulo"
-                                        className='form-input-modal'
+                                        className='form-control'
                                         value={form.titulo}
                                         onChange={handleChange}
                                         required 
@@ -101,7 +101,7 @@ export const ModalUpdate = ({ show, onHide, publicacion, onSave })=>{
                                     <textarea
                                         id="descripcion"
                                         name="descripcion"
-                                        className='form-input-modal-area'
+                                        className='form-control-detalle'
                                         value={form.descripcion}
                                         onChange={handleChange}
                                         required
@@ -113,7 +113,7 @@ export const ModalUpdate = ({ show, onHide, publicacion, onSave })=>{
                                         type="text"
                                         id="categoria"
                                         name="categoria"
-                                        className='form-input-modal-select'
+                                        className='form-control-categoria'
                                         value={form.categoria}
                                         onChange={handleChange}
                                         required
@@ -126,15 +126,17 @@ export const ModalUpdate = ({ show, onHide, publicacion, onSave })=>{
                                         ))}
                                     </select>
                                 </div>
-                                <div className='form-group-modal-button'>
+                                <div className='form-group-modal'>
                                     <Button
                                         type='submit' 
-                                        color="blue" 
+                                        color="blue"
+                                        className='button-login' 
                                         appearance="primary">Guardar Cambios
                                     </Button>
                                     <Button
                                         appearance="primary" 
                                         color="red"
+                                        className='button-login'
                                         onClick={onHide}>
                                             Salir
                                     </Button>

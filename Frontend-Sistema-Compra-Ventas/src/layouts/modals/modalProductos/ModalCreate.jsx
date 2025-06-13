@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'rsuite/Button'
 import { ToastContainer,toast } from 'react-toastify';
 import { obtenerCategorias } from '../../../context/api/categorias';
+import Message from 'rsuite/Message'
 
 export const ModalCreate = ({ show, onHide })=>{
     
@@ -67,45 +68,68 @@ export const ModalCreate = ({ show, onHide })=>{
         <>
         
             <Modal
-                className='modal-create-producto'
+                size="lg"
                 show={show}
                 onHide={onHide}
                 centered
             >
-                <Modal.Body className='modal-body-tables'>
-                    <div>
-                        <p className='title-modal-categoria'>Crear Publicacion</p>
+                <Modal.Body className='body-modal-update'>
+                    <div className='normas-container'>
+                        <Message showIcon type="warning" header="Normativas del sistema" >
+                            <ul className='list-create'>
+                                <li>
+                                    <b>1. Contenido prohibido:</b> No está permitido publicar artículos o servicios que sean:
+                                    <ul>
+                                    <li>Ilegales o que infrinjan leyes locales o internacionales.</li>
+                                    <li>Obscenos, ofensivos o con contenido sexual explícito.</li>
+                                    <li>Engañosos, fraudulentos o relacionados con estafas.</li>
+                                    <li>Violentos o que inciten al odio o discriminación.</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <b>2. Moderación:</b> Las publicaciones serán revisadas por administradores. 
+                                    Si una publicación infringe alguna de estas normas, podrá ser eliminada sin previo aviso.
+                                </li>
+                                <li>
+                                    <b>3. Sanciones:</b> En caso de violaciones graves o reiteradas, el usuario podrá 
+                                    ser suspendido de la plataforma por el tiempo que el administrador considere necesario.
+                                </li>
+                            </ul>  
+                        </Message>
+                    </div>
+                    <div className='body-modal-form'>
+                        <p className='title-modal'>Crear Publicacion</p>
                         <form onSubmit={handleSubmit}>
-                            <div className='form-group-modal'>
+                            <div className='form-group-create'>
                                 <label htmlFor="titulo">Titulo</label>
                                 <input
                                     type="text"
                                     id="titulo" 
                                     name="titulo"
-                                    className='form-input-modal'
+                                    className='form-control'
                                     value={form.titulo}
                                     onChange={handleChange}
                                     required 
                                 />
                             </div>
-                            <div className='form-group-modal'>
+                            <div className='form-group-create'>
                                 <label htmlFor="descripcion">Descripcion</label>
                                 <textarea
                                     id="descripcion"
                                     name="descripcion"
-                                    className='form-input-modal-area'
+                                    className='form-control-detalle'
                                     value={form.descripcion}
                                     onChange={handleChange}
                                     required
                                 />
                             </div>
-                            <div className='form-group-modal'>
+                            <div className='form-group-create'>
                                 <label htmlFor="categoria">Categoria</label>
                                 <select
                                     type="text"
                                     id="categoria"
                                     name="categoria"
-                                    className='form-input-modal-select'
+                                    className='form-control-categoria'
                                     value={form.categoria}
                                     onChange={handleChange}
                                     required
@@ -119,39 +143,42 @@ export const ModalCreate = ({ show, onHide })=>{
                                 </select>
                             </div>
         
-                            <div className='form-group-modal-file'>
+                            <div className='form-group-create'>
                                 <label htmlFor="imagen">Imagen</label>
                                 <input
                                     type="file"
                                     id="imagen"
                                     name="imagen"
+                                    className='form-control'
                                     accept="image/png, image/jpeg, image/webp"
                                     onChange={handleChange}
                                     required
                                 />
                             </div>
-                            <div className='form-group-modal'>
+                            <div className='form-group-create'>
                                 <label htmlFor="precio">Precio</label>
                                 <input
                                     type="text"
                                     id="precio"
                                     name="precio"
-                                    className='form-input-modal'
+                                    className='form-control'
                                     value={form.precio}
                                     onChange={handleChange}
                                     onInput={(e) => e.target.value = e.target.value.replace(/\D/g, '')}
                                     required
                                 />
                             </div>
-                            <div className='form-group-modal-button'>
+                            <div className='form-group-create'>
                                 <Button
                                     type='submit' 
-                                    color="blue" 
+                                    color="blue"
+                                    className='button-login' 
                                     appearance="primary">Crear
                                 </Button>
                                 <Button
                                     appearance="primary" 
                                     color="red"
+                                    className='button-login'
                                     onClick={onHide}>Salir
                                 </Button>
                             </div>

@@ -1,5 +1,4 @@
 import Drawer from 'rsuite/Drawer';
-import Button from 'rsuite/Button';
 import './stylesDrawer.css'
 
 export const DrawerProductos = ({open, onClose, publicacion}) => {
@@ -9,13 +8,12 @@ export const DrawerProductos = ({open, onClose, publicacion}) => {
             <Drawer open={open} onClose={onClose} className='drawer-container'>
                 <Drawer.Header>
                     <Drawer.Title>Detalles de la Publicacion</Drawer.Title>
-                    <Drawer.Actions>
-                        <Button color='red' appearance="primary" onClick={onClose}>Cerrar</Button>
-                    </Drawer.Actions>
                 </Drawer.Header>
                 <Drawer.Body className='body-drawer'>
                     <div>
-                        <p className='titulo-detalle'>{publicacion.titulo}</p>
+                        <p className='titulo-detalle'>
+                            <b>{publicacion.titulo}</b>
+                        </p>
                         <img
                             src={publicacion.imagen}
                             alt={publicacion.titulo}
@@ -23,22 +21,21 @@ export const DrawerProductos = ({open, onClose, publicacion}) => {
                         />
                     </div>
                     <div className='detalles'>
-                        <div>
-                            <b>Descripción</b> 
-                            <p>{publicacion.descripcion}</p>
-                        </div>
-                        <div>
-                            <b>Categoría</b>
-                            <p>{publicacion.categoria?.nombre || publicacion.categoria}</p>
-                        </div>
-                        <div>
-                            <b>Precio</b>
-                            <p>${publicacion.precio}</p>
-                        </div>
-                        <div>
-                            <b>Fecha de publicación</b>
-                            <p>{publicacion.createdAt ? new Date(publicacion.createdAt).toLocaleString() : ''}</p>
-                        </div>
+                        <p className='datos-detalles'>Detalles</p>
+                        <ul className='vendedor'>
+                            <li className='vendedor-options'>
+                                <b>Descripción: </b>{publicacion.descripcion} 
+                            </li>
+                            <li className='vendedor-options'>
+                                <b>Categoría: </b>{publicacion.categoria?.nombre || publicacion.categoria}
+                            </li>
+                            <li className='vendedor-options'>
+                                <b>Precio: </b>${publicacion.precio}
+                            </li>
+                            <li className='vendedor-options'>
+                                <b>Fecha de publicación: </b>{publicacion.createdAt ? new Date(publicacion.createdAt).toLocaleString() : ''}
+                            </li>
+                        </ul>
                     </div>
                 </Drawer.Body>
             </Drawer>

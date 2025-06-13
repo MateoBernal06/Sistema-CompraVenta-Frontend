@@ -69,7 +69,7 @@ export const ModalRegistro = ({ show, onHide }) => {
                     </div>
                     <div className='body-modal-form'>
                         <p className='title-modal'>Crea tu cuenta 🐲</p>
-                        <form onSubmit={handleSubmit} className='form-login'>
+                        <form onSubmit={handleSubmit}>
                             <div className='form-group'>
                                 <label htmlFor="nombre">Nombre</label>
                                 <input
