@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import { agregarPublicacion } from '../../../context/api/publicaciones';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'rsuite/Button'
-import { ToastContainer,toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { obtenerCategorias } from '../../../context/api/categorias';
 import Message from 'rsuite/Message'
 
-export const ModalCreate = ({ show, onHide })=>{
+export const ModalCreate = ({ show, onHide, onSave })=>{
     
     const [categorias, setCategorias] = useState([]);
+    const [loading, setLoading] = useState(false);
     const [form, setFormData] = useState({
         titulo:'',
         descripcion:'',
@@ -56,9 +57,19 @@ export const ModalCreate = ({ show, onHide })=>{
         formData.append('precio', form.precio);
 
         const resultado = await agregarPublicacion(formData);
+        setLoading(false)
+
         if (resultado.exito) {
             toast.success(resultado.mensaje || 'Publicación creada correctamente');
-            if (onPublicacionCreada) onPublicacionCreada();
+            onSave(resultado.publicacion || resultado);
+            onHide();
+            setForm({
+                titulo: '',
+                descripcion: '',
+                categoria: '',
+                precio: '',
+                imagen: ''
+            });
         } else {
             toast.error(resultado.mensaje || 'Error al crear la publicación');
         }
@@ -186,7 +197,6 @@ export const ModalCreate = ({ show, onHide })=>{
                     </div>
                 </Modal.Body>
             </Modal>
-            <ToastContainer position="top-right" autoClose={3000} />
         </>
     )
 }

@@ -2,6 +2,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'rsuite/dist/rsuite.min.css';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { PrivateRoute } from './routes/PrivateRoute.jsx';
 
@@ -23,6 +26,7 @@ import { UsersManagement } from './pages/Admin/Users.jsx';
 import { DashboardEstudiante } from './layouts/dashboards/DashoardEstudiante.jsx'; 
 import { ViewPost } from './pages/Estudiantes/ViewPost.jsx';
 import { MyPost } from './pages/Estudiantes/MyPost.jsx';
+
 
 
 function App() {
@@ -62,6 +66,17 @@ function App() {
           </Route>
 
         </Routes>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000} // 3 segundos
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </BrowserRouter>
     </>
   )

@@ -13,11 +13,13 @@ import { FaEye } from "react-icons/fa";
 export const CardSistem = ({titulo, imagen, createdAt, onEditar, onVerDetalles, onEliminar}) => {
     return(
         <Card width={450} shaded direction="row">
-            <img
-                className='imagen-post-card'
-                src={imagen}
-                alt={titulo}
-            />
+            <div className='lugar-imagen-producto'>
+                <img
+                    className='imagen-post-card'
+                    src={imagen}
+                    alt={titulo}
+                />
+            </div>
             <VStack spacing={2} className='body-card'>
                 <Card.Header as="h5">{titulo}</Card.Header>
                 <Card.Body className='buttons-card'>

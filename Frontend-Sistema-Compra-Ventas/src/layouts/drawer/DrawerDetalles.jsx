@@ -51,16 +51,16 @@ export const DrawerDetalles = ({open, onClose, publicacion}) =>{
                             <p className='datos-vendedor'>Datos del vendedor</p>
                             <ul className='vendedor'>
                                 <li className='vendedor-options'>
-                                    <b>Nombre: </b>
+                                    <b>Nombre: </b>{publicacion.autor?.nombre}
                                 </li>
                                 <li className='vendedor-options'>
-                                    <b>Apellido: </b>
+                                    <b>Apellido: </b>{publicacion.autor?.apellido} 
                                 </li>
                                 <li className='vendedor-options'>
-                                    <b>Correo: </b>
+                                    <b>Correo: </b>{publicacion.autor?.email}
                                 </li>
                                 <li className='vendedor-options'>
-                                    <b>Direccion: </b>
+                                    <b>Direccion: </b>{publicacion.autor?.direccion}
                                 </li>
                             </ul>
                         </div>

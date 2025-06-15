@@ -1,25 +1,30 @@
 import { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'rsuite/Button'
-import { ToastContainer,toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { editarPublicacion } from '../../../context/api/publicaciones';
 import { obtenerCategorias } from '../../../context/api/categorias';
 
 export const ModalUpdate = ({ show, onHide, publicacion, onSave })=>{
     
     const [categorias, setCategorias] = useState([]);
-    const [form, setForm] = useState({ 
+    
+    const [form, setForm] = useState({
         id: '',
         titulo: '',
         descripcion: '',
-        categoria: ''
+        categoria: '',
+        precio: '',
+        imagen: ''
     });
 
-    const [original, setOriginal] = useState({ 
-            id: '',
-            titulo: '',
-            descripcion: '',
-            categoria: ''
+    const [original, setOriginal] = useState({
+        id: '',
+        titulo: '',
+        descripcion: '',
+        categoria: '',
+        precio: '',
+        imagen: ''
     });
 
     useEffect(() => {
@@ -36,9 +41,10 @@ export const ModalUpdate = ({ show, onHide, publicacion, onSave })=>{
             };
             setForm(data);
             setOriginal(data);
+            
         } else if (!show) {
-            setForm({ id: '', titulo: '',descripcion: '',categoria: ''});
-            setOriginal({ id: '', titulo: '',descripcion: '',categoria: '' });
+            setForm({ id: '', titulo: '',descripcion: '',categoria: '', precio: '', imagen: '' });
+            setOriginal({ id: '', titulo: '',descripcion: '',categoria: '', precio: '', imagen: '' });
         }
     }, [show, publicacion]);
 
@@ -63,8 +69,11 @@ export const ModalUpdate = ({ show, onHide, publicacion, onSave })=>{
         const resultado = await editarPublicacion(form);
 
         if (resultado.exito) {
-            toast.success(resultado.mensaje || 'Publicacion editada correctamente');
-            onSave(form);
+            toast.success(resultado.mensaje ||'Publicacion editada correctamente');
+            onSave({
+                ...publicacion,
+                ...form
+            });
             onHide();
 
         } else {
@@ -145,7 +154,6 @@ export const ModalUpdate = ({ show, onHide, publicacion, onSave })=>{
                         </div>
                     </Modal.Body>
             </Modal>
-            <ToastContainer position="top-right" autoClose={3000} />
         </>
     )
 }

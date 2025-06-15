@@ -33,6 +33,9 @@ export const DrawerProductos = ({open, onClose, publicacion}) => {
                                 <b>Precio: </b>${publicacion.precio}
                             </li>
                             <li className='vendedor-options'>
+                                <b>Estado: </b>{publicacion.estado ? 'Disponible' : 'No disponible'}
+                            </li>
+                            <li className='vendedor-options'>
                                 <b>Fecha de publicación: </b>{publicacion.createdAt ? new Date(publicacion.createdAt).toLocaleString() : ''}
                             </li>
                         </ul>

@@ -122,11 +122,30 @@ const eliminarPublicacion = async (id) => {
     }
 }
 
+const buscarPublicacion = async (titulo) => {
+    try {
+        const token = localStorage.getItem('token');
+        const respuesta = await fetch(`${import.meta.env.VITE_BACKEND_URL}/publicacion/${titulo}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const resultado = await respuesta.json();
+        if (!respuesta.ok) {
+            return [];
+        }
+        return resultado.publicaciones || resultado;
+    } catch (error) {
+        return [];
+    }
+}
+
 export {
     obtenerPublicaciones,
     agregarPublicacion,
     misPublicaciones,
     editarPublicacion,
     detallePublicacion,
-    eliminarPublicacion
+    eliminarPublicacion,
+    buscarPublicacion
 }

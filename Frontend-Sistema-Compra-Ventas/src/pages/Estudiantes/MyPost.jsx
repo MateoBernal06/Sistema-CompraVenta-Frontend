@@ -6,8 +6,8 @@ import { CardSistem } from "../../layouts/card/CardSistem";
 import { FaBasketShopping } from "react-icons/fa6";
 import { ModalCreate } from "../../layouts/modals/modalProductos/ModalCreate";
 import { ModalUpdate } from "../../layouts/modals/modalProductos/ModalUpdate";
-import { useState, useEffect } from 'react';
-import { misPublicaciones, eliminarPublicacion } from "../../context/api/publicaciones";
+import { useState, useEffect, useRef } from 'react';
+import { misPublicaciones, eliminarPublicacion, buscarPublicacion } from "../../context/api/publicaciones";
 import Loader from 'rsuite/Loader';
 import { DrawerProductos } from "../../layouts/drawer/DrawerProductos";
 import { Message, ButtonToolbar } from 'rsuite';
@@ -25,6 +25,7 @@ export const MyPost = () => {
     const [showConfirm, setShowConfirm] = useState(false);
     const [publicacionAEliminar, setPublicacionAEliminar] = useState(null);
     
+    const publicacionesRefs = useRef({});
     const cargarPublicaciones = async () => {
         setLoading(true);
         try {
@@ -37,9 +38,50 @@ export const MyPost = () => {
         }
     };
 
+    const handleBuscar = async () => {
+        setLoading(true);
+        try {
+            if (busqueda.trim() === '') {
+                toast.info("Nombre de publicación inválido");
+                return;
+            }
+
+            const resultado = await buscarPublicacion(busqueda.trim());
+
+            if (Array.isArray(resultado)) {
+                setPublicaciones(resultado);
+            } else if (resultado) {
+                setPublicaciones([resultado]);
+            } else {
+                setPublicaciones([]);
+            }
+        } catch (error) {
+            console.error('Error al buscar publicación:', error);
+            setPublicaciones([]);
+        } finally {
+            setLoading(false);
+        }
+    }
+
     useEffect(() => {
         cargarPublicaciones();
     }, []);
+
+
+    const handleSave = (updatedPublicacion) => {
+        setShowModalUpdate(false);
+        setPublicaciones(prev =>
+            prev.map(pub =>
+                (pub._id || pub.id) === (updatedPublicacion._id || updatedPublicacion.id)
+                    ? { ...pub, ...updatedPublicacion }
+                    : pub
+            )
+        );
+        setTimeout(() => {
+            const id = updatedPublicacion._id || updatedPublicacion.id;
+            publicacionesRefs.current[id]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+    };
 
     return (
         <>
@@ -79,14 +121,14 @@ export const MyPost = () => {
                         id="buscar" 
                         placeholder="Ingresa el nombre de un producto" 
                         className='search-users'
-                        //value={busqueda}
-                        //onChange={e => setBusqueda(e.target.value)}
+                        value={busqueda}
+                        onChange={e => setBusqueda(e.target.value)}
                         onKeyDown={e => { if (e.key === 'Enter') handleBuscar(); }}
                     />
                     <Button 
                         appearance="primary" 
                         className='search-button'
-                        //onClick={handleBuscar}
+                        onClick={handleBuscar}
                     ><FaSearch size={16}/></Button>
                 </div>
             </div>
@@ -97,6 +139,13 @@ export const MyPost = () => {
                     <p className="mensaje-disponibles">No hay publicaciones disponibles.</p>
                 ) : (
                     publicaciones.map((publicacion) => (
+                        <div
+                            key={publicacion._id || publicacion.id}
+                            ref={el => {
+                                const id = publicacion._id || publicacion.id;
+                                if (el) publicacionesRefs.current[id] = el;
+                            }}
+                        >
                         <CardSistem 
                             key={publicacion._id || publicacion.id}
                             {...publicacion}
@@ -112,19 +161,23 @@ export const MyPost = () => {
                                 setPublicacionAEliminar(publicacion);
                                 setShowConfirm(true);
                             }}
-                        />
+                            />
+                        </div>
                     ))
                 )}
             </div>
             <ModalCreate 
                 show={showModal} 
-                onHide={() => setShowModal(false)} 
-            />
+                onHide={() => setShowModal(false)}
+                onSave={(nuevaPublicacion) => {
+                setShowModal(false);
+                setPublicaciones(prev => [nuevaPublicacion, ...prev]);
+            }} />
             <ModalUpdate
                 show={showModalUpdate}
                 onHide={() => setShowModalUpdate(false)}
                 publicacion={publicacionSeleccionada}
-                onSave={cargarPublicaciones}
+                onSave={handleSave}
             />
             <DrawerProductos
                 open={openDrawer}

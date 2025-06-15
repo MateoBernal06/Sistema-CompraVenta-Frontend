@@ -30,15 +30,22 @@
 }
 
 .imagen-post{
-    height: 200px;
+    height: 100%;
+    width: 100%;
     object-fit: cover;
 }
 
+.card-image-container{
+    height: 200px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .imagen-post-card{
     height: 100%;
-    width: 200px;
-    align-items: center;
     object-fit: cover;
 }
 
@@ -60,3 +67,11 @@
     width: 100%;
 }
 
+.lugar-imagen-producto{
+    height: 200px;
+    width: 300px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

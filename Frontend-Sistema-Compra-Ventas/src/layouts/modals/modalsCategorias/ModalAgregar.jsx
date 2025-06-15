@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'rsuite/Button'
 import './styleCategorias.css';
 import { agregarCategoria } from '../../../context/api/categorias';
-import { ToastContainer,toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 
 
@@ -91,7 +91,6 @@ export const ModalAgregar = ({ show, onHide }) => {
                         </div>
                     </Modal.Body>
                 </Modal>
-                <ToastContainer position="top-right" autoClose={3000} />
         </>
     );
 };

@@ -4,7 +4,7 @@ import { PiNotePencilFill } from "react-icons/pi";
 import { useState } from 'react';
 import { ModalEditar } from '../modals/modalsCategorias/ModalEditar';
 import { inactivarCategorias } from '../../context/api/categorias';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import CheckIcon from '@rsuite/icons/Check';
 import CloseIcon from '@rsuite/icons/Close';
 import Toggle from 'rsuite/Toggle';
@@ -124,7 +124,6 @@ export const TableCategory = ({ categorias }) => {
                 />
             )}
 
-            <ToastContainer position="top-right" autoClose={3000} />
         </>
     );
 };

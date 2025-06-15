@@ -3,9 +3,9 @@ import { obtenerPublicaciones } from "../../context/api/publicaciones";
 import { useState, useEffect } from 'react';
 import Loader from 'rsuite/Loader';
 import Message from "rsuite/Message";
-import { toast } from 'react-toastify'
 import { DrawerDetalles } from "../../layouts/drawer/DrawerDetalles";;
 import './stylesStudents.css'
+
 
 export const ViewPost = () => {
 

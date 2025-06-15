@@ -7,7 +7,7 @@ import { inactivarEstudiante } from '../../context/api/estudiantes';
 import Toggle from 'rsuite/Toggle';
 import CheckIcon from '@rsuite/icons/Check';
 import CloseIcon from '@rsuite/icons/Close';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { BsFileEarmarkPost } from "react-icons/bs";
 
 export const TableUsers = ({ estudiantes }) => {
@@ -110,7 +110,6 @@ export const TableUsers = ({ estudiantes }) => {
                 </Table>
             </div>
             <DrawerAdmin open={drawerOpen} onClose={handleCloseDrawer} estudiante={estudianteSeleccionado}/>
-            <ToastContainer position="top-right" autoClose={3000} />
         </>
     );
 };

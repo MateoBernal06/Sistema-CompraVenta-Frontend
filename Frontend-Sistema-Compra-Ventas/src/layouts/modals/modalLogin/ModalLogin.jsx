@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { loginAdministrador } from '../../../context/api/login';
 import { loginEstudiante } from '../../../context/api/registro';
-import { ToastContainer,toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 export const ModalLogin = ({ show, onHide }) => {
@@ -121,7 +121,6 @@ export const ModalLogin = ({ show, onHide }) => {
                     </div>
                 </Modal.Body>
             </Modal>
-            <ToastContainer position="top-right" autoClose={3000} />
         </>
     );
 }

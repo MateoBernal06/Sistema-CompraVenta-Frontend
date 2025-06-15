@@ -5,7 +5,7 @@ import imagenRegistro from '../../../assets/photos/imagen-dos.webp';
 import Button from 'rsuite/Button';
 import { registroEstudiante } from '../../../context/api/registro';
 import '../ModalLogin.css';
-import { ToastContainer,toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 export const ModalRegistro = ({ show, onHide }) => {
 
@@ -153,7 +153,6 @@ export const ModalRegistro = ({ show, onHide }) => {
                     </div>
                 </Modal.Body>
             </Modal>
-            <ToastContainer position="top-right" autoClose={3000} />
         </>
     );
 }

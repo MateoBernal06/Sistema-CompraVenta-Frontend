@@ -7,11 +7,13 @@ export const CardPublication = ({titulo, precio, imagen, createdAt, onVerDetalle
 
     return (
         <Card width={270} shaded>
-            <img
-                className='imagen-post'
-                src={imagen}
-                alt={titulo}
-            />
+            <div className='card-image-container'>
+                <img
+                    className='imagen-post'
+                    src={imagen}
+                    alt={titulo}
+                />
+            </div>
             <Card.Header as="h5">{titulo}</Card.Header>
             <Card.Body className="price-body">
                 <Text className="price-text">
