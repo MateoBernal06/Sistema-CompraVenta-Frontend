@@ -3,9 +3,16 @@
     width: 500px !important;
 }
 
+.drawer-container-admin{
+    width: 600px !important;
+}
+
 .body-drawer{
     background-color: rgb(208, 208, 208);
     text-align: center;
+    gap: 20px;
+    display: grid;
+    justify-content: center;
 }
 
 .imagen-detalle{

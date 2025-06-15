@@ -3,7 +3,8 @@ import './styleTable.css'
 import Table from 'react-bootstrap/Table';
 import { DrawerAdmin } from '../drawer/DrawerAdmin';
 import { useState } from 'react';
-import { inactivarEstudiante } from '../../context/api/estudiantes';
+import { inactivarEstudiante} from '../../context/api/estudiantes';
+import { publicacionesDelUsuario } from '../../context/api/publicaciones';
 import Toggle from 'rsuite/Toggle';
 import CheckIcon from '@rsuite/icons/Check';
 import CloseIcon from '@rsuite/icons/Close';
@@ -16,7 +17,7 @@ export const TableUsers = ({ estudiantes }) => {
     const handleCloseDrawer = () => setDrawerOpen(false);
     const [estudiantesState, setEstudiantesState] = useState(estudiantes);
     const [estudianteSeleccionado, setEstudianteSeleccionado] = useState(null);
-
+    const [publicacionesUsuario, setPublicacionesUsuario] = useState([]);
 
     const manejarInactivar = async (id) => {
         try {
@@ -31,9 +32,11 @@ export const TableUsers = ({ estudiantes }) => {
         }
     };
 
-    const handleOpenDrawer = (estu) => {
+    const handleOpenDrawer = async (estu) => {
         setEstudianteSeleccionado(estu);
         setDrawerOpen(true);
+        const publicaciones = await publicacionesDelUsuario(estu._id);
+        setPublicacionesUsuario(publicaciones);
     };
 
 
@@ -109,7 +112,12 @@ export const TableUsers = ({ estudiantes }) => {
                     </tbody>
                 </Table>
             </div>
-            <DrawerAdmin open={drawerOpen} onClose={handleCloseDrawer} estudiante={estudianteSeleccionado}/>
+            <DrawerAdmin 
+                open={drawerOpen} 
+                onClose={handleCloseDrawer} 
+                estudiante={estudianteSeleccionado}
+                publicaciones={publicacionesUsuario}
+            />
         </>
     );
 };

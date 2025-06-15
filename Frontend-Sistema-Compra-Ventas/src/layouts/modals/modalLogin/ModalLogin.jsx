@@ -50,7 +50,7 @@ export const ModalLogin = ({ show, onHide }) => {
             console.log(`Usuario logueado con rol: ${resultado.rol}`);
 
             if (resultado.rol === 'administrador') {
-                navigate('/dashboard');
+                navigate('/dashboard/gestion-usuarios');
             } else if (resultado.rol === 'estudiante') {
                 navigate('/estudiante/publicaciones');
             } else {

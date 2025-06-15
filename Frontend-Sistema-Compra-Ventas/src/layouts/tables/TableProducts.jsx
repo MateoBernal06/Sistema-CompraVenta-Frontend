@@ -4,16 +4,33 @@ import Toggle from 'rsuite/Toggle';
 import CheckIcon from '@rsuite/icons/Check';
 import CloseIcon from '@rsuite/icons/Close';
 import { BsFileEarmarkPost } from "react-icons/bs";
+import { useState } from 'react';
+import { DrawerPost } from '../drawer/DrawerPost';
 
 export const TableProducts = ({ publicaciones, onInactivar }) => {
+    
+    const [drawerOpen, setDrawerOpen] = useState(false);
+    const [selectedPublicacion, setSelectedPublicacion] = useState(null);
+
+    const handleCloseDrawer = () => {
+        setDrawerOpen(false);
+        setSelectedPublicacion(null);
+    };
+
+    const handleOpenDrawer = (publicacion) => {
+        setSelectedPublicacion(publicacion);
+        setDrawerOpen(true);
+    };
+
     return (
         <>
         
             <div className='table-container'>
                 <Table className="table-users" bordered>
                     <colgroup>
+                        <col style={{ width: '5%' }} />
                         <col style={{ width: '15%' }} />
-                        <col style={{ width: '25%' }} />
+                        <col style={{ width: '20%' }} />
                         <col style={{ width: '15%' }} />
                         <col style={{ width: '15%' }} />
                         <col style={{ width: '10%' }} />
@@ -22,6 +39,7 @@ export const TableProducts = ({ publicaciones, onInactivar }) => {
                     </colgroup>
                     <thead className="table-header">
                         <tr>
+                            <th>N</th>
                             <th>Titulo</th>
                             <th>Descripcion</th>
                             <th>Autor</th>
@@ -41,6 +59,7 @@ export const TableProducts = ({ publicaciones, onInactivar }) => {
                         ) : (
                             publicaciones.map((pub, idx) => (
                                 <tr key={pub._id}>
+                                    <td>{idx + 1}</td>
                                     <td>{pub.titulo}</td>
                                     <td className='description'>{pub.descripcion}</td>
                                     <td>{pub.autor.nombre} {pub.autor.apellido}</td>
@@ -61,7 +80,7 @@ export const TableProducts = ({ publicaciones, onInactivar }) => {
                                                 title="Ver publicaciones"
                                                 className='button-accion-edit'
                                                 size={28}
-                                                onClick={() => handleOpenDrawer(estu)}
+                                                onClick={() => handleOpenDrawer(pub)}
                                             />
                                             <Toggle
                                                 size="lg"
@@ -80,6 +99,11 @@ export const TableProducts = ({ publicaciones, onInactivar }) => {
                     </tbody>
                 </Table>
             </div>
+            <DrawerPost 
+                open={drawerOpen} 
+                onClose={handleCloseDrawer} 
+                publicacion={selectedPublicacion}
+            />
         </>
     );
 }

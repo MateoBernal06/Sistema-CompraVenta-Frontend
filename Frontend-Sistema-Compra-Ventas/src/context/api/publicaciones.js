@@ -18,6 +18,25 @@ const obtenerPublicaciones = async () => {
 }
 
 
+const publicacionesDelUsuario = async (id) => {
+    try {
+        const token = localStorage.getItem('token');
+        const respuesta = await fetch(`${import.meta.env.VITE_BACKEND_URL}/publicacion/${id}/usuario`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const resultado = await respuesta.json();
+        if (!respuesta.ok) {
+            return [];
+        }
+        return resultado.publicaciones || resultado;
+    } catch (error) {
+        return [];
+    }
+}
+
+
 const agregarPublicacion = async (datos) => {
     try {
         const token = localStorage.getItem('token'); 
@@ -191,5 +210,6 @@ export {
     eliminarPublicacion,
     buscarPublicacion,
     publicacionVendida,
-    publicacionInactiva
+    publicacionInactiva,
+    publicacionesDelUsuario
 }
