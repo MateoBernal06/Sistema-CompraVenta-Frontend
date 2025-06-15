@@ -21,6 +21,7 @@ import { Cambiar } from './components/User/PageCambio.jsx';
 import { Dashboard } from './layouts/dashboards/Dashboard.jsx';
 import { CategorysManagement } from './pages/Admin/Categorys.jsx';
 import { UsersManagement } from './pages/Admin/Users.jsx';
+import { PostManagement } from './pages/Admin/Post.jsx';
 
 // Dashboard Estudiante
 import { DashboardEstudiante } from './layouts/dashboards/DashoardEstudiante.jsx'; 
@@ -51,7 +52,7 @@ function App() {
           }>
             <Route path="perfil" element={<h1>jj</h1>} />
             <Route path="gestion-usuarios" element={<UsersManagement />} />
-            <Route path="gestion-publicaciones" element={<h1>jj</h1>} />
+            <Route path="gestion-publicaciones" element={<PostManagement />} />
             <Route path="gestion-categorias" element={<CategorysManagement />} />
           </Route>
 

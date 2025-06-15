@@ -27,7 +27,7 @@ export const DrawerDetalles = ({open, onClose, publicacion}) =>{
                                 color='green' 
                                 appearance="primary"
                                 className='chat-boton'> 
-                                <FaWhatsapp size={20}/> Hablar con el vendedor
+                                <FaWhatsapp size={20}/> Contactar Vendedor
                             </Button>
                         </div>
                         <div>
