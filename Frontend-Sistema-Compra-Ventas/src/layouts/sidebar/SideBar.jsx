@@ -17,17 +17,16 @@ export const SideBar = ({ visible, setVisible }) => {
                     <div className="sidebar-config-section">
                         <BsFilePost size={24} color="#fff"/>
                         <span className="sidebar-config-title">Publicaciones</span>
-                        <ul className="sidebar-config-list">
-                            <li className='sidebar-config-item'>
-                                <Button 
-                                    className='sidebar-button' 
-                                    appearance="ghost"
-                                    onClick={() => navigate('/estudiante/gestion-publicaciones')}
-                                >
-                                    Mis Publicaciones
-                                </Button>
-                            </li>
-                        </ul>
+                        <Button 
+                            className='sidebar-button' 
+                            appearance="ghost"
+                            onClick={() => {
+                                navigate('/estudiante/gestion-publicaciones')
+                                setVisible(false);
+                            }}
+                        >
+                            Mis Publicaciones
+                        </Button>
                     </div>
 
                     <div className="sidebar-config-section">
@@ -36,7 +35,10 @@ export const SideBar = ({ visible, setVisible }) => {
                         <Button 
                             className='sidebar-button' 
                             appearance="ghost"
-                            onClick={() => navigate('/estudiante/publicaciones')}
+                            onClick={() => {
+                                navigate('/estudiante/publicaciones')
+                                setVisible(false);
+                            }}
                         >
                             Ver publicaciones
                         </Button>
@@ -50,7 +52,10 @@ export const SideBar = ({ visible, setVisible }) => {
                                 <Button 
                                     className='sidebar-button' 
                                     appearance="ghost"
-                                    onClick={() => navigate('/actualizar-informacion')}
+                                    onClick={() => {
+                                        navigate('/actualizar-informacion')
+                                        setVisible(false);
+                                    }}
                                 >
                                     Actualizar información personal
                                 </Button>
@@ -59,7 +64,10 @@ export const SideBar = ({ visible, setVisible }) => {
                                 <Button 
                                     className='sidebar-button' 
                                     appearance="ghost"
-                                    onClick={() => navigate('/dashboard/actualizar-contraseña')}
+                                    onClick={() => {
+                                        navigate('/dashboard/actualizar-contraseña')
+                                        setVisible(false);
+                                    }}
                                 >
                                     Actualizar contraseña
                                 </Button>

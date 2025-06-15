@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 
 
-export const ModalAgregar = ({ show, onHide }) => {
+export const ModalAgregar = ({ show, onHide, onSave }) => {
 
     const [form, setFormData] = useState({
         nombre:'',
@@ -35,7 +35,7 @@ export const ModalAgregar = ({ show, onHide }) => {
         const resultado = await agregarCategoria(form);
         if (resultado.exito) {
             toast.success(resultado.mensaje || 'Categoría creada correctamente');
-            if (onCategoriaCreada) onCategoriaCreada();
+            if (onSave) onSave(resultado.categoria || resultado);
         } else {
             toast.error(resultado.mensaje || 'Error al crear la categoría');
         }
@@ -52,7 +52,7 @@ export const ModalAgregar = ({ show, onHide }) => {
                         <div>
                             <p className='title-modal-categoria'>Agregar Nueva Categoría</p>
                             <form onSubmit={handleSubmit}>
-                                <div className='form-group-modal'>
+                                <div className='form-group-modal-table'>
                                     <label htmlFor="nombre">Nombre</label>
                                     <input
                                         type="text"
@@ -64,7 +64,7 @@ export const ModalAgregar = ({ show, onHide }) => {
                                         required 
                                     />
                                 </div>
-                                <div className='form-group-modal'>
+                                <div className='form-group-modal-table'>
                                     <label htmlFor="descripcion">Descripcion</label>
                                     <textarea
                                         id="descripcion"

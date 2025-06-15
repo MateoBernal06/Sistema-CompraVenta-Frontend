@@ -63,7 +63,7 @@ export const ModalEditar = ({ show, onHide, categoria, onSave }) => {
                 <div>
                     <p className='title-modal-categoria'>Editar Categoría</p>
                     <form onSubmit={handleSubmit}>
-                        <div className='form-group-modal'>
+                        <div className='form-group-modal-table'>
                             <label htmlFor="nombre">Nombre</label>
                             <input
                                 type="text"
@@ -75,7 +75,7 @@ export const ModalEditar = ({ show, onHide, categoria, onSave }) => {
                                 required
                             />
                         </div>
-                        <div className='form-group-modal'>
+                        <div className='form-group-modal-table'>
                             <label htmlFor="descripcion">Descripción</label>
                             <textarea
                                 id="descripcion"

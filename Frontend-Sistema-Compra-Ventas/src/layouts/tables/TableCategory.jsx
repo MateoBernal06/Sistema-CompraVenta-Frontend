@@ -3,15 +3,12 @@ import Table from 'react-bootstrap/Table';
 import { PiNotePencilFill } from "react-icons/pi";
 import { useState } from 'react';
 import { ModalEditar } from '../modals/modalsCategorias/ModalEditar';
-import { inactivarCategorias } from '../../context/api/categorias';
-import { toast } from 'react-toastify';
 import CheckIcon from '@rsuite/icons/Check';
 import CloseIcon from '@rsuite/icons/Close';
 import Toggle from 'rsuite/Toggle';
 
 
-export const TableCategory = ({ categorias }) => {
-    const [categoriasState, setCategoriasState] = useState(categorias);
+export const TableCategory = ({ categorias, onInactivar, onUpdateCategoria }) => {
     const [modalData, setModalData] = useState(null);
     const [showModal, setShowModal] = useState(false);
 
@@ -25,28 +22,6 @@ export const TableCategory = ({ categorias }) => {
         setModalData(null);
     };
 
-    const manejarInactivar = async (id) => {
-        try {
-            await inactivarCategorias(id);
-            const updated = categoriasState.map(cat =>
-                cat._id === id ? { ...cat, estado: !cat.estado } : cat
-            );
-            setCategoriasState(updated);
-            toast.success("Estado actualizado correctamente");
-        } catch (error) {
-            toast.error("Error al actualizar el estado");
-        }
-    };
-
-    const handleUpdateCategoria = (categoriaActualizada) => {
-        setCategoriasState(prev =>
-            prev.map(cat =>
-                cat._id === categoriaActualizada._id ? categoriaActualizada : cat
-            )
-        );
-        cerrarModalEditar();
-        toast.success("Categoría actualizada");
-    };
 
     return (
         <>
@@ -78,7 +53,7 @@ export const TableCategory = ({ categorias }) => {
                                 </td>
                             </tr>
                         ) : (
-                            categoriasState.map((cat, idx) => (
+                            categorias.map((cat, idx) => (
                                 <tr key={cat._id}>
                                     <td>{idx + 1}</td>
                                     <td>{cat.nombre}</td>
@@ -103,7 +78,7 @@ export const TableCategory = ({ categorias }) => {
                                                 color='green'
                                                 checkedChildren={<CheckIcon />}
                                                 unCheckedChildren={<CloseIcon />}
-                                                onChange={() => manejarInactivar(cat._id)}
+                                                onChange={() => onInactivar(cat._id)}
                                                 title={cat.estado ? 'Inactivar' : 'Activar'}
                                             />
                                         </div>
@@ -120,7 +95,10 @@ export const TableCategory = ({ categorias }) => {
                     show={showModal}
                     onHide={cerrarModalEditar}
                     categoria={modalData}
-                    onSave={handleUpdateCategoria}
+                    onSave={(categoriaActualizada) => {
+                        onUpdateCategoria(categoriaActualizada);
+                        cerrarModalEditar();
+                    }}
                 />
             )}
 

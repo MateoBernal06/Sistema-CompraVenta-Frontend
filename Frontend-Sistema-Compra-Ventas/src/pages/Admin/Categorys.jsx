@@ -6,7 +6,11 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import { FaSearch } from "react-icons/fa";
 import { ModalAgregar } from '../../layouts/modals/modalsCategorias/ModalAgregar';
 import { useState, useEffect } from 'react';
-import { obtenerCategorias, buscarCategoria } from '../../context/api/categorias';
+import { 
+        obtenerCategorias, 
+        buscarCategoria, 
+        inactivarCategorias 
+    } from '../../context/api/categorias';
 import Loader from 'rsuite/Loader';
 import { toast } from 'react-toastify';
 
@@ -27,6 +31,30 @@ export const CategorysManagement = () => {
         }finally{
             setLoading(false)
         }
+    };
+
+    const manejarInactivar = async (id) => {
+        try {
+            await inactivarCategorias(id);
+            setCategorias(prev =>
+                prev.map(cat =>
+                    cat._id === id ? { ...cat, estado: !cat.estado } : cat
+                )
+            );
+            toast.success("Estado actualizado correctamente");
+        } catch (error) {
+            toast.error("Error al actualizar el estado");
+        }
+    };
+
+    const handleUpdateCategoria = (categoriaActualizada) => {
+        setCategorias(prev =>
+            prev.map(cat =>
+                cat._id === categoriaActualizada._id ? categoriaActualizada : cat
+            )
+        );
+        cerrarModalEditar();
+        toast.success("Categoría actualizada");
     };
 
     const handleBuscar = async () => {
@@ -108,15 +136,17 @@ export const CategorysManagement = () => {
             ) : (
                 <TableCategory 
                     categorias={categorias} 
-                    recargarCategorias={cargarCategorias} 
+                    onInactivar={manejarInactivar}
+                    onUpdateCategoria={handleUpdateCategoria}
                 />
             )}
 
             <ModalAgregar
                 show={showModal}
-                onHide={() => {
+                onHide={() => setShowModal(false)}
+                onSave={(nuevaCategoria) => {
+                    setCategorias(prev => [nuevaCategoria, ...prev]);
                     setShowModal(false);
-                    cargarCategorias();
                 }}
             />
         </>

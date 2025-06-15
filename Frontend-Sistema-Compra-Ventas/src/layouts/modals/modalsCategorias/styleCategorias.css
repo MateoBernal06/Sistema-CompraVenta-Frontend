@@ -1,5 +1,6 @@
 .modal-body-tables{
     height: auto;
+    width: 100%;
 }
 
 .modal-body-update{
@@ -28,13 +29,18 @@
     justify-content: center;
 }
 
-.form-group-modal-button{
+.form-group-modal-button, .form-group-modal-table{
     display: grid;
     text-align: center;
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 10px 30px 10px 30px;
     gap: 10px;
+}
+
+.form-group-modal-table{
+    text-align: left;
+    gap: 0px;
 }
 
 .form-input-modal-select{
@@ -49,12 +55,14 @@
     border: solid 1px #181717;
     border-radius: 5px;
     padding: 10px;
+    width: 100%;
 }
 
 .form-input-modal-area{
     border: solid 1px #181717;
     border-radius: 5px;
     padding: 10px;
+    width: 100%;
 }
 
 .Toastify__toast-container {

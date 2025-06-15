@@ -23,7 +23,10 @@ export const SidebarComponent = ({ visible, setVisible }) => {
                         <Button 
                             className='sidebar-button' 
                             appearance="ghost"
-                            onClick={() => navigate('/dashboard/gestion-usuarios')}
+                            onClick={() => {
+                                navigate('/dashboard/gestion-usuarios')
+                                setVisible(false);
+                            }}
                         >
                             Gestion de Usuarios
                         </Button>
@@ -35,7 +38,10 @@ export const SidebarComponent = ({ visible, setVisible }) => {
                         <Button 
                         className='sidebar-button' 
                         appearance="ghost"
-                        onClick={() => navigate('/dashboard/gestion-publicaciones')}
+                        onClick={() => {
+                            navigate('/dashboard/gestion-publicaciones')
+                            setVisible(false);
+                        }}
                         >
                             Gestion de Publicaciones
                         </Button>
@@ -47,7 +53,10 @@ export const SidebarComponent = ({ visible, setVisible }) => {
                         <Button 
                             className='sidebar-button' 
                             appearance="ghost"
-                            onClick={() => navigate('/dashboard/gestion-categorias')}
+                            onClick={() => {
+                                navigate('/dashboard/gestion-categorias')
+                                setVisible(false);
+                            }}
                         >
                             Gestion de Categorías
                         </Button>
@@ -61,7 +70,10 @@ export const SidebarComponent = ({ visible, setVisible }) => {
                                 <Button 
                                     className='sidebar-button' 
                                     appearance="ghost"
-                                    onClick={() => navigate('/dashboard/actualizar-contraseña')}
+                                    onClick={() => {
+                                        navigate('/dashboard/actualizar-contraseña')
+                                        setVisible(false);
+                                    }}
                                 >
                                     Actualizar contraseña
                                 </Button>
@@ -70,7 +82,10 @@ export const SidebarComponent = ({ visible, setVisible }) => {
                                 <Button 
                                     className='sidebar-button' 
                                     appearance="ghost"
-                                    onClick={() => navigate('/actualizar-informacion')}
+                                    onClick={() => {
+                                        navigate('/actualizar-informacion')
+                                        setVisible(false);
+                                    }}
                                 >
                                     Actualizar información personal
                                 </Button>
