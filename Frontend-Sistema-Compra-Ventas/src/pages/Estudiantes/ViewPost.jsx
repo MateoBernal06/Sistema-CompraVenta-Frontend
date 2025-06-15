@@ -2,13 +2,17 @@ import { CardPublication } from "../../layouts/card/CardPublication";
 import { obtenerPublicaciones } from "../../context/api/publicaciones";
 import { useState, useEffect } from 'react';
 import Loader from 'rsuite/Loader';
+import { FaSearch } from "react-icons/fa";
+import Button from 'rsuite/Button';
+import { buscarPublicacion } from "../../context/api/publicaciones";
 import Message from "rsuite/Message";
 import { DrawerDetalles } from "../../layouts/drawer/DrawerDetalles";;
 import './stylesStudents.css'
-
+import { toast } from 'react-toastify';
 
 export const ViewPost = () => {
 
+    const [busqueda, setBusqueda] = useState('');
     const [loading, setLoading] = useState(false);
     const [publicaciones, setPublicaciones] = useState([]);
     const [openDrawer, setOpenDrawer] = useState(false);
@@ -26,6 +30,35 @@ export const ViewPost = () => {
         }
     };
 
+    const publicacionesOrdenadas = [...publicaciones].sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
+
+    const handleBuscar = async () => {
+        setLoading(true);
+        try {
+            if (busqueda.trim() === '') {
+                toast.info("Nombre de publicación inválido");
+                return;
+            }
+
+            const resultado = await buscarPublicacion(busqueda.trim());
+
+            if (Array.isArray(resultado)) {
+                setPublicaciones(resultado);
+            } else if (resultado) {
+                setPublicaciones([resultado]);
+            } else {
+                setPublicaciones([]);
+            }
+        } catch (error) {
+            console.error('Error al buscar publicación:', error);
+            setPublicaciones([]);
+        } finally {
+            setLoading(false);
+        }
+    }
+
     useEffect(() => {
         cargarPublicaciones();
     }, []);
@@ -41,14 +74,32 @@ export const ViewPost = () => {
                     </p>
                 </Message>
             </div>
+
+            <div className="search-container">
+                <input 
+                    type='text' 
+                    name="buscar" 
+                    id="buscar" 
+                    placeholder="Ingresa el nombre de un producto" 
+                    className='search-users'
+                    value={busqueda}
+                    onChange={e => setBusqueda(e.target.value)}
+                    onKeyDown={e => { if (e.key === 'Enter') handleBuscar(); }}
+                />
+                <Button 
+                    appearance="primary" 
+                    className='search-button'
+                    onClick={handleBuscar}
+                ><FaSearch size={16}/></Button>
+            </div>
             
             <div className="publicaciones-container">
                 {loading ? (
                     <Loader center content="Cargando publicaciones..." />
                 ) : publicaciones.length === 0 ? (
-                    <p>No hay publicaciones disponibles.</p>
+                    <p className="mensaje-disponibles-view">No hay publicaciones disponibles.</p>
                 ) : (
-                    publicaciones.map((publicacion) => (
+                    publicacionesOrdenadas.map((publicacion) => (
                         <CardPublication 
                             key={publicacion._id || publicacion.id} 
                             {...publicacion}

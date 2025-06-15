@@ -74,3 +74,16 @@
     align-items: center;
     font-size: 20px;
 }
+
+.mensaje-disponibles-view{
+    padding: 20px;
+    grid-column: 1/5;
+    font-size: 20px;
+    background-color: #fde0a7;
+}
+
+.search-container{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}

@@ -140,6 +140,29 @@ const buscarPublicacion = async (titulo) => {
     }
 }
 
+
+const publicacionVendida = async(id) =>{
+    try {
+        const token = localStorage.getItem('token');
+        const respuesta = await fetch(`${import.meta.env.VITE_BACKEND_URL}/publicacion/${id}/vendida`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const resultado = await respuesta.json();
+        if (!respuesta.ok) {
+            return { exito: false, mensaje: resultado.msg || 'Error del servidor' };
+        }
+        return { exito: true, ...resultado };
+    } catch (error) {
+        return { exito: false, mensaje: 'Error de red: ' + error.message };
+    }
+}
+
+
+
 export {
     obtenerPublicaciones,
     agregarPublicacion,
@@ -147,5 +170,6 @@ export {
     editarPublicacion,
     detallePublicacion,
     eliminarPublicacion,
-    buscarPublicacion
+    buscarPublicacion,
+    publicacionVendida,
 }

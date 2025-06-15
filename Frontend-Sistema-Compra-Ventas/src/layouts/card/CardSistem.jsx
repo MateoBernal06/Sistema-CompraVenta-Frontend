@@ -10,7 +10,7 @@ import { MdDelete } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
 
 
-export const CardSistem = ({titulo, imagen, createdAt, onEditar, onVerDetalles, onEliminar}) => {
+export const CardSistem = ({titulo, imagen, createdAt, onEditar, onVerDetalles, onEliminar, onVendida}) => {
     return(
         <Card width={450} shaded direction="row">
             <div className='lugar-imagen-producto'>
@@ -33,7 +33,8 @@ export const CardSistem = ({titulo, imagen, createdAt, onEditar, onVerDetalles, 
                     <Button 
                         className='button-card' 
                         color='green' 
-                        appearance="primary">
+                        appearance="primary"
+                        onClick={onVendida}>
                             <FaCheckCircle size={20}/> Vendido
                     </Button>
                     <Button 

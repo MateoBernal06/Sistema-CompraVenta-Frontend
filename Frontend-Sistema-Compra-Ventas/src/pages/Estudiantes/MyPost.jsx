@@ -7,7 +7,13 @@ import { FaBasketShopping } from "react-icons/fa6";
 import { ModalCreate } from "../../layouts/modals/modalProductos/ModalCreate";
 import { ModalUpdate } from "../../layouts/modals/modalProductos/ModalUpdate";
 import { useState, useEffect, useRef } from 'react';
-import { misPublicaciones, eliminarPublicacion, buscarPublicacion } from "../../context/api/publicaciones";
+import { 
+        misPublicaciones, 
+        eliminarPublicacion, 
+        buscarPublicacion, 
+        publicacionVendida
+    } 
+from "../../context/api/publicaciones";
 import Loader from 'rsuite/Loader';
 import { DrawerProductos } from "../../layouts/drawer/DrawerProductos";
 import { Message, ButtonToolbar } from 'rsuite';
@@ -24,6 +30,8 @@ export const MyPost = () => {
     const [publicaciones, setPublicaciones] = useState([]);
     const [showConfirm, setShowConfirm] = useState(false);
     const [publicacionAEliminar, setPublicacionAEliminar] = useState(null);
+    const [showConfirmVendido, setShowConfirmVendido] = useState(false);
+    const [publicacionAVender, setPublicacionAVender] = useState(null);
     
     const publicacionesRefs = useRef({});
     const cargarPublicaciones = async () => {
@@ -37,6 +45,7 @@ export const MyPost = () => {
             setLoading(false);
         }
     };
+
 
     const handleBuscar = async () => {
         setLoading(true);
@@ -104,15 +113,6 @@ export const MyPost = () => {
                         <IoMdAddCircleOutline size={24} color="#fff" className='icon'/>
                         Crear Publicación
                     </Button>
-                    <Button
-                        color="green" 
-                        appearance="primary" 
-                        className='button-view-post'
-                        //onClick={() => setShowModal(true)}
-                    >
-                        <FaBasketShopping size={24} color="#fff" className='icon'/>
-                        Productos vendidos
-                    </Button>
                 </div>
                 <div>
                     <input 
@@ -136,7 +136,9 @@ export const MyPost = () => {
                 {loading ? (
                     <Loader center content="Cargando publicaciones..." />
                 ) : publicaciones.length === 0 ? (
-                    <p className="mensaje-disponibles">No hay publicaciones disponibles.</p>
+                    <p className="mensaje-disponibles">
+                        No hay publicaciones disponibles.
+                    </p>
                 ) : (
                     publicaciones.map((publicacion) => (
                         <div
@@ -160,6 +162,10 @@ export const MyPost = () => {
                             onEliminar={() => {
                                 setPublicacionAEliminar(publicacion);
                                 setShowConfirm(true);
+                            }}
+                            onVendida={() => {
+                                setPublicacionAVender(publicacion);
+                                setShowConfirmVendido(true);
                             }}
                             />
                         </div>
@@ -217,6 +223,53 @@ export const MyPost = () => {
                                 onClick={() => {
                                     setShowConfirm(false);
                                     setPublicacionAEliminar(null);
+                                }}
+                            >
+                                No
+                            </Button>
+                        </ButtonToolbar>
+                    </Message>
+                </div>
+            )}
+            {showConfirmVendido && (
+                <div className="confirm-overlay">
+                    <Message 
+                        showIcon type="info" 
+                        header="¿Marcar como vendido?"
+                    >
+                        <ButtonToolbar className="botones-eleccion">
+                            <Button
+                                className="boton-confirmacion"
+                                size="sm"
+                                color="green"
+                                appearance="primary"
+                                onClick={async () => {
+                                    const res = await publicacionVendida(publicacionAVender._id || publicacionAVender.id);
+                                    if (res.exito) {
+                                        setPublicaciones(prev =>
+                                            prev.map(pub =>
+                                                (pub._id || pub.id) === (publicacionAVender._id || publicacionAVender.id)
+                                                    ? { ...pub, disponible: false }
+                                                    : pub
+                                            )
+                                        );
+                                        toast.success("Producto marcado como vendido");
+                                    } else {
+                                        toast.error(res.mensaje || "Error al actualizar estado");
+                                    }
+                                    setShowConfirmVendido(false);
+                                    setPublicacionAVender(null);
+                                }}
+                            >
+                                Sí
+                            </Button>
+                            <Button
+                                size="sm"
+                                className="boton-confirmacion"
+                                appearance="subtle"
+                                onClick={() => {
+                                    setShowConfirmVendido(false);
+                                    setPublicacionAVender(null);
                                 }}
                             >
                                 No
