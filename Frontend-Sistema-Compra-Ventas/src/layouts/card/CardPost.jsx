@@ -6,7 +6,7 @@ import './styleCard.css'
 
 export const CardPost = ({ titulo, descripcion, imagen, createdAt }) => {
     return (
-        <Card width={450} shaded direction="row">
+        <Card shaded direction="row" className='card-post-admin'>
             <div className='lugar-imagen-producto'>
                 <img
                     className='imagen-post-card'

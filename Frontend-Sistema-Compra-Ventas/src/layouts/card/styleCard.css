@@ -75,3 +75,9 @@
     align-items: center;
     justify-content: center;
 }
+
+.card-post-admin{
+    background-color: aqua;
+    height: 200px;
+    width: 400px;
+}

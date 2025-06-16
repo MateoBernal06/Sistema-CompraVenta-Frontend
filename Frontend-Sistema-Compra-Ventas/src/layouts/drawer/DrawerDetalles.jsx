@@ -6,6 +6,10 @@ export const DrawerDetalles = ({open, onClose, publicacion}) =>{
 
     if (!publicacion) return null;
 
+    const mensaje = encodeURIComponent(`Hola, acabo de ver tu publicación y me interesa mucho. ¿Aún está disponible?`);
+    const mandarMensaje = `${import.meta.env.VITE_WHATSAPP_LINK}${publicacion.autor?.celular}?text=${mensaje}`;
+
+
     return(
         <>
             <Drawer open={open} onClose={onClose} className='drawer-container'>
@@ -26,6 +30,9 @@ export const DrawerDetalles = ({open, onClose, publicacion}) =>{
                             <Button 
                                 color='green' 
                                 appearance="primary"
+                                href={mandarMensaje}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className='chat-boton'> 
                                 <FaWhatsapp size={20}/> Contactar Vendedor
                             </Button>
