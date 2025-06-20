@@ -235,7 +235,7 @@ export const MyPost = () => {
                 <div className="confirm-overlay">
                     <Message 
                         showIcon type="info" 
-                        header="¿Marcar como vendido?"
+                        header={publicacionAVender?.disponible ? "¿Marcar como vendido?" : "¿Marcar como disponible?"}
                     >
                         <ButtonToolbar className="botones-eleccion">
                             <Button
@@ -253,7 +253,8 @@ export const MyPost = () => {
                                                     : pub
                                             )
                                         );
-                                        toast.success("Producto marcado como vendido");
+                                        toast.success(res.msg || "Publicacion actualizada");
+                                        cargarPublicaciones();
                                     } else {
                                         toast.error(res.mensaje || "Error al actualizar estado");
                                     }

@@ -46,30 +46,18 @@ export const SideBar = ({ visible, setVisible }) => {
 
                     <div className="sidebar-config-section">
                         <FaUserGear size={24} color="#fff"/>
-                        <span className="sidebar-config-title">Configuración</span>
+                        <span className="sidebar-config-title">Configuración del perfil</span>
                         <ul className="sidebar-config-list">
                             <li>
                                 <Button 
                                     className='sidebar-button' 
                                     appearance="ghost"
                                     onClick={() => {
-                                        navigate('/actualizar-informacion')
+                                        navigate('/estudiante/actualizar-informacion')
                                         setVisible(false);
                                     }}
                                 >
                                     Actualizar información personal
-                                </Button>
-                            </li>
-                            <li>
-                                <Button 
-                                    className='sidebar-button' 
-                                    appearance="ghost"
-                                    onClick={() => {
-                                        navigate('/dashboard/actualizar-contraseña')
-                                        setVisible(false);
-                                    }}
-                                >
-                                    Actualizar contraseña
                                 </Button>
                             </li>
                         </ul>

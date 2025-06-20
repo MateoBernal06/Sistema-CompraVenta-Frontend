@@ -27,6 +27,7 @@ import { PostManagement } from './pages/Admin/Post.jsx';
 import { DashboardEstudiante } from './layouts/dashboards/DashoardEstudiante.jsx'; 
 import { ViewPost } from './pages/Estudiantes/ViewPost.jsx';
 import { MyPost } from './pages/Estudiantes/MyPost.jsx';
+import { UpdateInformation } from './pages/Estudiantes/UpdateInformation.jsx';
 
 
 
@@ -64,6 +65,7 @@ function App() {
             <Route path="perfil" element={<h1>Perfil Estudiante</h1>} />
             <Route path="publicaciones" element={<ViewPost />} />
             <Route path="gestion-publicaciones" element={<MyPost />} />
+            <Route path="actualizar-informacion" element={<UpdateInformation />} />
           </Route>
 
         </Routes>

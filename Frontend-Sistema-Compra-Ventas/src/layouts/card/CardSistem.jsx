@@ -32,13 +32,12 @@ export const CardSistem = ({titulo, imagen, disponible ,createdAt, onEditar, onV
                     </Button>
                     <Button
                         className='button-card'
-                        color={disponible ? 'green' : 'gray'}
+                        color={disponible ? 'green' : 'violet'}
                         appearance="primary"
                         onClick={onVendida}
-                        disabled={!disponible}
-                        style={!disponible ? { backgroundColor: '#ccc', borderColor: '#ccc', color: '#666' } : {}}
+                        style={!disponible ? { backgroundColor: '#8855c6', borderColor: '#8855c6', color: '#fff' } : {}}
                     >
-                        <FaCheckCircle size={20}/> Vendido
+                        <FaCheckCircle size={20}/> {disponible ? 'Vendido' : 'No Vendido'}
                     </Button>
                     <Button 
                         className='button-card' 

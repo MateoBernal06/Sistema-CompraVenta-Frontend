@@ -43,11 +43,33 @@
     text-align: left;
 }
 
+.place-boton-update{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.form-group-update{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    text-align: left;
+}
+
 .form-control{
     width: 250px;
     height: 30px;
     border: solid 1px #181717;
 }
+
+.form-control-update{
+    width: auto;
+    height: 30px;
+    border: solid 1px #181717;
+    padding: 10px;
+    border-radius: 5px;
+}
+
 
 .form-control-categoria{
     width: 250px;
@@ -73,6 +95,12 @@
 }
 
 .button-login{
+    width: 250px;
+    height: 30px;
+    margin-top: 10px;
+}
+
+.button-update-information{
     width: 250px;
     height: 30px;
     margin-top: 10px;
