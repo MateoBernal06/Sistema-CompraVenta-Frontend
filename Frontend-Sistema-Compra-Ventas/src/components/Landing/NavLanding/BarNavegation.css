@@ -4,8 +4,9 @@
 }
 
 .logo{
-    width: 100px;
-    height: auto;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
 }
 
 .bar-navegation{

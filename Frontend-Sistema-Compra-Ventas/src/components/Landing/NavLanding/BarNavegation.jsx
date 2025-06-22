@@ -17,8 +17,8 @@ export const BarNavegation = () => {
                     <img src={Logo} alt="Logo" className='logo'/>
                 </div>
                 <div className='place-buttons'>
-                    <Button color="blue" appearance="primary" className='button-landingPage' onClick={() => setLogin(true)}>Iniciar Sesion</Button>
-                    <Button color="green" appearance="primary" className='button-landingPage' onClick={() => setRegistro(true)}>Registro</Button>
+                    <Button color="blue" appearance="ghost" className='button-landingPage' onClick={() => setLogin(true)}>Iniciar Sesion</Button>
+                    <Button color="green" appearance="ghost" className='button-landingPage' onClick={() => setRegistro(true)}>Registro</Button>
                 </div>
             </nav>
             <ModalLogin show={login} onHide={() => setLogin(false)} />

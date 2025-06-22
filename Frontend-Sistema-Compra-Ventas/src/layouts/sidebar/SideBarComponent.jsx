@@ -71,19 +71,7 @@ export const SidebarComponent = ({ visible, setVisible }) => {
                                     className='sidebar-button' 
                                     appearance="ghost"
                                     onClick={() => {
-                                        navigate('/dashboard/actualizar-contraseña')
-                                        setVisible(false);
-                                    }}
-                                >
-                                    Actualizar contraseña
-                                </Button>
-                            </li>
-                            <li>
-                                <Button 
-                                    className='sidebar-button' 
-                                    appearance="ghost"
-                                    onClick={() => {
-                                        navigate('/actualizar-informacion')
+                                        navigate('/dashboard/actualizar-informacion')
                                         setVisible(false);
                                     }}
                                 >

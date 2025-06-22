@@ -16,7 +16,7 @@ export const CardPost = ({ titulo, descripcion, imagen, createdAt }) => {
             </div>
             <VStack spacing={2} className='body-card'>
                 <Card.Header as="h5">{titulo}</Card.Header>
-                <Card.Body className='buttons-card'>
+                <Card.Body>
                     <p className='description'>{descripcion}</p>
                 </Card.Body>
                 <Card.Footer>

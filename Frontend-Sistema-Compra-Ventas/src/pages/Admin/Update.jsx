@@ -1,11 +1,11 @@
 import { FaUserAlt } from "react-icons/fa";
 import Button from 'rsuite/Button';
-import { actualizarEstudiante, perfilEstudiante, actualizarPassword } from "../../context/api/estudiantes";
 import { toast } from 'react-toastify';
 import { useState, useEffect } from 'react';
+import { actualizarPassword, actualizarAdministrador, perfilAdministrador } from "../../context/api/admin";
 import Message from 'rsuite/Message';
 
-export const UpdateInformation = () => {
+export const Update = () => {
 
     const [form, setForm] = useState({
         nombre: '',
@@ -22,13 +22,13 @@ export const UpdateInformation = () => {
 
     useEffect(() => {
         const cargarDatos = async () => {
-            const estudiante = await perfilEstudiante();
-            if (estudiante) {
+            const administrador = await perfilAdministrador();
+            if (administrador) {
                 setForm({
-                    nombre: estudiante.nombre || '',
-                    apellido: estudiante.apellido || '',
-                    celular: estudiante.celular || '',
-                    direccion: estudiante.direccion || ''
+                    nombre: administrador.nombre || '',
+                    apellido: administrador.apellido || '',
+                    celular: administrador.celular || '',
+                    direccion: administrador.direccion || ''
                 });
             }
         };
@@ -42,10 +42,9 @@ export const UpdateInformation = () => {
         });
     };
 
-    
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await actualizarEstudiante(form);
+        const res = await actualizarAdministrador(form);
         if (res.exito) {
             toast.success(res.msg || "Datos actualizados correctamente");
         } else {
@@ -53,14 +52,12 @@ export const UpdateInformation = () => {
         }
     };
 
-
     const handlePasswordChange = (e) => {
         setPasswordForm({
             ...passwordForm,
             [e.target.name]: e.target.value
         });
     };
-
 
     const handlePasswordSubmit = async (e) => {
         e.preventDefault();
@@ -81,19 +78,20 @@ export const UpdateInformation = () => {
         }
     };
 
-
     return (
         <>
             <div>
                 <h2 className="category-title">
                     <FaUserAlt size={24}/> Actualizar Información
                 </h2>
+
                 <div className="recurda">
                     <Message  showIcon type="info" closable header="Recuerda">
                         Aquí puedes actualizar tu información personal. Verifica que todos los campos estén completos 
                         y correctos antes de guardar los cambios, para mantener tus datos siempre actualizados.
                     </Message>
                 </div>
+
             </div>
             <div className="update-information-container">
                 <form className="update-information-form" onSubmit={handleSubmit}>
@@ -170,6 +168,7 @@ export const UpdateInformation = () => {
                 <h2 className="category-title">
                     <FaUserAlt size={24}/> Actualizar Contraseña
                 </h2>
+
                 <div className="recurda">
                     <Message  showIcon type="info" closable header="Recuerda">
                         Aquí puedes actualizar tu contraseña. Completa todos los campos correctamente y 

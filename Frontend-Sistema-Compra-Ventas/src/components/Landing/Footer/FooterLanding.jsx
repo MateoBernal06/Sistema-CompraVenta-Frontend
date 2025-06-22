@@ -7,7 +7,7 @@ export const FooterLanding = () => {
             <div className='redes'>
                 <img src={Logo} alt="Logo" className="footer-logo" />
                 <p>
-                    Copyright © 2025 Compra-Ventas ESFOT, Inc.
+                    Copyright © 2025 DragonYa
                 </p>
                 <ul className='footer-list'>
                     <li>Aspectos legales</li>

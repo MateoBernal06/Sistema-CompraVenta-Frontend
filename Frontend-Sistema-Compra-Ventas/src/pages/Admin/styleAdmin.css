@@ -11,9 +11,17 @@
     padding-left: 20px;
 }
 
+.recurda{
+    width: 800px;
+    display: grid;
+    justify-content: center;
+    margin: 0 auto;
+}
+
 .loading-container{
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 40px;
 }
+

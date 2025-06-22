@@ -4,8 +4,7 @@ import imagenLogin from '../../../assets/images/imagen-login.webp';
 import Button from 'rsuite/Button';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { loginAdministrador } from '../../../context/api/login';
-import { loginEstudiante } from '../../../context/api/registro';
+import { loginEstudiante, loginAdministrador } from '../../../context/api/registro';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
@@ -84,7 +83,7 @@ export const ModalLogin = ({ show, onHide }) => {
                         <img className='imagen-login' src={imagenLogin} alt="Grupo de estudiantes" />
                     </div>
                     <div className='body-modal-form'>
-                        <p className='title-modal'>Iniciar Sesión 🐲</p>
+                        <p className='title-modal'>Iniciar Sesión</p>
                         <form onSubmit={handleSubmit} className='form-login'>
                             <div className='form-group'>
                                 <label htmlFor="email">Correo Electrónico</label>

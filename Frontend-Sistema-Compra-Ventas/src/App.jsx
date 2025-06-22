@@ -22,6 +22,7 @@ import { Dashboard } from './layouts/dashboards/Dashboard.jsx';
 import { CategorysManagement } from './pages/Admin/Categorys.jsx';
 import { UsersManagement } from './pages/Admin/Users.jsx';
 import { PostManagement } from './pages/Admin/Post.jsx';
+import { Update } from './pages/Admin/Update.jsx';
 
 // Dashboard Estudiante
 import { DashboardEstudiante } from './layouts/dashboards/DashoardEstudiante.jsx'; 
@@ -55,6 +56,7 @@ function App() {
             <Route path="gestion-usuarios" element={<UsersManagement />} />
             <Route path="gestion-publicaciones" element={<PostManagement />} />
             <Route path="gestion-categorias" element={<CategorysManagement />} />
+            <Route path="actualizar-informacion" element={<Update />} />
           </Route>
 
           <Route path="/estudiante" element={

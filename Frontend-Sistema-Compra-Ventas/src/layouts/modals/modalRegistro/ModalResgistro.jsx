@@ -68,7 +68,7 @@ export const ModalRegistro = ({ show, onHide }) => {
                         <img className='imagen-login' src={imagenRegistro} alt="Grupo de estudiantes" />
                     </div>
                     <div className='body-modal-form'>
-                        <p className='title-modal'>Crea tu cuenta 🐲</p>
+                        <p className='title-modal'>Crea tu cuenta</p>
                         <form onSubmit={handleSubmit}>
                             <div className='form-group'>
                                 <label htmlFor="nombre">Nombre</label>

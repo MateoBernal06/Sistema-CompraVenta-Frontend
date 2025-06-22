@@ -89,10 +89,11 @@
 }
 
 .update-information-container{
-    background-color: #fde0a7;
     width: 600px;
     margin: 0 auto;
     padding: 20px 40px 20px 40px;
     margin-top: 20px;
     margin-bottom: 20px;
+    border: solid 1px #000000;
+    border-radius: 5px;
 }

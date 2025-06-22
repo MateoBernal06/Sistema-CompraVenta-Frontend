@@ -39,8 +39,14 @@
 
 .form-group{
     display: grid;
-    margin: 5px;
     text-align: left;
+    margin: 5px 0px 5px 0px;
+}
+
+.form-group-password{
+    display: grid;
+    text-align: left;
+    margin: 10px;
 }
 
 .place-boton-update{
