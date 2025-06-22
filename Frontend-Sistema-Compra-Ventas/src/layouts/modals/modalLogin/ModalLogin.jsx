@@ -45,8 +45,6 @@ export const ModalLogin = ({ show, onHide }) => {
         if (resultado.exito) {
             localStorage.setItem('token', resultado.token);
             localStorage.setItem('rol', resultado.rol);
-            localStorage.setItem('nombre', resultado.nombre);
-            console.log(`Usuario logueado con rol: ${resultado.rol}`);
 
             if (resultado.rol === 'administrador') {
                 navigate('/dashboard/gestion-usuarios');

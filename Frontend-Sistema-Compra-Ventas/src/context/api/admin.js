@@ -64,9 +64,28 @@ const actualizarAdministrador = async (datos) => {
 }
 
 
+const perfil = async () => {
+    try {
+        const token = localStorage.getItem('token');
+        const respuesta = await fetch(`${import.meta.env.VITE_BACKEND_URL}/administrador/perfil`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const resultado = await respuesta.json();
+        if (!respuesta.ok) {
+            return null;
+        }
+        return { exito: true, ...resultado };
+    } catch (error) {
+        return null;
+    }
+}
+
 
 export {
     actualizarPassword,
     perfilAdministrador,
-    actualizarAdministrador
+    actualizarAdministrador,
+    perfil
 }

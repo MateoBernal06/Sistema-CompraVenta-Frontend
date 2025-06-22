@@ -1,7 +1,7 @@
 
 import Modal from 'react-bootstrap/Modal';
 import { useState, useEffect } from 'react';
-import imagenRegistro from '../../../assets/photos/imagen-dos.webp';
+import imagenRegistro from '../../../assets/images/imagen-registro.webp';
 import Button from 'rsuite/Button';
 import { registroEstudiante } from '../../../context/api/registro';
 import '../ModalLogin.css';
@@ -65,7 +65,7 @@ export const ModalRegistro = ({ show, onHide }) => {
             >
                 <Modal.Body className='body-modal'>
                     <div>
-                        <img className='imagen-login' src={imagenRegistro} alt="Grupo de estudiantes" />
+                        <img className='imagen-login' src={imagenRegistro} alt="Grupo de estudiantes"  loading="lazy"/>
                     </div>
                     <div className='body-modal-form'>
                         <p className='title-modal'>Crea tu cuenta</p>

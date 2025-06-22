@@ -8,24 +8,66 @@ import { useState } from 'react';
 import { Outlet } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { ImExit } from "react-icons/im";
-import { useEffect } from 'react';
+import { perfil } from '../../context/api/admin';
+import Badge from 'rsuite/Badge';
+import Whisper from 'rsuite/Whisper';
+import Popover from 'rsuite/Tooltip';
+import { useContext, useEffect } from "react";
+import { UserContext } from '../../context/UserContext';
 
 export const Dashboard = () => {
     const [sidebarVisible, setSidebarVisible] = useState(false);
     const navigate = useNavigate();
-    const [nombre, setNombre] = useState('');
-
+    const { user, setUser } = useContext(UserContext);
+ 
     useEffect(() => {
-        const nombreUsuario = localStorage.getItem('nombre');
-        if (nombreUsuario) setNombre(nombreUsuario);
-    }, []);
+        const fetchNombre = async () => {
+            try {
+                const administrador = await perfil();
+                if (administrador && administrador.nombre && administrador.apellido && administrador.email && administrador.celular && administrador.direccion && administrador.rol) {
+                    setUser({
+                        nombre: administrador.nombre,
+                        apellido: administrador.apellido,
+                        email: administrador.email,
+                        celular: administrador.celular,
+                        direccion: administrador.direccion,
+                        rol: administrador.rol
+                    });
+                }
+            } catch (error) {
+                setUser({
+                    nombre: '',
+                    apellido: '',
+                    email: '',
+                    celular: '',
+                    direccion: '',
+                    rol: ''
+                });
+            }
+        };
+        fetchNombre();
+    }, [setUser]);
 
     const handleLogout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('rol');
-        localStorage.removeItem('nombre');
         navigate('/');
     };
+    
+    const userPopover = (
+        <Popover title="Datos del usuario" className='dashboard-popover'>
+            <p className='dashboard-popover-title'>Bienvenido, {user.nombre}</p>
+            <div>
+                <p><b>Nombre:</b> {user.nombre}</p>
+                <p><b>Apellido:</b> {user.apellido}</p>
+                <p><b>Rol:</b> {user.rol}</p>
+                <p><b>Email:</b> {user.email}</p>
+                <p><b>Celular:</b> {user.celular}</p>
+                <p><b>Dirección:</b> {user.direccion}</p>
+            </div>
+        </Popover>
+    );
+
 
     return (
         <>
@@ -38,10 +80,11 @@ export const Dashboard = () => {
                 </div>
                 <div className='dashboard-options-exit'>
                     <div className='dashboard-icon'>
-                        <Avatar color="red" bordered circle src="https://i.pravatar.cc/150?u=2" />
-                        <p className='dashboard-welcome-message'>
-                            ¡Bienvenido(a), <strong>{nombre}</strong>!
-                        </p>
+                        <Whisper placement="bottom" trigger="hover" speaker={userPopover}>
+                            <Badge color='green'>
+                                <Avatar color="red" bordered circle src="https://i.pravatar.cc/150?u=2" />
+                            </Badge>
+                        </Whisper>
                     </div>
                     <Button 
                         onClick={handleLogout} 

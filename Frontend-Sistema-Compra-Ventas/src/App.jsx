@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { PrivateRoute } from './routes/PrivateRoute.jsx';
+import { UserProvider } from './context/UserContext.jsx';
 
 // Main Pages
 import { LandingPage } from './pages/MainPages/LandingPage.jsx';
@@ -35,8 +36,9 @@ import { UpdateInformation } from './pages/Estudiantes/UpdateInformation.jsx';
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
+      <UserProvider>
+        <BrowserRouter>
+          <Routes>
 
           <Route path="/" element={<Auth />}>
             <Route index element={<LandingPage />} />
@@ -83,6 +85,7 @@ function App() {
           pauseOnHover
         />
       </BrowserRouter>
+      </UserProvider>
     </>
   )
 }

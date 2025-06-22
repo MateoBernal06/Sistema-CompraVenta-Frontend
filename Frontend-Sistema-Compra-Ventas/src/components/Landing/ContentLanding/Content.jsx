@@ -76,9 +76,9 @@ export const ContentLandingPage = () => {
                 <div className='item-info'>
                     <p className='text-title'>Dragon Ya</p>
                     <p className='text-description'>
-                        Dragon Ya es una plataforma creada para ayudarte a encontrar lo que necesitas dentro 
+                        Es una plataforma creada para ayudarte a encontrar lo que necesitas dentro 
                         de la comunidad de la ESFOT. Ya sea que busques libros, postres, dispositivos 
-                        electrónicos o incluso artículos de segunda mano, nuestra plataforma conecta 
+                        electrónicos, apuntes o incluso artículos de segunda mano, nuestra plataforma conecta 
                         a estudiantes de forma segura y rápida, para que puedas comprar o vender sin 
                         complicaciones.
                     </p>

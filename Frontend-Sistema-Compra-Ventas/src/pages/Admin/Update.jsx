@@ -4,14 +4,16 @@ import { toast } from 'react-toastify';
 import { useState, useEffect } from 'react';
 import { actualizarPassword, actualizarAdministrador, perfilAdministrador } from "../../context/api/admin";
 import Message from 'rsuite/Message';
-
+import { useContext } from "react";
+import { UserContext } from '../../context/UserContext';
 export const Update = () => {
-
+    const { setUser } = useContext(UserContext);
     const [form, setForm] = useState({
         nombre: '',
         apellido: '',
         celular: '',
-        direccion: ''
+        direccion: '',
+        rol: ''
     });
 
     const [passwordForm, setPasswordForm] = useState({
@@ -47,6 +49,14 @@ export const Update = () => {
         const res = await actualizarAdministrador(form);
         if (res.exito) {
             toast.success(res.msg || "Datos actualizados correctamente");
+            setUser(prev => ({
+                ...prev,
+                nombre: form.nombre,
+                apellido: form.apellido,
+                celular: form.celular,
+                direccion: form.direccion,
+                rol: form.rol || 'administrador'
+            }));
         } else {
             toast.error(res.msg || "Error al actualizar datos");
         }
