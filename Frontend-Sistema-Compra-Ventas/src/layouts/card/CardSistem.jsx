@@ -27,31 +27,37 @@ export const CardSistem = ({titulo, imagen, disponible ,createdAt, onEditar, onV
                         className='button-card' 
                         color='yellow' 
                         appearance="primary"
-                        onClick={onEditar}>
-                            <FaPencilAlt size={20}/>  Editar
+                        onClick={onEditar}
+                        disabled={!disponible}
+                    >
+                        <FaPencilAlt size={20}/>  Editar
                     </Button>
                     <Button
                         className='button-card'
-                        color={disponible ? 'green' : 'violet'}
+                        color={disponible ? 'green' : 'red'}
                         appearance="primary"
                         onClick={onVendida}
-                        style={!disponible ? { backgroundColor: '#8855c6', borderColor: '#8855c6', color: '#fff' } : {}}
+                        style={!disponible ? { backgroundColor: '#d32f2f', borderColor: '#d32f2f', color: '#fff' } : {}}
                     >
-                        <FaCheckCircle size={20}/> {disponible ? 'Vendido' : 'No Vendido'}
+                        <FaCheckCircle size={20}/> {disponible ? 'Vendido' : 'Cancelar'}
                     </Button>
                     <Button 
                         className='button-card' 
                         color='red' 
                         appearance="primary"
-                        onClick={onEliminar}>
-                            <MdDelete size={20}/> Eliminar
+                        onClick={onEliminar}
+                        disabled={!disponible}
+                    >
+                        <MdDelete size={20}/> Eliminar
                     </Button>
                     <Button 
                         className='button-card' 
                         color='blue' 
                         appearance="primary"
-                        onClick={onVerDetalles}>
-                            <FaEye size={20}/> Detalles
+                        onClick={onVerDetalles}
+                        disabled={!disponible}
+                    >
+                        <FaEye size={20}/> Detalles
                     </Button>
                 </Card.Body>
                 <Card.Footer>
