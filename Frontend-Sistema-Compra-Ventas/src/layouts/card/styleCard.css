@@ -77,7 +77,15 @@
 }
 
 .card-post-admin{
-    background-color: aqua;
     height: 200px;
     width: 400px;
+}
+
+.card-title-ellipsis {
+    max-width: 220px;   
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    cursor: pointer;
 }

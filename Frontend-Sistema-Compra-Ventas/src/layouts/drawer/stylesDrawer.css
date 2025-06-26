@@ -16,11 +16,9 @@
 }
 
 .imagen-detalle{
-    width: 100%;
-    max-width: 300px;
-    margin-bottom: 16px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
-    border-radius: 50%;
 }
 
 .titulo-detalle{
@@ -76,4 +74,14 @@
 
 .vendedor-options{
     padding: 10px 0px 10px 0px;
+}
+
+
+.imagen-detalle-container{
+    height: 200px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

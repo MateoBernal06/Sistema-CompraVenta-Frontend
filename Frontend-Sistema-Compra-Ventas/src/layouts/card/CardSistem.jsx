@@ -21,7 +21,7 @@ export const CardSistem = ({titulo, imagen, disponible ,createdAt, onEditar, onV
                 />
             </div>
             <VStack spacing={2} className='body-card'>
-                <Card.Header as="h5">{titulo}</Card.Header>
+                <Card.Header className="card-title-ellipsis" title={titulo} as="h5">{titulo}</Card.Header>
                 <Card.Body className='buttons-card'>
                     <Button 
                         className='button-card' 

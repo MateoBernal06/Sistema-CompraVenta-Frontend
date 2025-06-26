@@ -14,31 +14,35 @@ export const DrawerProductos = ({open, onClose, publicacion}) => {
                         <p className='titulo-detalle'>
                             <b>{publicacion.titulo}</b>
                         </p>
-                        <img
-                            src={publicacion.imagen}
-                            alt={publicacion.titulo}
-                            className='imagen-detalle'
-                        />
+                        <div className='imagen-detalle-container'>
+                            <img
+                                src={publicacion.imagen}
+                                alt={publicacion.titulo}
+                                className='imagen-detalle'
+                            />
+                        </div>
                     </div>
                     <div className='detalles'>
-                        <p className='datos-detalles'>Detalles</p>
-                        <ul className='vendedor'>
-                            <li className='vendedor-options'>
-                                <b>Descripción: </b>{publicacion.descripcion} 
-                            </li>
-                            <li className='vendedor-options'>
-                                <b>Categoría: </b>{publicacion.categoria?.nombre || publicacion.categoria}
-                            </li>
-                            <li className='vendedor-options'>
+                        <div>
+                            <p className='datos-detalles'>Detalles</p>
+                            <ul className='vendedor'>
+                                <li className='vendedor-options'>
+                                    <b>Descripción: </b>{publicacion.descripcion} 
+                                </li>
+                                <li className='vendedor-options'>
+                                    <b>Categoría: </b>{publicacion.categoria?.nombre || publicacion.categoria}
+                                </li>
+                                <li className='vendedor-options'>
                                 <b>Precio: </b>${publicacion.precio}
-                            </li>
-                            <li className='vendedor-options'>
-                                <b>{publicacion.disponible ? 'Disponible' : 'No disponible'}</b>
-                            </li>
-                            <li className='vendedor-options'>
-                                <b>Fecha de publicación: </b>{publicacion.createdAt ? new Date(publicacion.createdAt).toLocaleString() : ''}
-                            </li>
-                        </ul>
+                                </li>
+                                <li className='vendedor-options'>
+                                    <b>{publicacion.disponible ? 'Disponible' : 'No disponible'}</b>
+                                </li>
+                                <li className='vendedor-options'>
+                                    <b>Fecha de publicación: </b>{publicacion.createdAt ? new Date(publicacion.createdAt).toLocaleString() : ''}
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </Drawer.Body>
             </Drawer>

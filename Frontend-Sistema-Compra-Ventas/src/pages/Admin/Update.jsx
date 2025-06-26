@@ -58,7 +58,7 @@ export const Update = () => {
                 rol: form.rol || 'administrador'
             }));
         } else {
-            toast.error(res.msg || "Error al actualizar datos");
+            toast.error(res.mensaje || "Error al actualizar datos");
         }
     };
 

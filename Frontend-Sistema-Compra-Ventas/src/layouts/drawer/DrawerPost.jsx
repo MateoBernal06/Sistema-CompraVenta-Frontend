@@ -13,11 +13,13 @@ export const DrawerPost = ({ open, onClose, publicacion }) => {
                 <Drawer.Body className='body-drawer'>
                     <div>
                         <h2 className='titulo-detalle'>{publicacion.titulo}</h2>
-                        <img
-                            src={publicacion.imagen}
-                            alt={publicacion.titulo}
-                            className='imagen-detalle'
-                        />
+                        <div className='imagen-detalle-container'>
+                            <img
+                                src={publicacion.imagen}
+                                alt={publicacion.titulo}
+                                className='imagen-detalle'
+                            />
+                        </div>
                     </div>
                     <div className='detalles'>
                         <div>
