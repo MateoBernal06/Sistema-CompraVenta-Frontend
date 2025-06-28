@@ -78,7 +78,12 @@ export const ModalLogin = ({ show, onHide }) => {
             >
                 <Modal.Body className='body-modal'>
                     <div>
-                        <img className='imagen-login' src={imagenLogin} alt="Grupo de estudiantes" />
+                        <img 
+                            className='imagen-login' 
+                            src={imagenLogin} 
+                            alt="Grupo de estudiantes" 
+                            loading='lazy'
+                        />
                     </div>
                     <div className='body-modal-form'>
                         <p className='title-modal'>Iniciar Sesión</p>

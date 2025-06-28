@@ -18,6 +18,7 @@ export const DrawerProductos = ({open, onClose, publicacion}) => {
                             <img
                                 src={publicacion.imagen}
                                 alt={publicacion.titulo}
+                                loading='lazy'
                                 className='imagen-detalle'
                             />
                         </div>

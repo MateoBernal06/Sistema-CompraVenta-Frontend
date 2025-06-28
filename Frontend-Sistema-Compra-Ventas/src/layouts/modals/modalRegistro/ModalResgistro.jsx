@@ -65,7 +65,11 @@ export const ModalRegistro = ({ show, onHide }) => {
             >
                 <Modal.Body className='body-modal'>
                     <div>
-                        <img className='imagen-login' src={imagenRegistro} alt="Grupo de estudiantes"  loading="lazy"/>
+                        <img 
+                            className='imagen-login' 
+                            src={imagenRegistro} 
+                            alt="Grupo de estudiantes"  loading="lazy"
+                        />
                     </div>
                     <div className='body-modal-form'>
                         <p className='title-modal'>Crea tu cuenta</p>

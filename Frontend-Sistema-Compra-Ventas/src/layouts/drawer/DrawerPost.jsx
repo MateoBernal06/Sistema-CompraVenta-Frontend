@@ -17,6 +17,7 @@ export const DrawerPost = ({ open, onClose, publicacion }) => {
                             <img
                                 src={publicacion.imagen}
                                 alt={publicacion.titulo}
+                                loading='lazy'
                                 className='imagen-detalle'
                             />
                         </div>

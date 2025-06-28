@@ -18,6 +18,7 @@ export const CardSistem = ({titulo, imagen, disponible ,createdAt, onEditar, onV
                     className='imagen-post-card'
                     src={imagen}
                     alt={titulo}
+                    loading='lazy'
                 />
             </div>
             <VStack spacing={2} className='body-card'>

@@ -12,6 +12,7 @@ export const CardPost = ({ titulo, descripcion, imagen, createdAt }) => {
                     className='imagen-post-card'
                     src={imagen}
                     alt={titulo}
+                    loading='lazy'
                 />
             </div>
             <VStack spacing={2} className='body-card'>

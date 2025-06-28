@@ -13,6 +13,7 @@ export const CardPublication = ({titulo, precio, imagen, createdAt, onVerDetalle
                     className='imagen-post'
                     src={imagen}
                     alt={titulo}
+                    loading='lazy'
                     zoomed
                 />
             </div>

@@ -79,7 +79,7 @@ export const DashboardEstudiante = () => {
                 </div>
                 <div className='dashboard-options-exit'>
                     <div className='dashboard-icon'>
-                        <Whisper placement="bottom" trigger="hover" speaker={userPopover}>
+                        <Whisper placement="bottom" trigger="click" speaker={userPopover}>
                             <Badge color='green'>
                                 <Avatar color="blue" bordered circle src="https://i.pravatar.cc/150?u=5" />
                             </Badge>
