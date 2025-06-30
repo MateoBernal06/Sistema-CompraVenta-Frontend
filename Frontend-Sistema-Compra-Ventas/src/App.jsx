@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { PrivateRoute } from './routes/PrivateRoute.jsx';
 import { UserProvider } from './context/UserContext.jsx';
 
+
 // Main Pages
 import { LandingPage } from './pages/MainPages/LandingPage.jsx';
 import Forgot from './pages/MainPages/Forgot.jsx';
