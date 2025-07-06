@@ -4,6 +4,7 @@ import { BiSolidCategory } from "react-icons/bi";
 import Button from 'rsuite/Button';
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { FaSearch } from "react-icons/fa";
+import { SlArrowLeftCircle } from "react-icons/sl";
 import { ModalAgregar } from '../../layouts/modals/modalsCategorias/ModalAgregar';
 import { useState, useEffect } from 'react';
 import { 
@@ -65,17 +66,34 @@ export const CategorysManagement = () => {
                 return;
             }
 
-            const resultado = await buscarCategoria(busqueda.trim());
+            const terminoBusqueda = busqueda.trim().toLowerCase();
+            
+            const resultado = await buscarCategoria(terminoBusqueda);
 
-            if (Array.isArray(resultado)) {
+            if (Array.isArray(resultado) && resultado.length > 0) {
                 setCategorias(resultado);
-            } else if (resultado) {
+            } else if (resultado && !Array.isArray(resultado)) {
                 setCategorias([resultado]);
             } else {
-                setCategorias([]);
+                // Si no encuentra resultados exactos, buscar coincidencias parciales
+                // en todas las categorías
+                const todasLasCategorias = await obtenerCategorias();
+                const coincidencias = todasLasCategorias.filter(cat => {
+                    const nombreCoincide = cat.nombre?.toLowerCase().includes(terminoBusqueda);
+                    return nombreCoincide;
+                });
+
+                if (coincidencias.length > 0) {
+                    setCategorias(coincidencias);
+                    toast.success(`Se encontraron ${coincidencias.length} coincidencia(s)`);
+                } else {
+                    setCategorias([]);
+                    toast.info("No se encontraron categorías que coincidan con la búsqueda");
+                }
             }
         } catch (error) {
             console.error('Error al buscar categoría:', error);
+            toast.error("Error al realizar la búsqueda");
             setCategorias([]);
             
         } finally {
@@ -111,7 +129,21 @@ export const CategorysManagement = () => {
                         Crear nueva categoría
                     </Button>
                 </div>
-                <div>
+                <div className="search-container">
+                    {busqueda && (
+                        <Button 
+                            appearance="primary"
+                            color='orange' 
+                            className='clear-button'
+                            onClick={() => {
+                                setBusqueda('');
+                                cargarCategorias();
+                            }}
+                        >
+                            <SlArrowLeftCircle size={20} className="btn-icon" /> 
+                            Volver
+                        </Button>
+                    )}
                     <input 
                         type='text' 
                         name="buscar" 
@@ -126,7 +158,9 @@ export const CategorysManagement = () => {
                         appearance="primary" 
                         className='search-button'
                         onClick={handleBuscar}
-                    ><FaSearch size={16}/></Button>
+                    >
+                        <FaSearch size={16}/>
+                    </Button>
                 </div>
             </div>
             {loading ? (

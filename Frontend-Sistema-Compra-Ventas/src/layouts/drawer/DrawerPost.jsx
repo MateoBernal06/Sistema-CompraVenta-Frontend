@@ -1,4 +1,5 @@
 import Drawer from 'rsuite/Drawer';
+import Badge from 'rsuite/Badge';
 import './stylesDrawer.css'
 
 export const DrawerPost = ({ open, onClose, publicacion }) => {
@@ -8,7 +9,7 @@ export const DrawerPost = ({ open, onClose, publicacion }) => {
         <>
             <Drawer open={open} onClose={onClose} className='drawer-container'>
                 <Drawer.Header>
-                    <Drawer.Title>Detalles de la Publicacion</Drawer.Title>
+                    <Drawer.Title>Detalles de la Publicación</Drawer.Title>
                 </Drawer.Header>
                 <Drawer.Body className='body-drawer'>
                     <div>
@@ -24,7 +25,7 @@ export const DrawerPost = ({ open, onClose, publicacion }) => {
                     </div>
                     <div className='detalles'>
                         <div>
-                            <p className='datos-detalles'>Detalles</p>
+                            <p className='datos-detalles'><b>Detalles</b></p>
                             <ul className='vendedor'>
                                 <li className='vendedor-options'>
                                     <b>Descripción: </b>{publicacion.descripcion} 
@@ -36,7 +37,11 @@ export const DrawerPost = ({ open, onClose, publicacion }) => {
                                     <b>Precio: </b>${publicacion.precio}
                                 </li>
                                 <li className='vendedor-options'>
-                                    <b>Estado: </b>{publicacion.estado ? 'Activo' : 'Inactivo'}
+                                    <Badge 
+                                        color={publicacion.estado ? 'green' : 'red'} 
+                                    >
+                                        {publicacion.estado ? 'Activo' : 'Inactivo'}
+                                    </Badge>
                                 </li>
                                 <li className='vendedor-options'>
                                     <b>Disponible: </b>{publicacion.disponible ? 'Sí' : 'No'}
@@ -47,7 +52,7 @@ export const DrawerPost = ({ open, onClose, publicacion }) => {
                             </ul>
                         </div>
                         <div>
-                            <p className='datos-vendedor'>Datos del vendedor</p>
+                            <p className='datos-vendedor'> <b>Datos del vendedor</b></p>
                             <ul className='vendedor'>
                                 <li className='vendedor-options'>
                                     <b>Nombre: </b>{publicacion.autor?.nombre}
@@ -59,10 +64,14 @@ export const DrawerPost = ({ open, onClose, publicacion }) => {
                                     <b>Correo: </b>{publicacion.autor?.email}
                                 </li>
                                 <li className='vendedor-options'>
-                                    <b>Direccion: </b>{publicacion.autor?.direccion}
+                                    <b>Dirección: </b>{publicacion.autor?.direccion}
                                 </li>
                                 <li className='vendedor-options'>
-                                    <b>Estado: </b>{publicacion.autor?.estado ? 'Activo' : 'Inactivo'}
+                                    <Badge 
+                                        color={publicacion.autor?.estado ? 'green' : 'red'} 
+                                    >
+                                        {publicacion.autor?.estado ? 'Activo' : 'Inactivo'}
+                                    </Badge>
                                 </li>
                             </ul>
                         </div>

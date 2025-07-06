@@ -1,6 +1,7 @@
 import './styleAdmin.css';
 import { FaUserAlt } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
+import { SlArrowLeftCircle } from "react-icons/sl";
 import { useEffect, useState } from 'react';
 import Button from 'rsuite/Button';
 import Loader from 'rsuite/Loader';
@@ -31,23 +32,42 @@ export const UsersManagement = () => {
         setLoading(true);
         try {
             if (busqueda.trim() === '') {
-                toast.info("Email de usuario inválido");
+                toast.info("Datos del usuario inválidos");
                 return;
             }
 
-            const resultado = await buscarEstudiante(busqueda.trim());
+            const terminoBusqueda = busqueda.trim().toLowerCase();
+            
+            const resultado = await buscarEstudiante(terminoBusqueda);
 
-            if (Array.isArray(resultado)) {
+            if (Array.isArray(resultado) && resultado.length > 0) {
                 setUsuarios(resultado);
-            } else if (resultado) {
+            } else if (resultado && !Array.isArray(resultado)) {
                 setUsuarios([resultado]);
             } else {
-                setUsuarios([]);
+                // Si no encuentra resultados exactos, buscar coincidencias parciales
+                // en todos los usuarios por nombre, apellido o email
+                const todosLosUsuarios = await obtenerEstudiantes();
+                const coincidencias = todosLosUsuarios.filter(user => {
+                    const nombreCoincide = user.nombre?.toLowerCase().includes(terminoBusqueda);
+                    const apellidoCoincide = user.apellido?.toLowerCase().includes(terminoBusqueda);
+                    const emailCoincide = user.email?.toLowerCase().includes(terminoBusqueda);
+                    
+                    return nombreCoincide || apellidoCoincide || emailCoincide;
+                });
+
+                if (coincidencias.length > 0) {
+                    setUsuarios(coincidencias);
+                    toast.success(`Se encontraron ${coincidencias.length} coincidencia(s)`);
+                } else {
+                    setUsuarios([]);
+                    toast.info("No se encontraron usuarios que coincidan con la búsqueda");
+                }
             }
         } catch (error) {
             console.error('Error al buscar estudiante:', error);
+            toast.error("Error al realizar la búsqueda");
             setUsuarios([]);
-
         } finally {
             setLoading(false);
         }
@@ -72,12 +92,26 @@ export const UsersManagement = () => {
             </div>
 
             <div className='user-actions-buscador'>
-                <div>
+                <div className="search-container">
+                    {busqueda && (
+                        <Button 
+                            appearance="primary"
+                            color='orange' 
+                            className='clear-button'
+                            onClick={() => {
+                                setBusqueda('');
+                                cargarUsuarios();
+                            }}
+                        >
+                            <SlArrowLeftCircle size={20} className="btn-icon" /> 
+                            Volver
+                        </Button>
+                    )}
                     <input 
                         type='text' 
                         name="buscar" 
                         id="buscar" 
-                        placeholder="Ingresa el correo del usuario" 
+                        placeholder="Buscar por nombre, apellido o email..." 
                         className='search-users-input'
                         value={busqueda}
                         onChange={e => setBusqueda(e.target.value)}
@@ -92,7 +126,7 @@ export const UsersManagement = () => {
             </div>
             {loading ? (
                 <div className="loading-container">
-                    <Loader size="md" content="Cargando categorías..." />
+                    <Loader size="md" content="Cargando usuarios..." />
                 </div>
             ) : (
                 <TableUsers

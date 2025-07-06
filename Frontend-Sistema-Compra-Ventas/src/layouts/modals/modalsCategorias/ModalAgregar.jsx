@@ -6,6 +6,13 @@ import { agregarCategoria } from '../../../context/api/categorias';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 
+const normalizarTexto = (texto) => {
+    return texto
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, ''); 
+};
+
 
 export const ModalAgregar = ({ show, onHide, onSave }) => {
 
@@ -32,7 +39,13 @@ export const ModalAgregar = ({ show, onHide, onSave }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const resultado = await agregarCategoria(form);
+        
+        const datosNormalizados = {
+            nombre: normalizarTexto(form.nombre.trim()),
+            descripcion: normalizarTexto(form.descripcion.trim())
+        };
+        
+        const resultado = await agregarCategoria(datosNormalizados);
         if (resultado.exito) {
             toast.success(resultado.mensaje || 'Categoría creada correctamente');
             if (onSave) onSave(resultado.categoria || resultado);
@@ -65,7 +78,7 @@ export const ModalAgregar = ({ show, onHide, onSave }) => {
                                     />
                                 </div>
                                 <div className='form-group-modal-table'>
-                                    <label htmlFor="descripcion">Descripcion</label>
+                                    <label htmlFor="descripcion">Descripción</label>
                                     <textarea
                                         id="descripcion"
                                         name="descripcion"

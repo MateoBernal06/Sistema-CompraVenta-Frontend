@@ -4,6 +4,12 @@ import { editarCategorias } from '../../../context/api/categorias';
 import { toast } from 'react-toastify';
 import './styleCategorias.css';
 
+const normalizarTexto = (texto) => {
+    return texto
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, ''); 
+};
 export const ModalEditar = ({ show, onHide, categoria, onSave }) => {
     
     const [form, setForm] = useState({ id: '', nombre: '', descripcion: '' });
@@ -33,20 +39,28 @@ export const ModalEditar = ({ show, onHide, categoria, onSave }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (form.nombre === original.nombre && form.descripcion === original.descripcion) {
+        // Normalizar los datos antes de compararlos y enviarlos
+        const datosNormalizados = {
+            id: form.id,
+            nombre: normalizarTexto(form.nombre.trim()),
+            descripcion: normalizarTexto(form.descripcion.trim())
+        };
+
+        if (datosNormalizados.nombre === normalizarTexto(original.nombre) && 
+            datosNormalizados.descripcion === normalizarTexto(original.descripcion)) {
             toast.info('No se realizaron cambios en la categoría.');
             return;
         }
 
-        const resultado = await editarCategorias(form);
+        const resultado = await editarCategorias(datosNormalizados);
 
         if (resultado.exito) {
             toast.success(resultado.mensaje || 'Categoría editada correctamente');
 
             onSave({
-                _id: form.id,
-                nombre: form.nombre,
-                descripcion: form.descripcion,
+                _id: datosNormalizados.id,
+                nombre: datosNormalizados.nombre,
+                descripcion: datosNormalizados.descripcion,
                 createdAt: categoria.createdAt,
                 estado: categoria.estado
             });

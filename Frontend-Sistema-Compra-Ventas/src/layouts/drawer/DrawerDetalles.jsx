@@ -14,7 +14,7 @@ export const DrawerDetalles = ({open, onClose, publicacion}) =>{
         <>
             <Drawer open={open} onClose={onClose} className='drawer-container'>
                 <Drawer.Header>
-                    <Drawer.Title>Detalles de la Publicacion</Drawer.Title>
+                    <Drawer.Title>Detalles de la Publicación</Drawer.Title>
                 </Drawer.Header>
                 <Drawer.Body className='body-drawer'>
                     <div>

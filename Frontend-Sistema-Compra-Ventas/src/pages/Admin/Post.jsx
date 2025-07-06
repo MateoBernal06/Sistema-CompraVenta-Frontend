@@ -12,6 +12,7 @@ import {
 } 
 from '../../context/api/publicaciones';
 import { toast } from 'react-toastify';
+import { SlArrowLeftCircle } from "react-icons/sl";
 
 export const PostManagement = () => {
 
@@ -39,17 +40,32 @@ export const PostManagement = () => {
                 return;
             }
 
-            const resultado = await buscarPublicacion(busqueda.trim());
+            const terminoBusqueda = busqueda.trim().toLowerCase();
+            
+            const resultado = await buscarPublicacion(terminoBusqueda);
 
-            if (Array.isArray(resultado)) {
+            if (Array.isArray(resultado) && resultado.length > 0) {
                 setPublicaciones(resultado);
-            } else if (resultado) {
+            } else if (resultado && !Array.isArray(resultado)) {
                 setPublicaciones([resultado]);
             } else {
-                setPublicaciones([]);
+                const todasLasPublicaciones = await obtenerPublicaciones();
+                const coincidencias = todasLasPublicaciones.filter(pub => {
+                    const tituloCoincide = pub.titulo?.toLowerCase().includes(terminoBusqueda);
+                    return tituloCoincide;
+                });
+
+                if (coincidencias.length > 0) {
+                    setPublicaciones(coincidencias);
+                    toast.success(`Se encontraron ${coincidencias.length} coincidencia(s)`);
+                } else {
+                    setPublicaciones([]);
+                    toast.info("No se encontraron publicaciones que coincidan con la búsqueda");
+                }
             }
         } catch (error) {
             console.error('Error al buscar publicación:', error);
+            toast.error("Error al realizar la búsqueda");
             setPublicaciones([]);
         } finally {
             setLoading(false);
@@ -88,6 +104,20 @@ export const PostManagement = () => {
             </div>
 
             <div className="search-container">
+                {busqueda && (
+                    <Button 
+                        appearance="primary"
+                        color='orange' 
+                        className='clear-button'
+                        onClick={() => {
+                            setBusqueda('');
+                            cargarPublicaciones();
+                        }}
+                    >
+                        <SlArrowLeftCircle size={20} className="btn-icon" /> 
+                        Volver
+                    </Button>
+                )}
                 <input 
                     type='text' 
                     name="buscar" 
@@ -102,7 +132,9 @@ export const PostManagement = () => {
                     appearance="primary" 
                     className='search-button'
                     onClick={handleBuscar}
-                ><FaSearch size={16}/></Button>
+                >
+                    <FaSearch size={16}/>
+                </Button>
             </div>
             {loading ? (
                 <div className="loading-container">

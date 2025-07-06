@@ -28,7 +28,7 @@ export const SidebarComponent = ({ visible, setVisible }) => {
                                 setVisible(false);
                             }}
                         >
-                            Gestion de Usuarios
+                            Gestión de Usuarios
                         </Button>
                     </div>
 
@@ -43,7 +43,7 @@ export const SidebarComponent = ({ visible, setVisible }) => {
                             setVisible(false);
                         }}
                         >
-                            Gestion de Publicaciones
+                            Gestión de Publicaciones
                         </Button>
                     </div>
 
@@ -58,7 +58,7 @@ export const SidebarComponent = ({ visible, setVisible }) => {
                                 setVisible(false);
                             }}
                         >
-                            Gestion de Categorías
+                            Gestión de Categorías
                         </Button>
                     </div>
 
@@ -75,7 +75,19 @@ export const SidebarComponent = ({ visible, setVisible }) => {
                                         setVisible(false);
                                     }}
                                 >
-                                    Actualizar información personal
+                                    Actualizar datos
+                                </Button>
+                            </li>
+                            <li>
+                                <Button 
+                                    className='sidebar-button' 
+                                    appearance="ghost"
+                                    onClick={() => {
+                                        navigate('/dashboard/cambiar-contrasena')
+                                        setVisible(false);
+                                    }}
+                                >
+                                    Actualizar contraseña
                                 </Button>
                             </li>
                         </ul>

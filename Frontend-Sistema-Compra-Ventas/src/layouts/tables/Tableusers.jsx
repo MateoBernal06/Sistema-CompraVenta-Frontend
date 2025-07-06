@@ -18,6 +18,7 @@ export const TableUsers = ({ estudiantes }) => {
     const [estudiantesState, setEstudiantesState] = useState(estudiantes);
     const [estudianteSeleccionado, setEstudianteSeleccionado] = useState(null);
     const [publicacionesUsuario, setPublicacionesUsuario] = useState([]);
+    const [isLoadingPublicaciones, setIsLoadingPublicaciones] = useState(false);
 
     const manejarInactivar = async (id) => {
         try {
@@ -35,8 +36,17 @@ export const TableUsers = ({ estudiantes }) => {
     const handleOpenDrawer = async (estu) => {
         setEstudianteSeleccionado(estu);
         setDrawerOpen(true);
-        const publicaciones = await publicacionesDelUsuario(estu._id);
-        setPublicacionesUsuario(publicaciones);
+        setIsLoadingPublicaciones(true);
+        
+        try {
+            const publicaciones = await publicacionesDelUsuario(estu._id);
+            setPublicacionesUsuario(publicaciones);
+        } catch (error) {
+            toast.error("Error al cargar las publicaciones");
+            setPublicacionesUsuario([]);
+        } finally {
+            setIsLoadingPublicaciones(false);
+        }
     };
 
 
@@ -117,6 +127,7 @@ export const TableUsers = ({ estudiantes }) => {
                 onClose={handleCloseDrawer} 
                 estudiante={estudianteSeleccionado}
                 publicaciones={publicacionesUsuario}
+                isLoading={isLoadingPublicaciones}
             />
         </>
     );
