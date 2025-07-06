@@ -57,10 +57,8 @@ export const PostManagement = () => {
 
                 if (coincidencias.length > 0) {
                     setPublicaciones(coincidencias);
-                    toast.success(`Se encontraron ${coincidencias.length} coincidencia(s)`);
                 } else {
                     setPublicaciones([]);
-                    toast.info("No se encontraron publicaciones que coincidan con la búsqueda");
                 }
             }
         } catch (error) {

@@ -73,7 +73,6 @@ export const MyPost = () => {
 
                 if (coincidencias.length > 0) {
                     setPublicaciones(coincidencias);
-                    toast.success(`Se encontraron ${coincidencias.length} coincidencia(s)`);
                 } else {
                     setPublicaciones([]);
                 }

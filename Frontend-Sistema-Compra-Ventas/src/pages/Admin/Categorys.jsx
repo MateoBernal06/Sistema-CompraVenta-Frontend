@@ -75,8 +75,6 @@ export const CategorysManagement = () => {
             } else if (resultado && !Array.isArray(resultado)) {
                 setCategorias([resultado]);
             } else {
-                // Si no encuentra resultados exactos, buscar coincidencias parciales
-                // en todas las categorías
                 const todasLasCategorias = await obtenerCategorias();
                 const coincidencias = todasLasCategorias.filter(cat => {
                     const nombreCoincide = cat.nombre?.toLowerCase().includes(terminoBusqueda);
@@ -85,17 +83,15 @@ export const CategorysManagement = () => {
 
                 if (coincidencias.length > 0) {
                     setCategorias(coincidencias);
-                    toast.success(`Se encontraron ${coincidencias.length} coincidencia(s)`);
                 } else {
                     setCategorias([]);
-                    toast.info("No se encontraron categorías que coincidan con la búsqueda");
                 }
             }
         } catch (error) {
             console.error('Error al buscar categoría:', error);
             toast.error("Error al realizar la búsqueda");
             setCategorias([]);
-            
+
         } finally {
             setLoading(false);
         }

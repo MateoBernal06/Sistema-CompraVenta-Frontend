@@ -56,10 +56,8 @@ export const UsersManagement = () => {
 
                 if (coincidencias.length > 0) {
                     setUsuarios(coincidencias);
-                    toast.success(`Se encontraron ${coincidencias.length} coincidencia(s)`);
                 } else {
                     setUsuarios([]);
-                    toast.info("No se encontraron usuarios que coincidan con la búsqueda");
                 }
             }
         } catch (error) {
