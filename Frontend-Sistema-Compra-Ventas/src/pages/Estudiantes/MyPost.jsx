@@ -76,7 +76,6 @@ export const MyPost = () => {
                     toast.success(`Se encontraron ${coincidencias.length} coincidencia(s)`);
                 } else {
                     setPublicaciones([]);
-                    toast.info("No se encontraron publicaciones que coincidan con la búsqueda");
                 }
             }
         } catch (error) {

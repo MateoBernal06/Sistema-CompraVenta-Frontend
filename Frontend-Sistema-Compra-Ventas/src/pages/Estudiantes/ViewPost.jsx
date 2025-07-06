@@ -1,12 +1,13 @@
 import { CardPublication } from "../../layouts/card/CardPublication";
 import { obtenerPublicaciones } from "../../context/api/publicaciones";
+import { obtenerCategorias } from "../../context/api/categorias";
 import { useState, useEffect } from 'react';
 import Loader from 'rsuite/Loader';
 import { FaSearch } from "react-icons/fa";
 import { SlArrowLeftCircle } from "react-icons/sl";
+import { BiCategory } from "react-icons/bi";
 import Button from 'rsuite/Button';
 import { buscarPublicacion } from "../../context/api/publicaciones";
-import Message from "rsuite/Message";
 import { DrawerDetalles } from "../../layouts/drawer/DrawerDetalles";;
 import './stylesStudents.css'
 import { toast } from 'react-toastify';
@@ -16,6 +17,9 @@ export const ViewPost = () => {
     const [busqueda, setBusqueda] = useState('');
     const [loading, setLoading] = useState(false);
     const [publicaciones, setPublicaciones] = useState([]);
+    const [publicacionesOriginales, setPublicacionesOriginales] = useState([]);
+    const [categorias, setCategorias] = useState([]);
+    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
     const [openDrawer, setOpenDrawer] = useState(false);
     const [publicacionSeleccionada, setPublicacionSeleccionada] = useState(null);
 
@@ -24,10 +28,40 @@ export const ViewPost = () => {
         try {
             const data = await obtenerPublicaciones();
             setPublicaciones(data);
+            setPublicacionesOriginales(data);
         } catch (error) {
             console.error('Error al cargar publicaciones:', error);
         } finally {
             setLoading(false);
+        }
+    };
+
+    const cargarCategorias = async () => {
+        try {
+            const data = await obtenerCategorias();
+
+            const categoriasOrdenadas = data.sort((a, b) => 
+                a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' })
+            );
+            setCategorias(categoriasOrdenadas);
+        } catch (error) {
+            console.error('Error al cargar categorías:', error);
+        }
+    };
+
+    const handleFiltrarPorCategoria = (categoriaId) => {
+        setCategoriaSeleccionada(categoriaId);
+        setBusqueda(''); 
+        
+        if (categoriaId === '') {
+            setPublicaciones(publicacionesOriginales);
+        } else {
+            // Filtrar por categoría seleccionada
+            const publicacionesFiltradas = publicacionesOriginales.filter(pub => {
+                const pubCategoriaId = pub.categoria?._id || pub.categoria;
+                return pubCategoriaId === categoriaId;
+            });
+            setPublicaciones(publicacionesFiltradas);
         }
     };
 
@@ -43,6 +77,7 @@ export const ViewPost = () => {
                 return;
             }
 
+            setCategoriaSeleccionada('');
             const terminoBusqueda = busqueda.trim().toLowerCase();
             
             const resultado = await buscarPublicacion(terminoBusqueda);
@@ -52,8 +87,7 @@ export const ViewPost = () => {
             } else if (resultado && !Array.isArray(resultado)) {
                 setPublicaciones([resultado]);
             } else {
-                const todasLasPublicaciones = await obtenerPublicaciones();
-                const coincidencias = todasLasPublicaciones.filter(pub => {
+                const coincidencias = publicacionesOriginales.filter(pub => {
                     const tituloCoincide = pub.titulo?.toLowerCase().includes(terminoBusqueda);
                     return tituloCoincide;
                 });
@@ -63,7 +97,6 @@ export const ViewPost = () => {
                     toast.success(`Se encontraron ${coincidencias.length} coincidencia(s)`);
                 } else {
                     setPublicaciones([]);
-                    toast.info("No se encontraron publicaciones que coincidan con la búsqueda");
                 }
             }
         } catch (error) {
@@ -77,20 +110,11 @@ export const ViewPost = () => {
 
     useEffect(() => {
         cargarPublicaciones();
+        cargarCategorias();
     }, []);
 
     return (
         <>
-            <div className="message-container">
-                <Message type="success" centered showIcon header="Comparte lo que sabes, Vende lo que ya no usas" className="message-info" closable>
-                    <p>
-                        <b>¿Tienes artículos que ya no usas?</b> ¡Dales una segunda vida vendiéndolos a alguien que los necesite! 
-                        <b> ¿Dominas algún tema o tienes habilidades que pueden ayudar a otros?</b> Ofrécelos como un servicio, sin miedo.
-                        Aquí todos tenemos algo que aportar: productos, conocimientos o tiempo. ¡Conecta, comparte y colabora!
-                    </p>
-                </Message>
-            </div>
-
             <div className="search-container">
                 {busqueda && (
                     <Button 
@@ -99,7 +123,8 @@ export const ViewPost = () => {
                         className='clear-button'
                         onClick={() => {
                             setBusqueda('');
-                            cargarPublicaciones();
+                            setCategoriaSeleccionada('');
+                            setPublicaciones(publicacionesOriginales);
                         }}
                     >
                         <SlArrowLeftCircle size={20} className="btn-icon" /> 
@@ -120,7 +145,42 @@ export const ViewPost = () => {
                     appearance="primary" 
                     className='search-button'
                     onClick={handleBuscar}
-                ><FaSearch size={16}/></Button>
+                >
+                    <FaSearch size={16}/>
+                </Button>
+            </div>
+
+            <div className="filter-container">
+                <div className="category-filter">
+                    <BiCategory size={20} className="icon" />
+                    <label htmlFor="categoria-filter">
+                        <b>Filtrar por categoría </b>
+                    </label>
+                    <select
+                        id="categoria-filter"
+                        className="category-select"
+                        value={categoriaSeleccionada}
+                        onChange={(e) => handleFiltrarPorCategoria(e.target.value)}
+                    >
+                        <option value="">Todas las categorías</option>
+                        {categorias.map(cat => (
+                            <option key={cat._id} value={cat._id}>
+                                {cat.nombre}
+                            </option>
+                        ))}
+                    </select>
+                    {categoriaSeleccionada && (
+                        <Button 
+                            appearance="primary"
+                            color="red" 
+                            size="sm"
+                            className='clear-button'
+                            onClick={() => handleFiltrarPorCategoria('')}
+                        >
+                            Volver
+                        </Button>
+                    )}
+                </div>
             </div>
             
             <div className="publicaciones-container">
