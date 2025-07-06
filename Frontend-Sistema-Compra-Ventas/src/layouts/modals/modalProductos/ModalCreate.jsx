@@ -6,6 +6,13 @@ import { toast } from 'react-toastify';
 import { obtenerCategorias } from '../../../context/api/categorias';
 import Message from 'rsuite/Message'
 
+const normalizarTexto = (texto) => {
+    return texto
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, ''); 
+};
+
 export const ModalCreate = ({ show, onHide, onSave })=>{
     
     const [categorias, setCategorias] = useState([]);
@@ -20,7 +27,12 @@ export const ModalCreate = ({ show, onHide, onSave })=>{
 
     useEffect(()=>{
         if (show) {
-            obtenerCategorias().then(data => setCategorias(data));
+            obtenerCategorias().then(data => {
+                const categoriasOrdenadas = data.sort((a, b) => 
+                    a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' })
+                );
+                setCategorias(categoriasOrdenadas);
+            });
         }
         if (!show) {
             setFormData({
@@ -50,8 +62,12 @@ export const ModalCreate = ({ show, onHide, onSave })=>{
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append('titulo', form.titulo);
-        formData.append('descripcion', form.descripcion);
+        
+        const tituloNormalizado = normalizarTexto(form.titulo.trim());
+        const descripcionNormalizada = normalizarTexto(form.descripcion.trim());
+        
+        formData.append('titulo', tituloNormalizado);
+        formData.append('descripcion', descripcionNormalizada);
         formData.append('categoria', form.categoria);
         formData.append('imagen', form.imagen); 
         formData.append('precio', form.precio);
@@ -112,7 +128,7 @@ export const ModalCreate = ({ show, onHide, onSave })=>{
                         <p className='title-modal'>Crear Publicacion</p>
                         <form onSubmit={handleSubmit}>
                             <div className='form-group-create'>
-                                <label htmlFor="titulo">Titulo</label>
+                                <label htmlFor="titulo">Título</label>
                                 <input
                                     type="text"
                                     id="titulo" 
@@ -124,7 +140,7 @@ export const ModalCreate = ({ show, onHide, onSave })=>{
                                 />
                             </div>
                             <div className='form-group-create'>
-                                <label htmlFor="descripcion">Descripcion</label>
+                                <label htmlFor="descripcion">Descripción</label>
                                 <textarea
                                     id="descripcion"
                                     name="descripcion"
@@ -135,7 +151,7 @@ export const ModalCreate = ({ show, onHide, onSave })=>{
                                 />
                             </div>
                             <div className='form-group-create'>
-                                <label htmlFor="categoria">Categoria</label>
+                                <label htmlFor="categoria">Categoría</label>
                                 <select
                                     type="text"
                                     id="categoria"

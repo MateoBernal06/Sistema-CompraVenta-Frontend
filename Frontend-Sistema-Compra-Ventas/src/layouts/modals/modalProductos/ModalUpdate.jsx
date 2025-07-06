@@ -5,6 +5,13 @@ import { toast } from 'react-toastify';
 import { editarPublicacion } from '../../../context/api/publicaciones';
 import { obtenerCategorias } from '../../../context/api/categorias';
 
+const normalizarTexto = (texto) => {
+    return texto
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, ''); 
+};
+
 export const ModalUpdate = ({ show, onHide, publicacion, onSave })=>{
     
     const [categorias, setCategorias] = useState([]);
@@ -29,7 +36,12 @@ export const ModalUpdate = ({ show, onHide, publicacion, onSave })=>{
 
     useEffect(() => {
         if (show) {
-            obtenerCategorias().then(data => setCategorias(data));
+            obtenerCategorias().then(data => {
+                const categoriasOrdenadas = data.sort((a, b) => 
+                    a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' })
+                );
+                setCategorias(categoriasOrdenadas);
+            });
         }
 
         if (show && publicacion) {
@@ -57,22 +69,30 @@ export const ModalUpdate = ({ show, onHide, publicacion, onSave })=>{
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Normalizar los datos antes de compararlos y enviarlos
+        const datosNormalizados = {
+            id: form.id,
+            titulo: normalizarTexto(form.titulo.trim()),
+            descripcion: normalizarTexto(form.descripcion.trim()),
+            categoria: form.categoria
+        };
+
         if (
-            form.titulo === original.titulo &&
-            form.descripcion === original.descripcion &&
-            form.categoria === original.categoria
+            datosNormalizados.titulo === normalizarTexto(original.titulo) &&
+            datosNormalizados.descripcion === normalizarTexto(original.descripcion) &&
+            datosNormalizados.categoria === original.categoria
         ) {
             toast.info('No se realizaron cambios en la publicación.');
             return;
         }
 
-        const resultado = await editarPublicacion(form);
+        const resultado = await editarPublicacion(datosNormalizados);
 
         if (resultado.exito) {
             toast.success(resultado.mensaje ||'Publicacion editada correctamente');
             onSave({
                 ...publicacion,
-                ...form
+                ...datosNormalizados
             });
             onHide();
 
@@ -94,7 +114,7 @@ export const ModalUpdate = ({ show, onHide, publicacion, onSave })=>{
                             <p className='title-modal'>Actualizar Publicacion</p>
                             <form onSubmit={handleSubmit}>
                                 <div className='form-group-modal'>
-                                    <label htmlFor="titulo">Titulo</label>
+                                    <label htmlFor="titulo">Título</label>
                                     <input
                                         type="text"
                                         id="titulo" 
@@ -106,7 +126,7 @@ export const ModalUpdate = ({ show, onHide, publicacion, onSave })=>{
                                     />
                                 </div>
                                 <div className='form-group-modal'>
-                                    <label htmlFor="descripcion">Descripcion</label>
+                                    <label htmlFor="descripcion">Descripción</label>
                                     <textarea
                                         id="descripcion"
                                         name="descripcion"
@@ -117,7 +137,7 @@ export const ModalUpdate = ({ show, onHide, publicacion, onSave })=>{
                                     />
                                 </div>
                                 <div className='form-group-modal'>
-                                    <label htmlFor="categoria">Categoria</label>
+                                    <label htmlFor="categoria">Categoría</label>
                                     <select
                                         type="text"
                                         id="categoria"

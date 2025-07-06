@@ -25,7 +25,9 @@ export const DrawerProductos = ({open, onClose, publicacion}) => {
                     </div>
                     <div className='detalles'>
                         <div>
-                            <p className='datos-detalles'>Detalles</p>
+                            <p className='datos-detalles'>
+                                <b>Detalles</b>
+                            </p>
                             <ul className='vendedor'>
                                 <li className='vendedor-options'>
                                     <b>Descripción: </b>{publicacion.descripcion} 

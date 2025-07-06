@@ -45,8 +45,6 @@ export const UsersManagement = () => {
             } else if (resultado && !Array.isArray(resultado)) {
                 setUsuarios([resultado]);
             } else {
-                // Si no encuentra resultados exactos, buscar coincidencias parciales
-                // en todos los usuarios por nombre, apellido o email
                 const todosLosUsuarios = await obtenerEstudiantes();
                 const coincidencias = todosLosUsuarios.filter(user => {
                     const nombreCoincide = user.nombre?.toLowerCase().includes(terminoBusqueda);

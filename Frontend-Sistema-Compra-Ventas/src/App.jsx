@@ -32,6 +32,7 @@ import { DashboardEstudiante } from './layouts/dashboards/DashoardEstudiante.jsx
 import { ViewPost } from './pages/Estudiantes/ViewPost.jsx';
 import { MyPost } from './pages/Estudiantes/MyPost.jsx';
 import { UpdateInformation } from './pages/Estudiantes/UpdateInformation.jsx';
+import { UpdatePassword } from './pages/Estudiantes/UpdatePassword.jsx';
 
 
 
@@ -56,7 +57,6 @@ function App() {
               <Dashboard />
             </PrivateRoute>
           }>
-            <Route path="perfil" element={<h1>jj</h1>} />
             <Route path="gestion-usuarios" element={<UsersManagement />} />
             <Route path="gestion-publicaciones" element={<PostManagement />} />
             <Route path="gestion-categorias" element={<CategorysManagement />} />
@@ -69,10 +69,10 @@ function App() {
               <DashboardEstudiante />
             </PrivateRoute>
           }>
-            <Route path="perfil" element={<h1>Perfil Estudiante</h1>} />
             <Route path="publicaciones" element={<ViewPost />} />
             <Route path="gestion-publicaciones" element={<MyPost />} />
             <Route path="actualizar-informacion" element={<UpdateInformation />} />
+            <Route path="cambiar-contrasena" element={<UpdatePassword />} />
           </Route>
 
         </Routes>

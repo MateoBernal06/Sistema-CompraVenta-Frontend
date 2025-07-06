@@ -79,6 +79,9 @@ export const DashboardEstudiante = () => {
                 </div>
                 <div className='dashboard-options-exit'>
                     <div className='dashboard-icon'>
+                        <p className='dashboard-welcome'>
+                            Bienvenid@ de nuevo <b>{user.nombre}</b>
+                        </p>
                         <Whisper placement="bottom" trigger="click" speaker={userPopover}>
                             <Badge color='green'>
                                 <Avatar color="blue" bordered circle src="https://i.pravatar.cc/150?u=5" />

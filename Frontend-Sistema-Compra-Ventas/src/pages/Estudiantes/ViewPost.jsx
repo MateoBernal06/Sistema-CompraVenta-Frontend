@@ -3,6 +3,7 @@ import { obtenerPublicaciones } from "../../context/api/publicaciones";
 import { useState, useEffect } from 'react';
 import Loader from 'rsuite/Loader';
 import { FaSearch } from "react-icons/fa";
+import { SlArrowLeftCircle } from "react-icons/sl";
 import Button from 'rsuite/Button';
 import { buscarPublicacion } from "../../context/api/publicaciones";
 import Message from "rsuite/Message";
@@ -42,17 +43,32 @@ export const ViewPost = () => {
                 return;
             }
 
-            const resultado = await buscarPublicacion(busqueda.trim());
+            const terminoBusqueda = busqueda.trim().toLowerCase();
+            
+            const resultado = await buscarPublicacion(terminoBusqueda);
 
-            if (Array.isArray(resultado)) {
+            if (Array.isArray(resultado) && resultado.length > 0) {
                 setPublicaciones(resultado);
-            } else if (resultado) {
+            } else if (resultado && !Array.isArray(resultado)) {
                 setPublicaciones([resultado]);
             } else {
-                setPublicaciones([]);
+                const todasLasPublicaciones = await obtenerPublicaciones();
+                const coincidencias = todasLasPublicaciones.filter(pub => {
+                    const tituloCoincide = pub.titulo?.toLowerCase().includes(terminoBusqueda);
+                    return tituloCoincide;
+                });
+
+                if (coincidencias.length > 0) {
+                    setPublicaciones(coincidencias);
+                    toast.success(`Se encontraron ${coincidencias.length} coincidencia(s)`);
+                } else {
+                    setPublicaciones([]);
+                    toast.info("No se encontraron publicaciones que coincidan con la búsqueda");
+                }
             }
         } catch (error) {
             console.error('Error al buscar publicación:', error);
+            toast.error("Error al realizar la búsqueda");
             setPublicaciones([]);
         } finally {
             setLoading(false);
@@ -76,6 +92,20 @@ export const ViewPost = () => {
             </div>
 
             <div className="search-container">
+                {busqueda && (
+                    <Button 
+                        appearance="primary"
+                        color='orange' 
+                        className='clear-button'
+                        onClick={() => {
+                            setBusqueda('');
+                            cargarPublicaciones();
+                        }}
+                    >
+                        <SlArrowLeftCircle size={20} className="btn-icon" /> 
+                        Volver
+                    </Button>
+                )}
                 <input 
                     type='text' 
                     name="buscar" 

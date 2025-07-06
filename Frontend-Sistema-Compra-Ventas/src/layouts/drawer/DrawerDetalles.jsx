@@ -41,7 +41,9 @@ export const DrawerDetalles = ({open, onClose, publicacion}) =>{
                             </Button>
                         </div>
                         <div>
-                            <p className='datos-detalles'>Detalles</p>
+                            <p className='datos-detalles'>
+                                <b>Detalles</b>
+                            </p>
                             <ul className='vendedor'>
                                 <li className='vendedor-options'>
                                     <b>Descripción: </b>{publicacion.descripcion} 
@@ -58,7 +60,9 @@ export const DrawerDetalles = ({open, onClose, publicacion}) =>{
                             </ul>
                         </div>
                         <div>
-                            <p className='datos-vendedor'>Datos del vendedor</p>
+                            <p className='datos-vendedor'>
+                                <b>Datos del vendedor</b>
+                            </p>
                             <ul className='vendedor'>
                                 <li className='vendedor-options'>
                                     <b>Nombre: </b>{publicacion.autor?.nombre}
@@ -70,7 +74,7 @@ export const DrawerDetalles = ({open, onClose, publicacion}) =>{
                                     <b>Correo: </b>{publicacion.autor?.email}
                                 </li>
                                 <li className='vendedor-options'>
-                                    <b>Direccion: </b>{publicacion.autor?.direccion}
+                                    <b>Dirección: </b>{publicacion.autor?.direccion}
                                 </li>
                             </ul>
                         </div>

@@ -31,7 +31,7 @@ export const SideBar = ({ visible, setVisible }) => {
 
                     <div className="sidebar-config-section">
                         <FaShoppingCart size={24} color="#fff"/>
-                        <span className="sidebar-config-title">Articulos y servicios</span>
+                        <span className="sidebar-config-title">Artículos y servicios</span>
                         <Button 
                             className='sidebar-button' 
                             appearance="ghost"
@@ -46,7 +46,7 @@ export const SideBar = ({ visible, setVisible }) => {
 
                     <div className="sidebar-config-section">
                         <FaUserGear size={24} color="#fff"/>
-                        <span className="sidebar-config-title">Configuración del perfil</span>
+                        <span className="sidebar-config-title">Configuración</span>
                         <ul className="sidebar-config-list">
                             <li>
                                 <Button 
@@ -57,7 +57,19 @@ export const SideBar = ({ visible, setVisible }) => {
                                         setVisible(false);
                                     }}
                                 >
-                                    Actualizar información personal
+                                    Actualizar datos
+                                </Button>
+                            </li>
+                            <li>
+                                <Button 
+                                    className='sidebar-button' 
+                                    appearance="ghost"
+                                    onClick={() => {
+                                        navigate('/estudiante/cambiar-contrasena')
+                                        setVisible(false);
+                                    }}
+                                >
+                                    Actualizar contraseña
                                 </Button>
                             </li>
                         </ul>
