@@ -89,3 +89,99 @@
     justify-content: center;
     text-align: center;
 }
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    
+    .description-landing{
+        grid-template-columns: repeat(1, 1fr);
+        display: grid;
+        align-items: center;
+        justify-items: center;
+    }
+
+    .stat-item{
+        width: 450px;
+    }
+
+    .description-porcentjes{
+        grid-template-columns: repeat(3, 1fr);
+        display: grid;
+        align-items: center;
+        justify-items: center;
+    }
+
+    .stat-item-porcentajes{
+        width: 200px;
+    }
+
+    .infoLanding{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    
+    .description-landing{
+        grid-template-columns: repeat(1, 1fr);
+        
+    }
+
+    .description-porcentjes{
+        grid-template-columns: repeat(2, 1fr);
+        padding: 10px;
+        display: grid;
+        align-items: center;
+        justify-items: center;
+    }
+
+    .stat-item-porcentajes{
+        width: 150px;
+    }
+
+    .infoLanding{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .item-info{
+        width: auto;
+        padding: 5px;
+    }
+
+    .item-image{
+        width: 100%;
+        height: 200px;
+    }
+
+    .title-landing{
+        font-size: 20px;
+        margin: 15px;
+    }
+
+    .text-title{
+        font-size: 16px;
+    }
+
+    .text-description{
+        font-size: 16px;
+        line-height: 1.4;
+    }
+
+    .infoLanding{
+        margin: 20px;
+        gap: 20px;
+    }
+
+    .item-info{
+        padding: 10px;
+    }
+
+    .stat-item-porcentajes{
+        font-size: 15px;
+    }
+
+    .stat-item{
+        font-size: 15px;;
+    }
+}

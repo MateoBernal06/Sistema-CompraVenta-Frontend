@@ -39,11 +39,7 @@ export const ViewPost = () => {
     const cargarCategorias = async () => {
         try {
             const data = await obtenerCategorias();
-
-            const categoriasOrdenadas = data.sort((a, b) => 
-                a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' })
-            );
-            setCategorias(categoriasOrdenadas);
+            setCategorias(data);
         } catch (error) {
             console.error('Error al cargar categorías:', error);
         }
@@ -65,9 +61,7 @@ export const ViewPost = () => {
         }
     };
 
-    const publicacionesOrdenadas = [...publicaciones].sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-    );
+
 
     const handleBuscar = async () => {
         setLoading(true);
@@ -188,7 +182,7 @@ export const ViewPost = () => {
                 ) : publicaciones.length === 0 ? (
                     <p className="mensaje-disponibles-view">No hay publicaciones disponibles.</p>
                 ) : (
-                    publicacionesOrdenadas.map((publicacion) => (
+                    publicaciones.map((publicacion) => (
                         <CardPublication 
                             key={publicacion._id || publicacion.id} 
                             {...publicacion}

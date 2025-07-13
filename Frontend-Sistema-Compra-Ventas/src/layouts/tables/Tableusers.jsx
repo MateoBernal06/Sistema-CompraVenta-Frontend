@@ -67,8 +67,8 @@ export const TableUsers = ({ estudiantes }) => {
                     <thead className="table-header">
                         <tr>
                             <th>N</th>
-                            <th>Nombre</th>
                             <th>Apellido</th>
+                            <th>Nombre</th>
                             <th>Correo Electrónico</th>
                             <th>Celular</th>
                             <th>Fecha de registro</th>
@@ -87,8 +87,8 @@ export const TableUsers = ({ estudiantes }) => {
                             estudiantesState.map((estu, idx) => (
                                 <tr key={estu._id}>
                                     <td>{idx + 1}</td>
-                                    <td>{estu.nombre}</td>
                                     <td>{estu.apellido}</td>
+                                    <td>{estu.nombre}</td>
                                     <td>{estu.email}</td>
                                     <td>{estu.celular}</td>
                                     <td>{new Date(estu.createdAt).toLocaleDateString()}</td>

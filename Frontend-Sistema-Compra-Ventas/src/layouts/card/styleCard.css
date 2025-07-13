@@ -4,8 +4,10 @@
     justify-content: space-between;
 }
 
-.btn-card{
-    padding: 10px 20px 10px 20px;
+.btn-card:hover{
+    background-color: #3ba785;
+    cursor: pointer;
+    color: black;
 }
 
 .price-text{

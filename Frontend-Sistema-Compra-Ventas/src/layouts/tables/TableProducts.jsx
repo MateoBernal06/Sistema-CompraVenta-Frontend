@@ -30,8 +30,8 @@ export const TableProducts = ({ publicaciones, onInactivar }) => {
                     <colgroup>
                         <col style={{ width: '5%' }} />
                         <col style={{ width: '15%' }} />
-                        <col style={{ width: '20%' }} />
                         <col style={{ width: '15%' }} />
+                        <col style={{ width: '20%' }} />
                         <col style={{ width: '15%' }} />
                         <col style={{ width: '10%' }} />
                         <col style={{ width: '10%' }} />
@@ -40,10 +40,10 @@ export const TableProducts = ({ publicaciones, onInactivar }) => {
                     <thead className="table-header">
                         <tr>
                             <th>N</th>
+                            <th>Fecha de publicacion</th>
                             <th>Titulo</th>
                             <th>Descripcion</th>
                             <th>Autor</th>
-                            <th>Fecha de publicacion</th>
                             <th>Disponible</th>
                             <th>Estado</th>
                             <th>Acciones</th>
@@ -60,10 +60,10 @@ export const TableProducts = ({ publicaciones, onInactivar }) => {
                             publicaciones.map((pub, idx) => (
                                 <tr key={pub._id}>
                                     <td>{idx + 1}</td>
+                                    <td>{new Date(pub.createdAt).toLocaleDateString()}</td>
                                     <td>{pub.titulo}</td>
                                     <td className='description'>{pub.descripcion}</td>
                                     <td>{pub.autor.nombre} {pub.autor.apellido}</td>
-                                    <td>{new Date(pub.createdAt).toLocaleDateString()}</td>
                                     <td className='estado-column'>
                                         <span className={pub.disponible ? 'estado-disponible' : 'estado-no-disponible'}>
                                             {pub.disponible ? 'Sí' : 'No'}

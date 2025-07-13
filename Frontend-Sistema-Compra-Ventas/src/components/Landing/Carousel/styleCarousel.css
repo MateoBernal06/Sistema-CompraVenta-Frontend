@@ -4,3 +4,8 @@
     height: 500px;
 }
 
+@media (max-width: 768px) {
+    .custom-slider{
+        height: 180px;
+    }
+}
