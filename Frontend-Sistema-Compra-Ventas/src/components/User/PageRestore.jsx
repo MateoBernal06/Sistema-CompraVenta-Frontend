@@ -45,7 +45,7 @@ export const PageRestore = () => {
         <>
         
             <div className='place-form-restore'>
-                <p className="text-title-restore">Restablecer Contraseña🐲</p>
+                <p className="text-title-restore">Restablecer Contraseña</p>
                 <p className='text-forgot'>Ingresa una nueva contraseña que no olvidaras</p>
                 <form className='form-registrar' onSubmit={handleSubmit}>
                 

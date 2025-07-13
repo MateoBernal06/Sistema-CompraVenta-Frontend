@@ -19,7 +19,7 @@ export const Dashboard = () => {
     const [sidebarVisible, setSidebarVisible] = useState(false);
     const navigate = useNavigate();
     const { user, setUser } = useContext(UserContext);
- 
+
     useEffect(() => {
         const fetchNombre = async () => {
             try {
@@ -81,7 +81,7 @@ export const Dashboard = () => {
                 <div className='dashboard-options-exit'>
                     <div className='dashboard-icon'>
                         <p className='dashboard-welcome'>
-                            Bienvenid@ de nuevo <b>{user.nombre}</b>
+                            Holaaa! <b>{user.nombre}</b>
                         </p>
                         <Whisper placement="bottom" trigger="click" speaker={userPopover}>
                             <Badge color='green'>

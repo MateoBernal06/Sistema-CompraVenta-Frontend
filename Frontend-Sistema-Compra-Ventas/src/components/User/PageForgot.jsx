@@ -49,7 +49,7 @@ export const PageForgot = () =>{
                     src={imagenForgot}/>
             </div>
             <div className='place-form'>
-                <p className="text-title-restore">Recupera tu contraseña 🐲</p>
+                <p className="text-title-restore">Restablecer contraseña</p>
                 <p className='text-forgot'>Ingresa el correo electronico registrado para restablecer la contraseña</p>
                 <form className='form-registrar' onSubmit={handleSubmit}>
                     <div className='input-form'>

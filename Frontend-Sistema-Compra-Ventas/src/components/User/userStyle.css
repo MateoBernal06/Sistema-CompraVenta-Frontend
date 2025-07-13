@@ -113,3 +113,54 @@
     width: 250px;
     height: 250px;
 }
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    
+    .place-form{
+        text-align: center;
+        padding: 15px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .register-container{
+        grid-template-columns: repeat(1, 1fr);
+        margin: 10px 0px 10px 0px;
+        height: auto;
+    }
+
+    .place-imagen{
+        width: 100%;
+        height: 200px;
+    }
+
+    .place-form{
+        background-color: rgb(255, 255, 255);
+        width: auto;
+        height: auto;
+        margin: 0 auto;
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    .text-title-restore, .text-forgot, .go-login{
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .input-form{
+        font-size: 15px;
+        width: 100px;
+        margin-bottom: 10px;
+    }
+
+    .input, .boton-register{
+        width: 250px;
+        height: 30px;
+    }
+
+    .input{
+        padding: 10px;
+    }
+}

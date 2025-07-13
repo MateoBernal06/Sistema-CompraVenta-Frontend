@@ -40,10 +40,10 @@ export const TableProducts = ({ publicaciones, onInactivar }) => {
                     <thead className="table-header">
                         <tr>
                             <th>N</th>
-                            <th>Fecha de publicacion</th>
-                            <th>Titulo</th>
-                            <th>Descripcion</th>
-                            <th>Autor</th>
+                            <th className="hide-mobile">Fecha</th>
+                            <th>Título</th>
+                            <th className="hide-mobile">Descripción</th>
+                            <th className="hide-tablet">Autor</th>
                             <th>Disponible</th>
                             <th>Estado</th>
                             <th>Acciones</th>
@@ -52,7 +52,7 @@ export const TableProducts = ({ publicaciones, onInactivar }) => {
                     <tbody>
                         {publicaciones.length === 0 ? (
                             <tr>
-                                <td colSpan={7} style={{ textAlign: 'center', color: '#888' }}>
+                                <td colSpan={8} style={{ textAlign: 'center', color: '#888' }}>
                                     No existen publicaciones registradas.
                                 </td>
                             </tr>
@@ -60,10 +60,10 @@ export const TableProducts = ({ publicaciones, onInactivar }) => {
                             publicaciones.map((pub, idx) => (
                                 <tr key={pub._id}>
                                     <td>{idx + 1}</td>
-                                    <td>{new Date(pub.createdAt).toLocaleDateString()}</td>
+                                    <td className="hide-mobile">{new Date(pub.createdAt).toLocaleDateString()}</td>
                                     <td>{pub.titulo}</td>
-                                    <td className='description'>{pub.descripcion}</td>
-                                    <td>{pub.autor.nombre} {pub.autor.apellido}</td>
+                                    <td className='description hide-mobile'>{pub.descripcion}</td>
+                                    <td className="hide-tablet">{pub.autor.nombre} {pub.autor.apellido}</td>
                                     <td className='estado-column'>
                                         <span className={pub.disponible ? 'estado-disponible' : 'estado-no-disponible'}>
                                             {pub.disponible ? 'Sí' : 'No'}
@@ -83,6 +83,7 @@ export const TableProducts = ({ publicaciones, onInactivar }) => {
                                                 onClick={() => handleOpenDrawer(pub)}
                                             />
                                             <Toggle
+                                                className="responsive-toggle"
                                                 size="lg"
                                                 checked={pub.estado}
                                                 color='green'

@@ -80,7 +80,7 @@ export const DashboardEstudiante = () => {
                 <div className='dashboard-options-exit'>
                     <div className='dashboard-icon'>
                         <p className='dashboard-welcome'>
-                            Bienvenid@ de nuevo <b>{user.nombre}</b>
+                            Holaaa! <b>{user.nombre}</b>
                         </p>
                         <Whisper placement="bottom" trigger="click" speaker={userPopover}>
                             <Badge color='green'>
