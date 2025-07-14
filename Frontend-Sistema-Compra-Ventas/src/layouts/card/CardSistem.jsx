@@ -12,7 +12,7 @@ import { FaEye } from "react-icons/fa";
 
 export const CardSistem = ({titulo, imagen, disponible ,createdAt, onEditar, onVerDetalles, onEliminar, onVendida}) => {
     return(
-        <Card width={450} shaded direction="row">
+        <Card width={450} shaded direction="row" className='card-container-sistem'>
             <div className='lugar-imagen-producto'>
                 <img
                     className='imagen-post-card'

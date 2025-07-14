@@ -145,8 +145,8 @@ export const ViewPost = () => {
 
             <div className="filter-container">
                 <div className="category-filter">
-                    <BiCategory size={20} className="icon" />
                     <label htmlFor="categoria-filter">
+                        <BiCategory size={20} className="icon" />
                         <b>Filtrar por categoría </b>
                     </label>
                     <select

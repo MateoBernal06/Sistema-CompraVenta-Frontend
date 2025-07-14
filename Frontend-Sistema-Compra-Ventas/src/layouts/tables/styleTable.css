@@ -325,10 +325,6 @@ td {
         font-size: 9px;
     }
 
-    /* Ocultar columnas menos importantes */
-    .hide-mobile {
-        display: none !important;
-    }
 
     /* Ajustar anchos específicos para móviles */
     .table-users colgroup col:nth-child(1) { width: 8%; }   /* N */

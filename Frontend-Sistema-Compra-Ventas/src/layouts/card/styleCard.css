@@ -116,3 +116,30 @@
 .card-post-admin .rs-card-footer {
     padding: 5px 0 0 0;
 }
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .card-container-sistem {
+        width: 350px !important;
+        height: 230px !important;
+    }
+
+    .lugar-imagen-producto{
+        height: 100%;
+        width: 150px;
+        object-fit: cover;
+    }
+}
+
+@media (max-width: 768px) {
+    .card-container-sistem {
+        width: 350px !important;
+        height: 230px !important;
+    }
+
+    .lugar-imagen-producto{
+        height: 100%;
+        width: 150px;
+        object-fit: cover;
+    }
+}
+

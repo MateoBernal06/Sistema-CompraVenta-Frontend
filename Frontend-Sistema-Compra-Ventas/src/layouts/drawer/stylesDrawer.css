@@ -29,7 +29,7 @@
 
 .detalles{
     font-size: 18px;
-    text-align: justify;
+    text-align: left;
     gap: 20px;
     display: grid;
 }
@@ -84,4 +84,69 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+    .drawer-container{
+        width: 400px !important;
+    }
+
+    .drawer-container-admin{
+        width: 500px !important;
+    }
+
+    .body-drawer{
+        text-align: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .detalles{
+        font-size: 18px;
+        text-align: left;
+    }
+
+    .datos-detalles, .datos-vendedor{
+        text-align: center;
+        font-size: 18px;
+        margin: 10px;
+        border-radius: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    
+    .drawer-container{
+        width: 300px !important;
+    }
+
+    .detalles{
+        font-size: 14px;
+        text-align: left;
+    }
+
+    .datos-detalles, .datos-vendedor{
+        text-align: center;
+        font-size: 14px;
+        margin: 10px;
+        border-radius: 8px;
+    }
+
+    .drawer-container-admin{
+        width: 300px !important;
+    }
+
+    @media (max-width: 480px) {
+        .drawer-container{
+            width: 100% !important;
+        }
+
+        .drawer-container-admin{
+            width: 100% !important;
+        }
+        
+    }
 }

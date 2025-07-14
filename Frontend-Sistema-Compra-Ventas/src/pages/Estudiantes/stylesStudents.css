@@ -122,6 +122,59 @@
     margin: 0px 10px 0px 10px;
 }
 
-@media (max-width: 768px){
 
+@media (min-width: 769px) and (max-width: 1024px) {
+    
+    .publicaciones-container{
+        grid-template-columns: repeat(2, 1fr);
+        padding: 20px;
+        justify-items: center;
+        gap: 30px;
+    }
+
+    .card-sistem-container{
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+        gap: 20px;
+    }
+
+    .list-create {
+        font-size: 14px;
+        text-align: left;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+    .publicaciones-container{
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .card-sistem-container{
+        grid-template-columns: repeat(1, 1fr);
+        justify-items: center;
+        gap: 20px;
+    }
+
+    .list-create {
+        font-size: 14px;
+        text-align: left;
+    }
+
+    .category-filter{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        border-radius: 5px;
+    }
+
+    .clear-button{
+        margin-top: 10px;
+        width: 60px;
+        padding: 10px;
+        font-size: 14px;
+    }
 }

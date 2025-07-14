@@ -125,7 +125,7 @@ export const ModalCreate = ({ show, onHide, onSave })=>{
                         </Message>
                     </div>
                     <div className='body-modal-form'>
-                        <p className='title-modal'>Crear Publicacion</p>
+                        <p className='title-modal'>Crear Publicación</p>
                         <form onSubmit={handleSubmit}>
                             <div className='form-group-create'>
                                 <label htmlFor="titulo">Título</label>
