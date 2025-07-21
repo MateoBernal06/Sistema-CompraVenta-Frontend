@@ -61,7 +61,7 @@ export const TableProducts = ({ publicaciones, onInactivar }) => {
                                 <tr key={pub._id}>
                                     <td>{idx + 1}</td>
                                     <td className="hide-mobile">{new Date(pub.createdAt).toLocaleDateString()}</td>
-                                    <td>{pub.titulo}</td>
+                                    <td className='option-categoria'>{pub.titulo}</td>
                                     <td className='description hide-mobile'>{pub.descripcion}</td>
                                     <td className="hide-tablet">{pub.autor.nombre} {pub.autor.apellido}</td>
                                     <td className='estado-column'>

@@ -59,13 +59,15 @@ export const DrawerProductos = ({open, onClose, publicacion}) => {
                             </p>
                             <ul className='vendedor'>
                                 <li className='vendedor-options'>
-                                    <b>Descripción: </b>{publicacion.descripcion} 
+                                    <b>Descripción</b>
+                                    <p>{publicacion.descripcion}</p>
                                 </li>
                                 <li className='vendedor-options'>
-                                    <b>Categoría: </b>{categoriaNombre || publicacion.categoria?.nombre || publicacion.categoria || 'Cargando...'}
+                                    <b>Categoría</b>
+                                    <p className='option-categoria'>{categoriaNombre || publicacion.categoria?.nombre || publicacion.categoria || 'Cargando...'}</p>
                                 </li>
                                 <li className='vendedor-options'>
-                                <b>Precio: </b>${publicacion.precio}
+                                    <b>Precio: </b>${publicacion.precio}
                                 </li>
                                 <li className='vendedor-options'>
                                     <b>{publicacion.disponible ? 'Disponible' : 'No disponible'}</b>

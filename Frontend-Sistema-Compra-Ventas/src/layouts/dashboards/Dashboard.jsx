@@ -10,15 +10,17 @@ import { useNavigate } from 'react-router-dom';
 import { ImExit } from "react-icons/im";
 import { perfil } from '../../context/api/admin';
 import Badge from 'rsuite/Badge';
+import { FcBusinessman } from "react-icons/fc";
 import Whisper from 'rsuite/Whisper';
 import Popover from 'rsuite/Tooltip';
 import { useContext, useEffect } from "react";
 import { UserContext } from '../../context/UserContext';
+import { logoutUser } from '../../utils/authUtils';
 
 export const Dashboard = () => {
     const [sidebarVisible, setSidebarVisible] = useState(false);
-    const navigate = useNavigate();
     const { user, setUser } = useContext(UserContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchNombre = async () => {
@@ -49,27 +51,12 @@ export const Dashboard = () => {
     }, [setUser]);
 
     const handleLogout = () => {
-        // Limpiar localStorage completamente
-        localStorage.removeItem('token');
-        localStorage.removeItem('_id');
-        localStorage.removeItem('rol');
-        
-        setUser({
-            nombre: '',
-            apellido: '',
-            email: '',
-            celular: '',
-            direccion: '',
-            rol: ''
-        });
-        
-        // Navegar al inicio
-        navigate('/');
+        logoutUser(setUser, navigate);
     };
     
     const userPopover = (
         <Popover title="Datos del usuario" className='dashboard-popover'>
-            <p className='dashboard-popover-title'>Bienvenido, {user.nombre}</p>
+            <p className='dashboard-popover-title'>Bienvenido</p>
             <div>
                 <p><b>Nombre:</b> {user.nombre}</p>
                 <p><b>Apellido:</b> {user.apellido}</p>
@@ -94,11 +81,13 @@ export const Dashboard = () => {
                 <div className='dashboard-options-exit'>
                     <div className='dashboard-icon'>
                         <p className='dashboard-welcome'>
-                            Holaaa! <b>{user.nombre}</b>
+                            Bienvenido, <b>{user.nombre} {user.apellido}</b>
                         </p>
                         <Whisper placement="bottom" trigger="click" speaker={userPopover}>
                             <Badge color='green'>
-                                <Avatar color="red" bordered circle src="https://i.pravatar.cc/150?u=2" />
+                                <Avatar color="blue" bordered circle>
+                                    <FcBusinessman size={30} />
+                                </Avatar>
                             </Badge>
                         </Whisper>
                     </div>

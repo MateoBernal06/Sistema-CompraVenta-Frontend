@@ -118,6 +118,19 @@
         display: grid;
         padding: 0px 20px 0px 20px;
     }
+
+    .dashboard-button-exit{
+        width: 80px;
+        font-size: 14px;
+        height: auto;
+    }
+
+    .dashboard-options-exit{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -129,13 +142,21 @@
     }
 
     .dashboard-button-exit{
-        width: 50px;
+        width: 80px;
         font-size: 14px;
+        height: auto;
     }
 
     .dashboard-welcome{
         font-size: 12px;
         margin: 10px;
+    }
+
+    .dashboard-options-exit{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
     }
 
 }
