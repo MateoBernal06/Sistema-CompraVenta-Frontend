@@ -49,8 +49,21 @@ export const Dashboard = () => {
     }, [setUser]);
 
     const handleLogout = () => {
+        // Limpiar localStorage completamente
         localStorage.removeItem('token');
+        localStorage.removeItem('_id');
         localStorage.removeItem('rol');
+        
+        setUser({
+            nombre: '',
+            apellido: '',
+            email: '',
+            celular: '',
+            direccion: '',
+            rol: ''
+        });
+        
+        // Navegar al inicio
         navigate('/');
     };
     

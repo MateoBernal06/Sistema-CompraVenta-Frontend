@@ -1,7 +1,36 @@
 import Drawer from 'rsuite/Drawer';
+import { useEffect, useState } from 'react';
+import { obtenerCategorias } from '../../context/api/categorias';
 import './stylesDrawer.css'
 
 export const DrawerProductos = ({open, onClose, publicacion}) => {
+    const [categoriaNombre, setCategoriaNombre] = useState('');
+    
+    useEffect(() => {
+        const cargarCategoria = async () => {
+            if (open && publicacion && publicacion.categoria) {
+                try {
+                    // Si ya es un objeto con nombre
+                    if (typeof publicacion.categoria === 'object' && publicacion.categoria.nombre) {
+                        setCategoriaNombre(publicacion.categoria.nombre);
+                        return;
+                    }
+                    
+                    // Si es un ID string
+                    if (typeof publicacion.categoria === 'string') {
+                        const categorias = await obtenerCategorias();
+                        const encontrada = categorias.find(cat => cat._id === publicacion.categoria);
+                        setCategoriaNombre(encontrada ? encontrada.nombre : publicacion.categoria);
+                    }
+                } catch (error) {
+                    setCategoriaNombre(publicacion.categoria || 'Sin categoría');
+                }
+            }
+        };
+        
+        cargarCategoria();
+    }, [open, publicacion]);
+
     if (!publicacion) return null;
     return (
         <>
@@ -33,7 +62,7 @@ export const DrawerProductos = ({open, onClose, publicacion}) => {
                                     <b>Descripción: </b>{publicacion.descripcion} 
                                 </li>
                                 <li className='vendedor-options'>
-                                    <b>Categoría: </b>{publicacion.categoria?.nombre || publicacion.categoria}
+                                    <b>Categoría: </b>{categoriaNombre || publicacion.categoria?.nombre || publicacion.categoria || 'Cargando...'}
                                 </li>
                                 <li className='vendedor-options'>
                                 <b>Precio: </b>${publicacion.precio}

@@ -4,7 +4,6 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import { FaSearch } from "react-icons/fa";
 import { SlArrowLeftCircle } from "react-icons/sl";
 import { CardSistem } from "../../layouts/card/CardSistem";
-import { FaBasketShopping } from "react-icons/fa6";
 import { ModalCreate } from "../../layouts/modals/modalProductos/ModalCreate";
 import { ModalUpdate } from "../../layouts/modals/modalProductos/ModalUpdate";
 import { useState, useEffect, useRef } from 'react';

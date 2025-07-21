@@ -13,6 +13,7 @@ import { UserContext } from '../../context/UserContext';
 import Badge from 'rsuite/Badge';
 import Whisper from 'rsuite/Whisper';
 import Popover from 'rsuite/Tooltip';
+import { logoutUser } from '../../utils/authUtils';
 
 export const DashboardEstudiante = () => {
     
@@ -49,9 +50,7 @@ export const DashboardEstudiante = () => {
     }, [setUser]);
 
     const handleLogout = () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('rol');
-        navigate('/');
+        logoutUser(setUser, navigate);
     };
 
     const userPopover = (
@@ -84,7 +83,7 @@ export const DashboardEstudiante = () => {
                         </p>
                         <Whisper placement="bottom" trigger="click" speaker={userPopover}>
                             <Badge color='green'>
-                                <Avatar color="blue" bordered circle src="https://i.pravatar.cc/150?u=5" />
+                                <Avatar color="blue" bordered circle>{user.nombre.charAt(0)}{user.apellido.charAt(0)}</Avatar>
                             </Badge>
                         </Whisper>
                     </div>

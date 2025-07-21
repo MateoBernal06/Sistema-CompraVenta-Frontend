@@ -45,6 +45,11 @@
     justify-content: center;
 }
 
+/* Estilo para capitalizar el título de las publicaciones */
+.rs-card-header, .titulo-detalle, .option-categoria {
+    text-transform: capitalize;
+}
+
 .imagen-post-card{
     height: 100%;
     object-fit: cover;
