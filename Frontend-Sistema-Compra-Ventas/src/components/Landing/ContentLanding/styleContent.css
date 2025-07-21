@@ -146,7 +146,6 @@
 
     .item-info{
         width: auto;
-        padding: 5px;
     }
 
     .item-image{
@@ -166,6 +165,7 @@
     .text-description{
         font-size: 16px;
         line-height: 1.4;
+        padding: 10px;
     }
 
     .infoLanding{
