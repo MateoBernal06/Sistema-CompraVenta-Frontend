@@ -72,12 +72,6 @@ export const DrawerDetalles = ({open, onClose, publicacion}) =>{
                                 <li className='vendedor-options'>
                                     <b>Apellido: </b>{publicacion.autor?.apellido} 
                                 </li>
-                                <li className='vendedor-options'>
-                                    <b>Correo: </b>{publicacion.autor?.email}
-                                </li>
-                                <li className='vendedor-options'>
-                                    <b>Dirección: </b>{publicacion.autor?.direccion}
-                                </li>
                             </ul>
                         </div>
                     </div>

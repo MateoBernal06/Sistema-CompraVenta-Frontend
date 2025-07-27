@@ -56,12 +56,11 @@ export const TableUsers = ({ estudiantes }) => {
                 <Table className="table-users" bordered  >
                     <colgroup>
                         <col style={{ width: '5%' }} />
-                        <col style={{ width: '10%' }} />
-                        <col style={{ width: '10%' }} />
-                        <col style={{ width: '25%' }} />
-                        <col style={{ width: '10%' }} />
                         <col style={{ width: '15%' }} />
-                        <col style={{ width: '10%' }} />
+                        <col style={{ width: '15%' }} />
+                        <col style={{ width: '25%' }} />
+                        <col style={{ width: '15%' }} />
+                        <col style={{ width: '15%' }} />
                         <col style={{ width: '15%' }} />
                     </colgroup>
                     <thead className="table-header">
@@ -70,7 +69,6 @@ export const TableUsers = ({ estudiantes }) => {
                             <th>Apellido</th>
                             <th>Nombre</th>
                             <th>Correo Electrónico</th>
-                            <th>Celular</th>
                             <th>Fecha de registro</th>
                             <th>Estado</th>
                             <th>Acciones</th>
@@ -90,7 +88,6 @@ export const TableUsers = ({ estudiantes }) => {
                                     <td>{estu.apellido}</td>
                                     <td>{estu.nombre}</td>
                                     <td>{estu.email}</td>
-                                    <td>{estu.celular}</td>
                                     <td>{new Date(estu.createdAt).toLocaleDateString()}</td>
                                     <td className='estado-column'>
                                         <span className={estu.estado ? 'estado-activo' : 'estado-inactivo'}>
