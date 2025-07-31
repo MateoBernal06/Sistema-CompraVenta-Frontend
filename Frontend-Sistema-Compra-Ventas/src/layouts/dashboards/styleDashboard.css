@@ -29,7 +29,6 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    cursor: pointer;
 }
 
 .dashboard-options-exit{
@@ -48,10 +47,15 @@
     color: white;
 }
 
+.avatar-user{
+    cursor: pointer;
+}
+
 .dashboard-logo{
     width: 60px;
     height: 60px;
     object-fit: cover;
+    cursor: pointer;
 }
 
 .dashboard-icon-menu{

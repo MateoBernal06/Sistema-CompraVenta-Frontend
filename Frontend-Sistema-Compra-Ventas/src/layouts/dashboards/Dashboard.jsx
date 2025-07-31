@@ -76,16 +76,16 @@ export const Dashboard = () => {
                     <TiThMenu color="white" size={32}/>
                 </div>
                 <div>
-                    <img className='dashboard-logo' src={Logo} alt="Logo" />
+                    <img className='dashboard-logo' src={Logo} alt="Logo"/>
                 </div>
                 <div className='dashboard-options-exit'>
                     <div className='dashboard-icon'>
                         <p className='dashboard-welcome'>
                             Bienvenido, <b>{user.nombre} {user.apellido}</b>
                         </p>
-                        <Whisper placement="bottom" trigger="click" speaker={userPopover}>
+                        <Whisper placement="bottom" trigger="click"  speaker={userPopover}>
                             <Badge color='green'>
-                                <Avatar color="blue" bordered circle>
+                                <Avatar color="blue" className='avatar-user' title='Detalles del usuario' bordered circle>
                                     <FcBusinessman size={30} />
                                 </Avatar>
                             </Badge>
