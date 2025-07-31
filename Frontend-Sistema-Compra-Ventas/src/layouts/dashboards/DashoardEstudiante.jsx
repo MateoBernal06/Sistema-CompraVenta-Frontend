@@ -53,6 +53,10 @@ export const DashboardEstudiante = () => {
         logoutUser(setUser, navigate);
     };
 
+    const handleLogoClick = () => {
+        window.location.reload();
+    };
+
     const userPopover = (
         <Popover title="Datos del usuario" className='dashboard-popover'>
             <p className='dashboard-popover-title'>Bienvenido, {user.nombre}</p>
@@ -74,7 +78,14 @@ export const DashboardEstudiante = () => {
                     <TiThMenu color="white" size={32}/>
                 </div>
                 <div>
-                    <img className='dashboard-logo' src={Logo} alt="Logo" />
+                    <img 
+                        className='dashboard-logo' 
+                        src={Logo} 
+                        alt="Logo"
+                        onClick={handleLogoClick}
+                        style={{ cursor: 'pointer' }}
+                        title="Recargar página"
+                    />
                 </div>
                 <div className='dashboard-options-exit'>
                     <div className='dashboard-icon'>
@@ -83,7 +94,7 @@ export const DashboardEstudiante = () => {
                         </p>
                         <Whisper placement="bottom" trigger="click" speaker={userPopover}>
                             <Badge color='green'>
-                                <Avatar color="blue" bordered circle>{user.nombre.charAt(0)}{user.apellido.charAt(0)}</Avatar>
+                                <Avatar color="blue" className='avatar-user' bordered circle>{user.nombre.charAt(0)}{user.apellido.charAt(0)}</Avatar>
                             </Badge>
                         </Whisper>
                     </div>

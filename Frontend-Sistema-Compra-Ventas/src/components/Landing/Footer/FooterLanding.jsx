@@ -7,7 +7,7 @@ export const FooterLanding = () => {
             <div className='redes'>
                 <img src={Logo} alt="Logo" className="footer-logo" />
                 <p>
-                    copyright © 2025 DragonYa
+                    copyright © 2025 Dragon Ya
                 </p>
                 <p>
                     Desarrollado por Mateo Bernal

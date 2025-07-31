@@ -53,6 +53,10 @@ export const Dashboard = () => {
     const handleLogout = () => {
         logoutUser(setUser, navigate);
     };
+
+    const handleLogoClick = () => {
+        window.location.reload();
+    };
     
     const userPopover = (
         <Popover title="Datos del usuario" className='dashboard-popover'>
@@ -76,7 +80,14 @@ export const Dashboard = () => {
                     <TiThMenu color="white" size={32}/>
                 </div>
                 <div>
-                    <img className='dashboard-logo' src={Logo} alt="Logo"/>
+                    <img 
+                        className='dashboard-logo' 
+                        src={Logo} 
+                        alt="Logo"
+                        onClick={handleLogoClick}
+                        style={{ cursor: 'pointer' }}
+                        title="Recargar página"
+                    />
                 </div>
                 <div className='dashboard-options-exit'>
                     <div className='dashboard-icon'>
