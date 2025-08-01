@@ -10,7 +10,7 @@ import { MdDelete } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
 
 
-export const CardSistem = ({titulo, imagen, disponible ,createdAt, onEditar, onVerDetalles, onEliminar, onVendida}) => {
+export const CardSistem = ({titulo, imagen, disponible ,createdAt, onEditar, onVerDetalles, onEliminar, onVendida, estado}) => {
     return(
         <Card width={450} shaded direction="row" className='card-container-sistem'>
             <div className='lugar-imagen-producto'>
@@ -22,14 +22,26 @@ export const CardSistem = ({titulo, imagen, disponible ,createdAt, onEditar, onV
                 />
             </div>
             <VStack spacing={2} className='body-card'>
-                <Card.Header className="card-title-ellipsis" title={titulo} as="h5">{titulo}</Card.Header>
+                <Card.Header 
+                    className="card-title-ellipsis" 
+                    title={estado ? titulo : <Tag 
+                        color="red" 
+                        className="tag-inhabilitada">
+                        Inhabilitada
+                    </Tag>} 
+                    as="h5">{estado ? titulo : <Tag 
+                        color="red" 
+                        className="tag-inhabilitada">
+                        Inhabilitada
+                    </Tag>}
+                </Card.Header>
                 <Card.Body className='buttons-card'>
                     <Button 
                         className='button-card' 
                         color='yellow' 
                         appearance="primary"
                         onClick={onEditar}
-                        disabled={!disponible}
+                        disabled={!disponible||!estado}
                     >
                         <FaPencilAlt size={20}/>  Editar
                     </Button>
@@ -39,6 +51,7 @@ export const CardSistem = ({titulo, imagen, disponible ,createdAt, onEditar, onV
                         appearance="primary"
                         onClick={onVendida}
                         style={!disponible ? { backgroundColor: '#d32f2f', borderColor: '#d32f2f', color: '#fff' } : {}}
+                        disabled={!estado}
                     >
                         <FaCheckCircle size={20}/> {disponible ? 'Vendido' : 'Cancelar'}
                     </Button>
@@ -47,7 +60,7 @@ export const CardSistem = ({titulo, imagen, disponible ,createdAt, onEditar, onV
                         color='red' 
                         appearance="primary"
                         onClick={onEliminar}
-                        disabled={!disponible}
+                        disabled={!disponible || !estado}
                     >
                         <MdDelete size={20}/> Eliminar
                     </Button>
@@ -61,7 +74,7 @@ export const CardSistem = ({titulo, imagen, disponible ,createdAt, onEditar, onV
                         <FaEye size={20}/> Detalles
                     </Button>
                 </Card.Body>
-                <Card.Footer>
+                <Card.Footer className='estado-card'>
                     <TagGroup>
                         <Tag className="tag" size="sm">Publicado: <b>
                             {createdAt

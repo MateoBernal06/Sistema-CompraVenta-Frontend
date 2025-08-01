@@ -2,6 +2,7 @@ import Drawer from 'rsuite/Drawer';
 import { useEffect, useState } from 'react';
 import { obtenerCategorias } from '../../context/api/categorias';
 import { TbListDetails } from "react-icons/tb";
+import Tag from 'rsuite/Tag';
 import './stylesDrawer.css'
 
 export const DrawerProductos = ({open, onClose, publicacion}) => {
@@ -72,6 +73,14 @@ export const DrawerProductos = ({open, onClose, publicacion}) => {
                                 </li>
                                 <li className='vendedor-options'>
                                     <b>{publicacion.disponible ? 'Disponible' : 'No disponible'}</b>
+                                </li>
+                                <li className='vendedor-options'>
+                                    <b>Estado: </b>{publicacion.estado ? 'Activo' : 
+                                    <Tag 
+                                        color="red" 
+                                        className="tag-inhabilitada">
+                                        Inhabilitada
+                                    </Tag>}
                                 </li>
                                 <li className='vendedor-options'>
                                     <b>Fecha de publicación</b>

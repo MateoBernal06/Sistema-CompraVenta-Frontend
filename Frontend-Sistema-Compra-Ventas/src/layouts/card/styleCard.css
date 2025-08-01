@@ -63,6 +63,8 @@
     font-weight: bold;
 }
 
+
+
 /* Estilo para capitalizar el título de las publicaciones */
 .rs-card-header, .titulo-detalle, .option-categoria, .descripcion-publicacion, .mayusculas, .description{
     text-transform: none;
