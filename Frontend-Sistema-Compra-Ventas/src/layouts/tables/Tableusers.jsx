@@ -70,7 +70,7 @@ export const TableUsers = ({ estudiantes }) => {
                             <th>Apellido</th>
                             <th>Nombre</th>
                             <th>Correo Electrónico</th>
-                            <th>Teléfono</th>
+                            <th>Celular</th>
                             <th>Fecha de registro</th>
                             <th>Estado</th>
                             <th>Acciones</th>

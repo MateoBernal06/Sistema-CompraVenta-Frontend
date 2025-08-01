@@ -157,7 +157,7 @@ export const ViewPost = () => {
                     >
                         <option value="">Todas las categorías</option>
                         {categorias.map(cat => (
-                            <option key={cat._id} value={cat._id} className='option-categoria'>
+                            <option key={cat._id} value={cat._id} className='categorias-list'>
                                 {cat.nombre}
                             </option>
                         ))}

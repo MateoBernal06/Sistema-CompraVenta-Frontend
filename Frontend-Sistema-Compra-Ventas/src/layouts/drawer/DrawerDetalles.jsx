@@ -1,6 +1,8 @@
 import Drawer from 'rsuite/Drawer';
 import Button from 'rsuite/Button';
 import { FaWhatsapp } from "react-icons/fa";
+import { FaUserShield } from "react-icons/fa";
+import { TbListDetails } from "react-icons/tb";
 import './stylesDrawer.css'
 export const DrawerDetalles = ({open, onClose, publicacion}) =>{
 
@@ -42,12 +44,12 @@ export const DrawerDetalles = ({open, onClose, publicacion}) =>{
                         </div>
                         <div>
                             <p className='datos-detalles'>
-                                <b>Detalles</b>
+                                <TbListDetails size={20}/> <b>Detalles</b>
                             </p>
                             <ul className='vendedor'>
                                 <li className='vendedor-options'>
                                     <b>Descripción</b>
-                                    <p>{publicacion.descripcion}</p>
+                                    <p className='descripcion-publicacion'>{publicacion.descripcion}</p>
                                 </li>
                                 <li className='vendedor-options'>
                                     <b>Categoría</b> <p className='option-categoria'>{publicacion.categoria?.nombre || publicacion.categoria}</p>
@@ -63,7 +65,7 @@ export const DrawerDetalles = ({open, onClose, publicacion}) =>{
                         </div>
                         <div>
                             <p className='datos-vendedor'>
-                                <b>Datos del vendedor</b>
+                                <FaUserShield size={20}/> <b>Datos del vendedor</b>
                             </p>
                             <ul className='vendedor'>
                                 <li className='vendedor-options'>

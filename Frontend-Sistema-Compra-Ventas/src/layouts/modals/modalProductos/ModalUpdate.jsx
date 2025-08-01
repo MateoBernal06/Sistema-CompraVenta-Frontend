@@ -149,7 +149,7 @@ export const ModalUpdate = ({ show, onHide, publicacion, onSave })=>{
                                     >
                                         <option value="">Selecciona una categoría</option>
                                         {categorias.map(cat => (
-                                            <option className='option-categoria' key={cat._id} value={cat._id}>
+                                            <option className='categorias-list' key={cat._id} value={cat._id}>
                                                 {cat.nombre}
                                             </option>
                                         ))}

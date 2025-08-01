@@ -1,6 +1,7 @@
 import Drawer from 'rsuite/Drawer';
 import { useEffect, useState } from 'react';
 import { obtenerCategorias } from '../../context/api/categorias';
+import { TbListDetails } from "react-icons/tb";
 import './stylesDrawer.css'
 
 export const DrawerProductos = ({open, onClose, publicacion}) => {
@@ -55,12 +56,12 @@ export const DrawerProductos = ({open, onClose, publicacion}) => {
                     <div className='detalles'>
                         <div>
                             <p className='datos-detalles'>
-                                <b>Detalles</b>
+                                <TbListDetails size={20}/> <b>Detalles</b>
                             </p>
                             <ul className='vendedor'>
                                 <li className='vendedor-options'>
                                     <b>Descripción</b>
-                                    <p>{publicacion.descripcion}</p>
+                                    <p className='descripcion-publicacion'>{publicacion.descripcion}</p>
                                 </li>
                                 <li className='vendedor-options'>
                                     <b>Categoría</b>
@@ -73,7 +74,8 @@ export const DrawerProductos = ({open, onClose, publicacion}) => {
                                     <b>{publicacion.disponible ? 'Disponible' : 'No disponible'}</b>
                                 </li>
                                 <li className='vendedor-options'>
-                                    <b>Fecha de publicación: </b>{publicacion.createdAt ? new Date(publicacion.createdAt).toLocaleString() : ''}
+                                    <b>Fecha de publicación</b>
+                                    <p className='option-categoria'>{publicacion.createdAt ? new Date(publicacion.createdAt).toLocaleString() : ''}</p>
                                 </li>
                             </ul>
                         </div>

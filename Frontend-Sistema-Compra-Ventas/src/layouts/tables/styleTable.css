@@ -325,6 +325,8 @@ td {
         font-size: 9px;
     }
 
+    
+
 
     /* Ajustar anchos específicos para móviles */
     .table-users colgroup col:nth-child(1) { width: 8%; }   /* N */

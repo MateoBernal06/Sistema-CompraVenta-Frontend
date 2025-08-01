@@ -56,7 +56,7 @@ export const TableCategory = ({ categorias, onInactivar, onUpdateCategoria }) =>
                             categorias.map((cat, idx) => (
                                 <tr key={cat._id}>
                                     <td>{idx + 1}</td>
-                                    <td className='option-categoria'>{cat.nombre}</td>
+                                    <td className='mayusculas'>{cat.nombre}</td>
                                     <td className='description'>{cat.descripcion}</td>
                                     <td>{new Date(cat.createdAt).toLocaleDateString()}</td>
                                     <td className='estado-column'>

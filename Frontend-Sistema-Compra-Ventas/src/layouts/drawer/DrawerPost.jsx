@@ -29,7 +29,7 @@ export const DrawerPost = ({ open, onClose, publicacion }) => {
                             <ul className='vendedor'>
                                 <li className='vendedor-options'>
                                     <b>Descripción</b>
-                                    <p>{publicacion.descripcion}</p>
+                                    <p className='descripcion-publicacion'>{publicacion.descripcion}</p>
                                 </li>
                                 <li className='vendedor-options'>
                                     <b>Categoría</b>
