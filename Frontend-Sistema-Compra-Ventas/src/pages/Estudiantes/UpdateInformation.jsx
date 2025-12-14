@@ -16,7 +16,6 @@ export const UpdateInformation = () => {
         apellido: '',
         celular: '',
         direccion: '',
-        direccion: '',
         rol: ''
     });
 
